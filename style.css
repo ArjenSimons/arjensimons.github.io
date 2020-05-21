@@ -99,5 +99,63 @@ h4, button {
 
 /* Projects */
 #projects {
-    padding-top: 0px;
+    padding-top: 0;
+}
+.project-section-container {
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.project-section-contents {
+    margin-left: 0;
+    margin-right: 0;
+}
+.project-item-container {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    overflow: hidden;
+}
+.project-item {
+    height: 350px;
+    border: 1.8px solid;
+    border-color: #545454;
+    border-radius: 5px;
+    position: relative;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+}
+.project-item-bg {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all .3s ease-in-out;
+}
+.project-item-title-container {
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    line-height: 35px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    pointer-events: none;
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+.project-item-title {
+    font-family: 'Arial';
+    color: white;
+    font-weight: 100;
+    font-size: 30px;
 }
