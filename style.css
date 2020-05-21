@@ -1,0 +1,103 @@
+/* Style */
+:root{
+    --MainColor: #333;
+    --TransSubColor: rgba(0, 0, 0, 0.9);
+    --SubColor: #222;
+    --ContraColor: white;
+}
+.style-main {
+    background-color: var(--MainColor);
+    color: var(--ContraColor);
+}
+.style-bar {
+    background-color: var(--SubColor);
+    color: var(--ContraColor);
+}
+.style-navbar {
+    background-color: var(--SubColor);
+    opacity: 1;
+}
+
+/* Text */
+body {
+    font: 15px Arial;
+    line-height: 1.8;
+    height: 100%;
+}
+h1 {
+    font: bolder 80px Arial;
+}
+h2 {
+    font: bolder 40px Arial;
+}
+h3 {
+    font: bold 20px Arial;
+}
+h4, button {
+    font: 20px Arial;
+    line-height: 1.8;
+}
+
+/* Common classes */
+.common-bar {
+    height: 62px;
+    width: 100%;
+}
+.common-container {
+    width: 100%;
+}
+
+/* Navbar */
+#navbar {
+    width: 100%;
+    margin: 0px;
+    border-width: 0px;
+}
+/* Navbar header */
+#navbarHeader {
+    padding: 1rem 0rem;
+    height: 100%;
+}
+#navbarMenu {
+    padding: 20px;
+    margin: 0px;
+    height: 100%;
+}
+/* NavbarBody */
+
+.navbar-brand a {
+    color: var(--ContraColor)
+}
+.navbarBodyItem {
+    padding: 1rem 0px;
+    margin: 0px;
+    height: 100%;
+    border-width: 0px;
+}
+.navbarBodyItem li {
+    height: 100%;
+    color: var(--ContraColor);
+}
+.navbarBodyItem a {
+    color: var(--ContraColor);
+}
+#navbarBodyLeft li a {
+    padding: 50px 20px;
+}
+#navbarBodyRight {
+    margin-right: -20px;
+}
+#navbarBodyRight li {
+    width: 75px;
+}
+.navbarBodyItem li a:hover,
+.navbarBodyItem li a:focus {
+    background-color: var(--MainColor) !important;
+    color: var(--ContraColor) !important;
+    text-decoration: none;
+}
+
+/* Projects */
+#projects {
+    padding-top: 0px;
+}
