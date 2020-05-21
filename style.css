@@ -82,7 +82,7 @@ h4, button {
     color: var(--ContraColor);
 }
 #navbarBodyLeft li a {
-    padding: 50px 20px;
+    padding: 25px 20px;
 }
 #navbarBodyRight {
     margin-right: -20px;
