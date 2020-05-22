@@ -57,9 +57,14 @@ h4, button {
     line-height: 1.8;
 }
 
+a {
+    outline: 0;
+    text-decoration: none;
+}
+
 /* Common classes */
 .common-bar {
-    height: 60px;
+    height: 80px;
     width: 100%;
 }
 .common-container {
@@ -67,7 +72,7 @@ h4, button {
 }
 .common-bar-text {
     font: bolder 90px Arial;
-    padding-top: 5px;
+    padding: 15px;
 }
 .row {
     display: flex;
@@ -77,6 +82,7 @@ h4, button {
 /* Navbar */
 #navbar {
     width: 100%;
+    height: 60px;
     margin: 0px;
     border-width: 0px;
 }
@@ -109,7 +115,7 @@ h4, button {
     color: var(--ContraColor);
 }
 #navbarBodyLeft li a {
-    padding: 19px 20px;
+    padding: 20px 20px;
 }
 #navbarBodyRight {
     margin-right: -20px;
@@ -225,7 +231,7 @@ h4, button {
 .about-section-container {
     display: block;
     margin-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 
 }
 .about-section-contents {
@@ -236,9 +242,31 @@ h4, button {
     display: inline-block;
 }
 .about-section-text {
+    padding-bottom: 30px;
     font-family: 'Arial', serif;
     color: white;
     font-weight: 100;
     font-size: 15px;
+}
+.social-section-container {
+    user-select: none;
 
+}
+.social-icon {
+    padding-left: 12px;
+    padding-right: 12px;
+    color: white;
+    font-size: 50px;
+    position: relative;
+    z-index: 60;
+    border: none;
+}
+
+.social-icon:visited {
+    text-decoration: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+}
+.social-icon:hover {
+    color: black;
 }
