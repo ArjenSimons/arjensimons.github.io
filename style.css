@@ -17,6 +17,26 @@
     background-color: var(--TransSubColor);
 }
 
+/*Colors*/
+.color-lightblue {
+    color: #00e8e8;
+}
+.color-blue {
+    color: #227eff;
+}
+.color-pink {
+    color: #f745d3;
+}
+.color-green {
+    color: #15e681;
+}
+.color-orange {
+    color: #de9000;
+}
+.color-red {
+    color: #e00000;
+}
+
 /* Text */
 body {
     font: 15px Arial;
@@ -24,7 +44,7 @@ body {
     height: 100%;
 }
 h1 {
-    font: bolder 80px Arial;
+    font: bolder 90px Arial;
 }
 h2 {
     font: bolder 40px Arial;
@@ -44,6 +64,10 @@ h4, button {
 }
 .common-container {
     width: 100%;
+}
+.common-bar-text {
+    font: bolder 90px Arial;
+    padding-top: 5px;
 }
 .row {
     display: flex;
@@ -85,7 +109,7 @@ h4, button {
     color: var(--ContraColor);
 }
 #navbarBodyLeft li a {
-    padding: 20px 20px;
+    padding: 19px 20px;
 }
 #navbarBodyRight {
     margin-right: -20px;
@@ -106,8 +130,7 @@ h4, button {
 }
 .project-section-container {
     display: block;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 60px;
 }
 .project-section-contents {
     margin-left: 0;
@@ -117,8 +140,8 @@ h4, button {
     max-width: 340px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     text-align: center;
     overflow: hidden;
 }
@@ -162,6 +185,28 @@ h4, button {
     font-weight: 100;
     font-size: 30px;
 }
+.project-item-tags-container {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+}
+.project-item-tag {
+    height: 24px;
+    min-width: 30px;
+    padding-left: 7px;
+    padding-right: 7px;
+    font-family: 'Arial',serif;
+    font-weight: 100;
+    font-size: 14px;
+    float: left;
+    border: solid 2px;
+    margin-right: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 10px;
+}
 .project-item-desc-container {
     margin-top: 10px;
     max-width: 90%;
@@ -174,4 +219,26 @@ h4, button {
     color: white;
     font-weight: 100;
     font-size: 15px;
+}
+
+/* About */
+.about-section-container {
+    display: block;
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+}
+.about-section-contents {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 70%;
+    text-align: justify;
+    display: inline-block;
+}
+.about-section-text {
+    font-family: 'Arial', serif;
+    color: white;
+    font-weight: 100;
+    font-size: 15px;
+
 }
