@@ -134,7 +134,11 @@ a {
     height: calc(30%);
     padding-top: 60px;
 }
-
+.home-content {
+    display: block;
+    margin-top: 10px;
+    padding-bottom: 30px;
+}
 
 /* Projects */
 #projects {

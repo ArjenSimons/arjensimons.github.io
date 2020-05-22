@@ -8,11 +8,11 @@
     <meta content="Arjen Simon" name="author">
     <meta content="portfolio, game, development, game development, arjen simons, gamedev, programming, c#, unity"
           name="keywords">
-    <meta name="Game development and programming portfolio of Arjen Simons" content="description">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://arjensimons.github.io">
-    <meta property="og:title" content="Arjen Simons">
-    <meta property="og:description" content="Game development and programming portfolio of Arjen Simons">
+    <meta content="description" name="Game development and programming portfolio of Arjen Simons">
+    <meta content="website" property="og:type">
+    <meta content="http://arjensimons.github.io" property="og:url">
+    <meta content="Arjen Simons" property="og:title">
+    <meta content="Game development and programming portfolio of Arjen Simons" property="og:description">
 
 
     <link href="./style.css" rel="stylesheet">
@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="./javascript/scroll.js"></script>
+    <script src="./javascript/typingCarousel.js"></script>
 
 </head>
 <body id="home">
@@ -40,8 +41,18 @@
         </div>
     </nav>
     <!-- Home section -->
-    <div id="homeview" class="common-container style-main">
-        <h1>Arjen Simons</h1>
+    <div class="common-container style-main" id="homeview">
+        <div class="container text-center">
+            <div class="home-content">
+                <h1>
+                    <span class="txt-rotate"
+                          data-period="2000"
+                          data-rotate='[ "Game Developer", "Unity", "GIT", "C#", "OpenGL", "C++", "java", "Kotlin" ]'>
+                        Arjen Simons
+                    </span>
+                </h1>
+            </div>
+        </div>
     </div>
     <!-- Project section -->
     <div class="common-container style-main text-center" id="projects">
