@@ -46,6 +46,10 @@ h4, button {
 .common-container {
     width: 100%;
 }
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 /* Navbar */
 #navbar {
@@ -116,12 +120,12 @@ h4, button {
     margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    text-align: center;
+    text-align: left;
     overflow: hidden;
 }
 .project-item {
     height: 350px;
-    border: 1.8px solid;
+    border: 2px solid;
     border-color: #545454;
     border-radius: 5px;
     position: relative;
@@ -130,7 +134,7 @@ h4, button {
 }
 .project-item-bg {
     position: absolute;
-    top: -20px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
