@@ -1,7 +1,7 @@
 /* Style */
 :root{
     --MainColor: #333;
-    --TransSubColor: rgba(0, 0, 0, 0.9);
+    --TransSubColor: rgba(20, 20, 20, 0.95);
     --SubColor: #222;
     --ContraColor: white;
 }
@@ -14,8 +14,7 @@
     color: var(--ContraColor);
 }
 .style-navbar {
-    background-color: var(--SubColor);
-    opacity: 1;
+    background-color: var(--TransSubColor);
 }
 
 /* Text */
@@ -40,7 +39,7 @@ h4, button {
 
 /* Common classes */
 .common-bar {
-    height: 62px;
+    height: 60px;
     width: 100%;
 }
 .common-container {
@@ -86,7 +85,7 @@ h4, button {
     color: var(--ContraColor);
 }
 #navbarBodyLeft li a {
-    padding: 25px 20px;
+    padding: 20px 20px;
 }
 #navbarBodyRight {
     margin-right: -20px;
@@ -120,7 +119,7 @@ h4, button {
     margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    text-align: left;
+    text-align: center;
     overflow: hidden;
 }
 .project-item {
@@ -158,8 +157,21 @@ h4, button {
     padding-top: 12px;
 }
 .project-item-title {
-    font-family: 'Arial';
+    font-family: 'Arial', serif;
     color: white;
     font-weight: 100;
     font-size: 30px;
+}
+.project-item-desc-container {
+    margin-top: 10px;
+    max-width: 90%;
+    bottom: 0;
+    text-align: justify;
+    display: inline-block;
+}
+.project-item-desc {
+    font-family: 'Arial', serif;
+    color: white;
+    font-weight: 100;
+    font-size: 15px;
 }
