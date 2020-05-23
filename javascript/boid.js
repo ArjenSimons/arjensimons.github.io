@@ -7,10 +7,10 @@ class Boid {
         this.maxForce = 1;
         this.maxSpeed = 15;
         this.alignmentRange = 70;
-        this.cohesionRange = 70;
+        this.cohesionRange = 90;
         this.seperationRange = 40;
-        this.alignmentWeight = 1.8;
-        this.cohesionWeight = 1;
+        this.alignmentWeight = 1.4;
+        this.cohesionWeight = 1.2;
         this.separationWeight = 1.2;
     }
 
@@ -39,15 +39,18 @@ class Boid {
             if (other === this) {
                 continue;
             }
-            let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
-            if (distance < this.alignmentRange) {
-                alignmentBoids.push(other);
-            }
-            if (distance < this.cohesionRange) {
-                cohesionBoids.push(other);
-            }
-            if (distance < this.seperationRange) {
-                separationBoids.push(other);
+            let dot = this.velocity.dot(p5.Vector.sub(this.position, other.position));
+            if (dot > -200) {
+                let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+                if (distance < this.alignmentRange) {
+                    alignmentBoids.push(other);
+                }
+                if (distance < this.cohesionRange) {
+                    cohesionBoids.push(other);
+                }
+                if (distance < this.seperationRange) {
+                    separationBoids.push(other);
+                }
             }
         }
 
