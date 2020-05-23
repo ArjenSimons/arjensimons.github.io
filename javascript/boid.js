@@ -22,7 +22,12 @@ class Boid {
         this.velocity.add(this.acceleration);
         this.acceleration.set(0, 0);
 
-        this.HandleEdges()
+        this.HandleEdges();
+
+        this.maxSpeed = 15 * (width / 500);
+        if (this.maxSpeed > 24) {
+            this.maxSpeed = 24;
+        }
     }
 
     show() {
@@ -66,7 +71,7 @@ class Boid {
         mouseAvoidance.mult(this.mouseAvoidanceWeight);
         this.acceleration.add(mouseAvoidance);
 
-        if (mouseAvoidance > 0){
+        if (mouseAvoidance > 0) {
             return;
         }
 
@@ -126,7 +131,7 @@ class Boid {
     separation(boids) {
         let steering = createVector();
 
-        for(let other of boids){
+        for (let other of boids) {
             let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
             let diff = p5.Vector.sub(this.position, other.position);
             diff.div(distance); //Closer boids will have stronger impact on this void
