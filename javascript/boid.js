@@ -9,9 +9,11 @@ class Boid {
         this.alignmentRange = 70;
         this.cohesionRange = 90;
         this.seperationRange = 40;
+        this.mouseRange = 70;
         this.alignmentWeight = 1.4;
         this.cohesionWeight = 1.2;
         this.separationWeight = 1.2;
+        this.mouseAvoidanceWeight = 10;
     }
 
     update() {
@@ -24,7 +26,12 @@ class Boid {
     }
 
     show() {
-        strokeWeight(8);
+        let weight = width / 100;
+
+        if (weight > 16) {
+            weight = 16
+        }
+        strokeWeight(weight);
         stroke(255);
         point(this.position.x, this.position.y);
     }
@@ -52,6 +59,15 @@ class Boid {
                     separationBoids.push(other);
                 }
             }
+        }
+
+        //MouseAvoidance
+        let mouseAvoidance = this.mouseAvoidance();
+        mouseAvoidance.mult(this.mouseAvoidanceWeight);
+        this.acceleration.add(mouseAvoidance);
+
+        if (mouseAvoidance > 0){
+            return;
         }
 
         //Alignment
@@ -122,6 +138,23 @@ class Boid {
         steering.setMag(this.maxSpeed);
         steering.sub(this.velocity);
         steering.limit(this.maxForce);
+
+        return steering;
+    }
+
+    mouseAvoidance() {
+        let steering = createVector();
+        let mouse = createVector(mouseX, mouseY)
+        let distance = dist(this.position.x, this.position.y, mouse.x, mouse.y);
+
+        if (distance < this.mouseRange) {
+            let diff = p5.Vector.sub(this.position, mouse);
+
+            steering.add(diff);
+            steering.setMag(this.maxSpeed);
+            steering.sub(this.velocity);
+            steering.limit(this.maxForce);
+        }
 
         return steering;
     }
