@@ -2,18 +2,18 @@ class Boid {
     constructor() {
         this.position = createVector(random(0, width), random(0, height));
         this.velocity = p5.Vector.random2D();
-        this.velocity.setMag(random(2, 5));
+        this.velocity.setMag(random(2, 15));
         this.acceleration = createVector();
         this.maxForce = 0.3;
-        this.maxSpeed = 5;
-        this.perceptionRange = 50;
+        this.maxSpeed = 15;
+        this.alignmentRange = 70;
+        this.cohesionRange = 70;
+        this.seperationRange = 20;
     }
 
     update() {
         this.velocity.limit(this.maxSpeed);
-
-
-        this.position.add(this.velocity);
+        this.position.add(p5.Vector.mult(this.velocity, deltaTime / 50));
         this.velocity.add(this.acceleration);
 
         this.HandleEdges()
@@ -27,27 +27,38 @@ class Boid {
 
     flock(boids) {
         //Check for boids in range
-        let boidsInRange = [];
+        let alignmentBoids = [];
+        let cohesionBoids = [];
+
         for (let other of boids) {
             if (other === this) {
                 continue;
             }
             let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
-            if (distance < this.perceptionRange) {
-                boidsInRange.push(other);
+            if (distance < this.alignmentRange) {
+                alignmentBoids.push(other);
+            }
+            if (distance < this.cohesionRange){
+                cohesionBoids.push(other);
             }
         }
-        if (boidsInRange.length < 1) {
-            return;
+
+        this.acceleration.set(0, 0);
+
+        //Alignment
+        if (alignmentBoids.length > 0) {
+            let alignment = this.alignment(alignmentBoids);
+            this.acceleration.add(alignment);
         }
 
-        //Align
-        let alignment = this.align(boidsInRange);
-        this.acceleration.add(alignment);
-
+        //Cohesion
+        if (cohesionBoids.length > 0){
+            let cohesion = this.cohesion(cohesionBoids);
+            this.acceleration.add(cohesion);
+        }
     }
 
-    align(boids) {
+    alignment(boids) {
         let steering = createVector();
 
         for (let other of boids) {
@@ -55,6 +66,22 @@ class Boid {
         }
 
         steering.div(boids.length);
+        steering.setMag(this.maxSpeed);
+        steering.sub(this.velocity);
+        steering.limit(this.maxForce);
+
+        return steering;
+    }
+
+    cohesion(boids) {
+        let steering = createVector();
+
+        for (let other of boids) {
+            steering.add(other.position);
+        }
+
+        steering.div(boids.length);
+        steering.sub(this.position);
         steering.setMag(this.maxSpeed);
         steering.sub(this.velocity);
         steering.limit(this.maxForce);

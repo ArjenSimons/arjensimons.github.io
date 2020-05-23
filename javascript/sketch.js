@@ -5,7 +5,7 @@ function setup() {
     var canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent('homecontent');
 
-    for (let i = 0; i < 50; i++){
+    for (let i = 0; i < 100; i++){
         boids.push(new Boid());
     }
 }
