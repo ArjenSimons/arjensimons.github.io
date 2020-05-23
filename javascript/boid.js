@@ -1,6 +1,15 @@
+
+
 class Boid {
     constructor() {
-        this.position = createVector(random(0, width), random(0, height));
+        let halfWidth = width / 2;
+        let quarterWidth = width / 10;
+        let halfHeight = height / 2;
+        let quarterHeight = height / 10;
+        this.position = createVector(
+            random(halfWidth - quarterWidth, halfWidth + quarterWidth),
+            random(halfHeight - quarterHeight, halfHeight + quarterHeight)
+        );
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 15));
         this.acceleration = createVector();

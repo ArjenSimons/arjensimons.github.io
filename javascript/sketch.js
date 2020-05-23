@@ -1,9 +1,9 @@
 let boids = [];
 
-
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent('homecontent');
+
 
     spawnBoids();
 }
