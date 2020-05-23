@@ -1,13 +1,11 @@
-const boids = [];
+let boids = [];
 
 
 function setup() {
     var canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent('homecontent');
 
-    for (let i = 0; i < 100; i++){
-        boids.push(new Boid());
-    }
+    spawnBoids();
 }
 
 function draw() {
@@ -20,5 +18,16 @@ function draw() {
         boid.show();
         boid.update();
         boid.flock(boids);
+    }
+}
+
+function windowResized() {
+    spawnBoids();
+}
+
+function spawnBoids(){
+    boids = [];
+    for (let i = 0; i < 100; i++){
+        boids.push(new Boid());
     }
 }
