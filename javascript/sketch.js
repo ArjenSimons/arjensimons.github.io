@@ -4,7 +4,6 @@ function setup() {
     var canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent('homecontent');
 
-
     spawnBoids();
 }
 
@@ -19,6 +18,10 @@ function draw() {
         boid.update();
         boid.flock(boids);
     }
+
+    textSize(32);
+
+    text(frameRate(), width / 2, height / 2);
 }
 
 function windowResized() {
@@ -27,7 +30,7 @@ function windowResized() {
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 150; i++){
+    for (let i = 0; i < 400; i++){
         boids.push(new Boid());
     }
 }

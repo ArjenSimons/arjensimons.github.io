@@ -20,8 +20,8 @@ class Boid {
         this.seperationRange = 40;
         this.mouseRange = 70;
         this.alignmentWeight = 1.4;
-        this.cohesionWeight = 1.2;
-        this.separationWeight = 1.2;
+        this.cohesionWeight = 1.3;
+        this.separationWeight = 1.2 * 1.2;
         this.mouseAvoidanceWeight = 10;
     }
 
@@ -42,10 +42,23 @@ class Boid {
     show() {
         let weight = width / 100;
 
-        if (weight > 16) {
-            weight = 16
+        if (weight > 10) {
+            weight = 10
         }
         strokeWeight(weight);
+
+        let xOffset = weight / 2;
+
+        // triangle(
+        //     this.position.x - xOffset, this.position.y - weight,
+        //     this.position.x + xOffset, this.position.y - weight,
+        //     this.position.x, this.position.y + weight);
+        // translate (width/2, height/2);
+        // rotate(90);
+        // translate(-width/2, -height/2);
+
+
+
         stroke(255);
         point(this.position.x, this.position.y);
     }
@@ -62,8 +75,9 @@ class Boid {
             }
             let dot = this.velocity.dot(p5.Vector.sub(this.position, other.position));
             if (dot > -200) {
-                let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
-                if (distance < this.alignmentRange) {
+               let distance = this.distSquared(this.position.x, this.position.y, other.position.x, other.position.y);
+                //let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+                if (distance < this.alignmentRange * this.alignmentRange) {
                     alignmentBoids.push(other);
                 }
                 if (distance < this.cohesionRange) {
@@ -141,7 +155,8 @@ class Boid {
         let steering = createVector();
 
         for (let other of boids) {
-            let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
+            let distance = this.distSquared(this.position.x, this.position.y, other.position.x, other.position.y);
+            //let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
             let diff = p5.Vector.sub(this.position, other.position);
             diff.div(distance); //Closer boids will have stronger impact on this void
 
@@ -159,9 +174,10 @@ class Boid {
     mouseAvoidance() {
         let steering = createVector();
         let mouse = createVector(mouseX, mouseY)
-        let distance = dist(this.position.x, this.position.y, mouse.x, mouse.y);
+        let distance = this.distSquared(this.position.x, this.position.y, mouse.x, mouse.y);
+        //let distance = dist(this.position.x, this.position.y, mouse.x, mouse.y);
 
-        if (distance < this.mouseRange) {
+        if (distance < this.mouseRange * this.mouseRange) {
             let diff = p5.Vector.sub(this.position, mouse);
 
             steering.add(diff);
@@ -185,5 +201,9 @@ class Boid {
         } else if (this.position.y > height) {
             this.position.y = 0;
         }
+    }
+
+    distSquared(x1, y1, x2, y2){
+        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
     }
 }
