@@ -40,21 +40,22 @@
 
 /* Text */
 body {
-    font: 15px Arial;
+    font: 15px Verdana;
     line-height: 1.8;
     height: 100%;
+
 }
 h1 {
-    font: bolder 90px Arial;
+    font: bolder 90px Verdana;
 }
 h2 {
-    font: bolder 40px Arial;
+    font: bolder 40px Verdana;
 }
 h3 {
-    font: bold 20px Arial;
+    font: bold 20px Verdana;
 }
 h4, button {
-    font: 20px Arial;
+    font: 20px Verdana;
     line-height: 1.8;
 }
 
@@ -72,7 +73,7 @@ a {
     width: 100%;
 }
 .common-bar-text {
-    font: bolder 90px Arial;
+    font: bolder 100px Verdana;
     padding: 15px;
 }
 .row {
@@ -101,6 +102,7 @@ a {
     color: var(--ContraColor)
 }
 .navbarBodyItem {
+    font: 18px Verdana;
     padding: 1rem 0px;
     margin: 0px;
     height: 100%;
@@ -134,15 +136,24 @@ a {
     height: calc(100% - 90px);
 }
 .home-container {
-    display: block;
-    position: relative;
-}
-.home-content {
-    vertical-align: middle;
     text-align: center;
 }
-.home-content span {
-    position: relative; top: -50%;
+.home-content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+.home-typewriter {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    border-right: .15em solid #268e6c;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    font-size: 35px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 /* Projects */
@@ -201,10 +212,10 @@ a {
     padding-top: 12px;
 }
 .project-item-title {
-    font-family: 'Arial', serif;
+    font-family: 'Verdana', serif;
     color: white;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 35px;
 }
 .project-item-tags-container {
     margin-top: 5px;
@@ -218,7 +229,7 @@ a {
     min-width: 30px;
     padding-left: 7px;
     padding-right: 7px;
-    font-family: 'Arial',serif;
+    font-family: 'Verdana',serif;
     font-weight: 100;
     font-size: 14px;
     float: left;
@@ -236,10 +247,10 @@ a {
     display: inline-block;
 }
 .project-item-desc {
-    font-family: 'Arial', serif;
+    font-family: 'Verdana', serif;
     color: white;
     font-weight: 100;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 /* About */
@@ -261,11 +272,12 @@ a {
     display: inline-block;
 }
 .about-section-text {
+    padding-top: 20px;
     padding-bottom: 30px;
-    font-family: 'Arial', serif;
+    font-family: 'Verdana', serif;
     color: white;
     font-weight: 100;
-    font-size: 15px;
+    font-size: 18px;
 }
 .social-section-container {
     user-select: none;
@@ -279,6 +291,7 @@ a {
     position: relative;
     z-index: 60;
     border: none;
+    display: inline-block;
 }
 
 .social-icon:visited {
