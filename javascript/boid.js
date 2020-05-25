@@ -1,5 +1,3 @@
-
-
 class Boid {
     constructor() {
         let halfWidth = width / 2;
@@ -21,8 +19,9 @@ class Boid {
         this.mouseRange = 70;
         this.alignmentWeight = 1.4;
         this.cohesionWeight = 1.3;
-        this.separationWeight = 1.2 * 1.2;
+        this.separationWeight = 1.6 * 1.6;
         this.mouseAvoidanceWeight = 10;
+        this.edgeAvoidanceWeight = 10;
     }
 
     update() {
@@ -31,7 +30,6 @@ class Boid {
         this.velocity.add(this.acceleration);
         this.acceleration.set(0, 0);
 
-        this.HandleEdges();
 
         this.maxSpeed = 15 * (width / 500);
         if (this.maxSpeed > 24) {
@@ -88,6 +86,10 @@ class Boid {
                 }
             }
         }
+
+        let edgeAvoidance = this.HandleEdges();
+        edgeAvoidance.mult(this.edgeAvoidanceWeight);
+        this.acceleration.add(edgeAvoidance);
 
         //MouseAvoidance
         let mouseAvoidance = this.mouseAvoidance();
@@ -158,7 +160,9 @@ class Boid {
             let distance = this.distSquared(this.position.x, this.position.y, other.position.x, other.position.y);
             //let distance = dist(this.position.x, this.position.y, other.position.x, other.position.y);
             let diff = p5.Vector.sub(this.position, other.position);
-            diff.div(distance); //Closer boids will have stronger impact on this void
+            if (distance > 0) {
+                diff.div(distance); //Closer boids will have stronger impact on this void
+            }
 
             steering.add(diff);
         }
@@ -190,17 +194,40 @@ class Boid {
     }
 
     HandleEdges() {
+        let steeringForce = createVector(0, 0);
+
+        // if (this.position.x < 20){
+        //     steeringForce.x = 1;
+        // }
+        // else if (this.position.x > width - 20){
+        //     steeringForce.x = -1;
+        // }
+        //
+        // if (this.position.y < 20){
+        //     steeringForce.y = 1;
+        // }
+        // else if (this.position.y > height - 20){
+        //     steeringForce.y = -1;
+        // }
+        //
+        // if (steeringForce.x !== 0 && steeringForce.y !== 0) {
+        //     steeringForce.setMag(this.maxSpeed);
+        //     steeringForce.sub(this.velocity);
+        //     steeringForce.limit(this.maxForce);
+        // }
+
         if (this.position.x < 0) {
             this.position.x = width;
         } else if (this.position.x > width) {
             this.position.x = 0;
         }
-
-        if (this.position.y < 0) {
+        if (this.position.y < 60) {
             this.position.y = height;
         } else if (this.position.y > height) {
-            this.position.y = 0;
+            this.position.y = 60;
         }
+
+        return steeringForce;
     }
 
     distSquared(x1, y1, x2, y2){
