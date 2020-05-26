@@ -100,8 +100,5 @@ class QuadTree {
             this.bottomLeft.show();
             this.bottomRight.show();
         }
-
-        // if (!this.divided)
-        //     console.log(this.boundry);
     }
 }
