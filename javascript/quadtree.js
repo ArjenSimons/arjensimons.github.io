@@ -4,47 +4,50 @@ class Rectangle {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.halfWidth = this.w / 2;
+        this.halfHeight = this.h / 2;
     }
 
-    contains(point){
-        let halfWidth = this.w / 2;
-        let halfHeight = this.h / 2;
-
+    contains(point) {
         return (
-            point.x > this.x - halfWidth &&
-            point.x < this.x + halfWidth &&
-            point.y > this.y - halfHeight &&
-            point.y < this.y + halfHeight
+            point.x >= this.x - this.halfWidth &&
+            point.x <= this.x + this.halfWidth &&
+            point.y >= this.y - this.halfHeight &&
+            point.y <= this.y + this.halfHeight
         )
+    }
+
+    intersects(range) {
+        return !(this.x - this.halfWidth >= range.x + range.halfWidth ||
+            this.x + this.halfWidth <= range.x - range.halfWidth ||
+            this.y - this.halfHeight >= range.y + range.halfHeight ||
+            this.y + this.halfHeight <= range.y - range.halfHeight)
     }
 }
 
 class QuadTree {
     constructor(boundry) {
         this.boundry = boundry;
-        this.capacity = 4;
+        this.capacity = 10;
         this.boids = [];
         this.divided = false;
     }
 
     insert(boid) {
 
-        if (!this.boundry.contains(boid)){
-            console.log("doesn't contain");
-            return;
-        }
+        if (!this.boundry.contains(boid.position)) return false;
 
         if (this.boids.length < this.capacity) {
             this.boids.push(boid);
-        }
-        else {
+            return true;
+        } else {
             if (!this.divided) {
                 this.subdivide();
             }
-            this.topLeft.insert(boid);
-            this.topRight.insert(boid);
-            this.bottomLeft.insert(boid);
-            this.bottomRight.insert(boid);
+            if (this.topLeft.insert(boid)) return true;
+            if (this.topRight.insert(boid)) return true;
+            if (this.bottomLeft.insert(boid)) return true;
+            if (this.bottomRight.insert(boid)) return true;
         }
     }
 
@@ -60,5 +63,45 @@ class QuadTree {
         this.bottomRight = new QuadTree(new Rectangle(this.boundry.x + quarterWidth, this.boundry.y - quarterHeight, halfWidth, halfHeight));
 
         this.divided = true;
+    }
+
+    queryRange(range) {
+        let boidsInRange = [];
+
+        //Return empty array when not in range
+        if (!this.boundry.intersects(range)) return boidsInRange;
+
+        for (let boid of this.boids) {
+            if (range.contains((boid.position))) {
+                boidsInRange.push(boid);
+            }
+        }
+
+        //Stop if there are no child quads
+        if (!this.divided) return boidsInRange;
+
+        boidsInRange = boidsInRange.concat(this.topLeft.queryRange(range));
+        boidsInRange = boidsInRange.concat(this.topRight.queryRange(range));
+        boidsInRange = boidsInRange.concat(this.bottomLeft.queryRange(range));
+        boidsInRange = boidsInRange.concat(this.bottomRight.queryRange(range));
+
+        return boidsInRange;
+    }
+
+    show() {
+        stroke(255);
+        strokeWeight(1);
+        noFill();
+        rect(this.boundry.x, this.boundry.y, this.boundry.w, this.boundry.h);
+
+        if (this.divided) {
+            this.topLeft.show();
+            this.topRight.show();
+            this.bottomLeft.show();
+            this.bottomRight.show();
+        }
+
+        // if (!this.divided)
+        //     console.log(this.boundry);
     }
 }

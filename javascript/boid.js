@@ -24,6 +24,18 @@ class Boid {
         this.edgeAvoidanceWeight = 10;
     }
 
+    getRange(){
+        let range = this.alignmentRange;
+
+        if (this.seperationRange > range)
+            range = this.seperationRange;
+
+        if (this.cohesionRange > range)
+            range = this.cohesionRange;
+
+        return new Rectangle(this.position.x, this.position.y, range, range);
+    }
+
     update() {
         this.velocity.limit(this.maxSpeed);
         this.position.add(p5.Vector.mult(this.velocity, deltaTime / 50));

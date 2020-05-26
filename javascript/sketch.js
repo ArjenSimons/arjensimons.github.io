@@ -1,5 +1,6 @@
 let boids = [];
 let canvas;
+let checked = false;
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight - 100);
@@ -7,30 +8,41 @@ function setup() {
 
     spawnBoids();
 
-    let qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
+    rectMode(CENTER);
 
-    for(let i = 0;  i < 5; i ++){
-        qt.insert(createVector(random(canvas.width), random(canvas.height)));
-    }
 
-    let v = createVector(random(canvas.width), random(canvas.height));
 
-    console.log(qt);
 }
 
 function draw() {
     background(51);
 
-    ellipse(windowWidth / 2, (windowHeight - 100) / 2, 50, 50);
     resizeCanvas(windowWidth, windowHeight - 100);
 
-    //let quadTree =  new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
+    let qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
+
+    // for(let i = 0;  i < 239; i ++){
+    //     qt.insert(createVector(random(canvas.width), random(canvas.height)));
+    // }
+
+    //Add boids to quad tree
+    for(let boid of boids) {
+        qt.insert(boid);
+
+    }
 
     for(let boid of boids){
         boid.show();
         boid.update();
-        boid.flock(boids);
+        //boid.flock(boids);
+        let boidsInRange = qt.queryRange(boid.getRange())
+        boid.flock(boidsInRange);
+        //if (boidsInRange.length > 10) console.log(boidsInRange.length);
+        //if (!checked) console.log(boidsInRange.length);
     }
+    checked = true;
+
+    //qt.show();
 
     textSize(32);
 
@@ -43,7 +55,7 @@ function windowResized() {
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 400; i++){
+    for (let i = 0; i < 500; i++){
         boids.push(new Boid());
     }
 }
