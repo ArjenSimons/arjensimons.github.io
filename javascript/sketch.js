@@ -31,6 +31,14 @@ function draw() {
 
     }
 
+    //Setting stroke for boids
+    let weight = width / 100;
+    if (weight > 10) {
+        weight = 10
+    }
+    strokeWeight(weight);
+    stroke(255);
+
     for(let boid of boids){
         boid.show();
         boid.update();
@@ -55,7 +63,7 @@ function windowResized() {
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 500; i++){
+    for (let i = 0; i < 1000; i++){
         boids.push(new Boid());
     }
 }

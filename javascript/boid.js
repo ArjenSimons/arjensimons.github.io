@@ -50,14 +50,7 @@ class Boid {
     }
 
     show() {
-        let weight = width / 100;
 
-        if (weight > 10) {
-            weight = 10
-        }
-        strokeWeight(weight);
-
-        let xOffset = weight / 2;
 
         // triangle(
         //     this.position.x - xOffset, this.position.y - weight,
@@ -69,7 +62,6 @@ class Boid {
 
 
 
-        stroke(255);
         point(this.position.x, this.position.y);
     }
 
