@@ -52,7 +52,7 @@ function draw() {
 
     textSize(32);
 
-    text(frameRate(), width / 2, height / 2);
+    //text(frameRate(), width / 2, height / 2);
 }
 
 function windowResized() {
