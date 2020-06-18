@@ -1,6 +1,7 @@
 let boids = [];
 let canvas;
 let checked = false;
+let qt;
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight - 100);
@@ -10,8 +11,6 @@ function setup() {
 
     rectMode(CENTER);
 
-
-
 }
 
 function draw() {
@@ -19,7 +18,7 @@ function draw() {
 
     resizeCanvas(windowWidth, windowHeight - 100);
 
-    let qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
+    qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
 
     // for(let i = 0;  i < 239; i ++){
     //     qt.insert(createVector(random(canvas.width), random(canvas.height)));
@@ -28,7 +27,6 @@ function draw() {
     //Add boids to quad tree
     for(let boid of boids) {
         qt.insert(boid);
-
     }
 
     //Setting stroke for boids
@@ -63,7 +61,7 @@ function windowResized() {
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 1000; i++){
+    for (let i = 0; i < 500; i++){
         boids.push(new Boid());
     }
 }
