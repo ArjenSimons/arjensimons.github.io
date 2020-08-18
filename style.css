@@ -81,6 +81,13 @@ a {
     flex-wrap: wrap;
 }
 
+.jump-offset {
+    display: block;
+    margin-top: -43px;
+    height: 43px;
+    visibility: hidden;
+}
+
 /* Navbar */
 #navbar {
     width: 100%;
@@ -133,7 +140,7 @@ a {
 
 /* Home */
 #homeview {
-    height: calc(100% - 80px);
+    height: calc(100%);
 }
 .home-container {
     text-align: center;
@@ -158,11 +165,12 @@ a {
 
 /* Projects */
 #projects {
-    padding-top: 0px;
 }
 .project-section-container {
     display: block;
     margin-top: 40px;
+    padding-bottom: 30px;
+
 }
 .project-section-contents {
     margin-left: 0;
