@@ -4,7 +4,7 @@ let checked = false;
 let qt;
 
 function setup() {
-    canvas = createCanvas(windowWidth, windowHeight);
+    canvas = createCanvas(windowWidth, windowHeight + 30);
     canvas.parent('homecontent');
 
     spawnBoids();
@@ -53,7 +53,7 @@ function draw() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth, windowHeight + 30);
     spawnBoids();
 }
 
