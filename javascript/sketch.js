@@ -4,7 +4,7 @@ let checked = false;
 let qt;
 
 function setup() {
-    canvas = createCanvas(windowWidth, windowHeight - 100);
+    canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('homecontent');
 
     spawnBoids();
@@ -15,9 +15,6 @@ function setup() {
 
 function draw() {
     background(51);
-
-    resizeCanvas(windowWidth, windowHeight - 100);
-
     qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
 
     // for(let i = 0;  i < 239; i ++){
@@ -56,12 +53,13 @@ function draw() {
 }
 
 function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
     spawnBoids();
 }
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 400; i++){
+    for (let i = 0; i < 350; i++){
         boids.push(new Boid());
     }
 }
