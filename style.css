@@ -66,8 +66,7 @@ a {
 
 /* Common classes */
 .common-bar {
-    height: 80px;
-    padding: 0 calc(50%);
+    min-height: 80px;
 }
 .common-container {
     width: 100%;
@@ -76,6 +75,12 @@ a {
     font: bolder 100px Verdana;
     padding: 15px;
 }
+.section-content {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -83,8 +88,7 @@ a {
 
 .jump-offset {
     display: block;
-    margin-top: -43px;
-    height: 43px;
+    height: 47px;
     visibility: hidden;
 }
 
@@ -165,12 +169,12 @@ a {
 
 /* Projects */
 #projects {
+
 }
 .project-section-container {
     display: block;
     margin-top: 40px;
     padding-bottom: 30px;
-
 }
 .project-section-contents {
     margin-left: 0;
