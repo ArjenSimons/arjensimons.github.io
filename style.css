@@ -40,7 +40,7 @@
 
 /* Text */
 body {
-    font: 15px Verdana;
+    font: 15px Quicksand;
     line-height: 1.8;
     height: 100%;
 
@@ -224,7 +224,7 @@ a {
     padding-top: 12px;
 }
 .project-item-title {
-    font-family: 'Verdana', serif;
+    font-family: 'Quicksand', sans-serif;
     color: white;
     font-weight: 100;
     font-size: 35px;
@@ -241,7 +241,7 @@ a {
     min-width: 30px;
     padding-left: 7px;
     padding-right: 7px;
-    font-family: 'Verdana',serif;
+    font-family: 'Quicksand',sans-serif;
     font-weight: 100;
     font-size: 14px;
     float: left;
@@ -259,10 +259,28 @@ a {
     display: inline-block;
 }
 .project-item-desc {
-    font-family: 'Verdana', serif;
+    font-family: 'Quicksand', sans-serif;
     color: white;
     font-weight: 100;
-    font-size: 18px;
+    font-size: 13px;
+}
+.project-item-contrib {
+    padding-right: 5px;
+    padding-top: 2px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 19px;
+    text-wrap: normal;
+    word-wrap: break-word;
+}
+.project-item-contrib-bullet {
+    padding-right: 5px;
+    padding-top: 3px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 21px;
+    text-wrap: normal;
+    word-wrap: break-word;
 }
 
 /* About */
@@ -286,7 +304,7 @@ a {
 .about-section-text {
     padding-top: 20px;
     padding-bottom: 30px;
-    font-family: 'Verdana', serif;
+    font-family: 'Quicksand', sans-serif;
     color: white;
     font-weight: 100;
     font-size: 18px;
