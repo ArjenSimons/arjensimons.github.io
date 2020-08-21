@@ -42,8 +42,13 @@
 body {
     font: 15px Quicksand;
     line-height: 1.8;
+    overflow-x: hidden;
     height: 100%;
-
+}
+canvas{
+    display: block;
+    background-color: var(--MainColor);
+    height: 100%;
 }
 h1 {
     font: bolder 90px Verdana;
@@ -71,6 +76,9 @@ a {
 .common-container {
     width: 100%;
 }
+.common-middle-container {
+    margin-top: 28px;
+}
 .common-bar-text {
     font: bolder 100px Verdana;
     padding: 15px;
@@ -88,7 +96,8 @@ a {
 
 .jump-offset {
     display: block;
-    height: 47px;
+    height: 25px;
+    margin-top: -25px;
     visibility: hidden;
 }
 
