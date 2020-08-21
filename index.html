@@ -32,7 +32,8 @@
 </head>
 <body id="home">
 <header>
-    <nav class="style-navbar navbar navbar-dark navbar-expand-lg fixed-top" id="navbar">
+    <!-- Navigation bar -->
+    <nav class="style-navbar topnav navbar navbar-dark navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="#home">Arjen Simons</a>
             <ul class="nav navbar-nav navbar navbarBodyItem" id="navBarBodyLeft">
@@ -40,10 +41,23 @@
                     <a href="#home">Home</a>
                     <a href="#projects">Projects</a>
                     <a href="#about">About me</a>
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("navbar");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
     <!-- Home section -->
     <div class="home-container style-main" id="homeview">
         <div class="home-content " id="homecontent">
@@ -60,7 +74,7 @@
     </div>
     <!-- Project section -->
     <div class="jump-offset" id="projects"></div>
-    <div class="common-container style-main text-center" id="project">
+    <div class="common-container common-middle-container style-main text-center" id="project">
         <div class="common-bar style-bar common-bar-text">
             <h1>Projects</h1>
         </div>
