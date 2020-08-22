@@ -28,35 +28,40 @@
     <script src="./javascript/sketch.js"></script>
     <script src="./javascript/quadtree.js"></script>
     <script src="./javascript/boid.js"></script>
+    <script src="./javascript/navbar.js"></script>
 
 </head>
 <body id="home">
 <header>
     <!-- Navigation bar -->
-    <nav class="style-navbar topnav navbar navbar-dark navbar-expand-lg fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#home">Arjen Simons</a>
-            <ul class="nav navbar-nav navbar navbarBodyItem" id="navBarBodyLeft">
-                <li>
-                    <a href="#home">Home</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#about">About me</a>
-                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </li>
-            </ul>
+
+    <nav class="navbar fixed-top">
+        <span class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </span>
+        <a href="#home" class="logo">Arjen Simons</a>
+        <div>
+        <ul class="main-nav" id="js-menu">
+            <li>
+                <a href="#home" class="nav-links">Home</a>
+            </li>
+            <li>
+                <a href="#projects" class="nav-links">Products</a>
+            </li>
+            <li>
+                <a href="#about" class="nav-links">About Me</a>
+            </li>
+        </ul>
         </div>
     </nav>
     <script>
-        function myFunction() {
-            var x = document.getElementById("navbar");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-        }
+        let mainNav = document.getElementById('js-menu');
+        let navBarToggle = document.getElementById('js-navbar-toggle');
+
+        navBarToggle.addEventListener('click', function () {
+            mainNav.classList.toggle('active');
+        });
+
     </script>
     <!-- Home section -->
     <div class="home-container style-main" id="homeview">
