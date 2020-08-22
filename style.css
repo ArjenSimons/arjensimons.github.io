@@ -101,113 +101,26 @@ a {
     visibility: hidden;
 }
 
-* {
-    padding: 0;
-    margin: 0;
+.nav {
+    background-color: var(--NavColor)
 }
 
-body {
-    font-family: 'Josefin Sans', sans-serif;
+.navbar-toggler:enabled,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none; !important;
+    border: none; !important;
+    box-shadow: none; !important;
 }
 
-.navbar {
-    font-size: 18px;
-    background-color: var(--NavColor);
+.navbar-nav a:hover,
+.navbar-nav a:focus{
+    background-color: var(--MainColor); !important;
 }
 
-.main-nav {
-    list-style-type: none;
-}
-
-.nav-links,
-.logo {
-    text-decoration: none;
-    color: var(--ContraColor);
-}
-
-.logo:hover,
-.nav-links:hover {
-    color: var(--ContraColor);
-    text-decoration: none;
-}
-
-.nav-links:hover {
-    background-color: var(--MainColor);
-}
-
-.main-nav li {
-    text-align: center;
-    margin: 15px auto;
-}
-
-.logo {
-    display: inline-block;
-    font-size: 22px;
-    vertical-align: top;
-    margin-left: 20px;
-}
-
-.navbar-toggle {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    color: var(--ContraColor);
-    font-size: 24px;
-}
-
-.active {
-    display: block;
-}
-
-@media screen and (min-width: 768px) {
-    .navbar {
-        height: 70px;
-        text-align: center;
-    }
-
-    .main-nav {
-        display: flex;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-    }
-
-    .main-nav li {
-        float: left;
-    }
-
-    .main-nav a {
-        display: block;
-        text-align: center;
-        padding: 16px;
-    }
-
-    .nav-links {
-        display: block;
-        padding: 0.5rem 1rem;
-    }
-
-    .logo {
-        display: inline-block;
-        font-size: 22px;
-        margin-left: 20px;
-        margin-bottom: 45px;
-    }
-
-    .navbar-toggle {
-        display: none;
-    }
-
-    .logo:hover,
-    .nav-links:hover {
-        color: var(--ContraColor);
-        text-decoration: none;
-    }
-
-    .nav-links:hover {
-        background-color: var(--MainColor);
-    }
+.navbar-right {
+    float: right;
 }
 
 @media screen and (min-width: 1000px) {

@@ -35,26 +35,19 @@
 <header>
     <!-- Navigation bar -->
 
-    <nav class="navbar fixed-top">
-        <span class="navbar-toggle" id="js-navbar-toggle">
-            <i class="fas fa-bars"></i>
-        </span>
-        <a href="#home" class="logo">Arjen Simons</a>
-        <ul class="main-nav" id="js-menu">
-            <li><a href="#home" class="nav-links">Home</a></li>
-            <li><a href="#projects" class="nav-links">Products</a></li>
-            <li><a href="#about" class="nav-links">About Me</a></li>
-        </ul>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav">
+        <a class="navbar-brand" href="#home">Arjen Simons</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" style="color:#fff; font-size:25px;"></i>
+        </button>
+        <div class="collapse navbar-collapse navbar-right" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="#projects">Projects</a>
+                <a class="nav-item nav-link active" href="#about">About me</a>
+            </div>
+        </div>
     </nav>
-    <script>
-        let mainNav = document.getElementById('js-menu');
-        let navBarToggle = document.getElementById('js-navbar-toggle');
-
-        navBarToggle.addEventListener('click', function () {
-            mainNav.classList.toggle('active');
-        });
-
-    </script>
     <!-- Home section -->
     <div class="home-container style-main" id="homeview">
         <div class="home-content " id="homecontent">
