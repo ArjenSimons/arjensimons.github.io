@@ -228,6 +228,9 @@ a {
     background-position: center;
     transition: all .3s ease-in-out;
 }
+.project-item-bg:hover {
+    transform: scale(1.1);
+}
 .project-item-title-container {
     width: 100%;
     background-color: rgba(0,0,0,0.7);
@@ -303,7 +306,7 @@ a {
 
 /* About */
 #about {
-    height: calc(100% - 56px);
+    height: calc(100% - 53px);
     color: var(--MainColor);
 }
 .about-section-container {
