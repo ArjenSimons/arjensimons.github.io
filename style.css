@@ -303,7 +303,7 @@ a {
 
 /* About */
 #about {
-    height: calc(100% - 60px);
+    height: calc(100% - 56px);
     color: var(--MainColor);
 }
 .about-section-container {
