@@ -102,7 +102,30 @@ a {
 }
 
 .nav {
-    background-color: var(--NavColor)
+    background-color: var(--NavColor);
+    padding: 0 !important;
+}
+
+.navbar-collapse {
+    height: 100% !important;
+}
+
+.navbar-nav{
+    height: 100% !important;
+}
+
+.nav-link {
+    padding: 1rem .5rem !important;
+}
+
+.nav-item {
+    text-align: center !important;
+}
+
+.navbar-brand {
+    margin-left: 1rem !important;
+    padding: .55rem 0 .65rem 0 !important;
+    font-size: 25px !important;
 }
 
 .navbar-toggler:enabled,
@@ -124,29 +147,17 @@ a {
 }
 
 @media screen and (min-width: 1000px) {
-    .main-nav {
-        margin-right: 50px;
-    }
-    .logo {
-        margin-left: 100px;
-    }
 }
 
 @media screen and (min-width: 1200px) {
-    .main-nav {
-        margin-right: 200px;
-    }
-    .logo {
-        margin-left: 200px;
+    .navbar-brand {
+        margin-left: 5rem !important;
     }
 }
 
 @media screen and (min-width: 1500px) {
-    .main-nav {
-        margin-right: 400px;
-    }
-    .logo {
-        margin-left: 300px;
+    .navbar-brand {
+        margin-left: 13rem !important;
     }
 }
 /* Home */
