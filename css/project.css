@@ -1,0 +1,48 @@
+body{
+    font-size: 12px !important;
+}
+strong {
+    font-weight: bold !important;
+}
+
+#page {
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    height: calc(100% - 10);
+    min-width: 320px;
+    min-height: 453px;
+}
+
+#pp-container {
+    margin-top: 80px;
+    margin-bottom: 30px;
+    width: 100%;
+    opacity: 0;
+    font-family: 'Verdana',sans-serif;
+    font-weight: 300;
+    color: white;
+}
+.pp-contents-container {
+    max-width: 992px !important;
+    background-color: rgba(0,0,0,0.65);
+    border-radius: 15px;
+}
+.pp-title-container {
+    text-align: center;
+}
+.pp-title {
+    font-size: 50px;
+}
+.pp-information-container {
+    margin-bottom: 20px;
+}
+.pp-information-cell {
+    padding: 5px;
+}
+.pp-contents {
+    width: 100%;
+    min-height: 200px;
+    padding: 20px;
+    z-index: 1;
+}
