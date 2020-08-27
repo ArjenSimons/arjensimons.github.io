@@ -1,6 +1,5 @@
 body{
     font-size: 14px !important;
-    line-height: 1.8 !important;
     background-color: #333 !important;
     min-width: 320px;
     min-height: 453px;
@@ -21,7 +20,7 @@ strong {
 }
 #page {
     width: 100%;
-
+    line-height: 1.8 !important;
 }
 #pp-container {
     margin-top: 80px;

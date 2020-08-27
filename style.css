@@ -40,7 +40,6 @@
 /* Text */
 body {
     font: 15px Quicksand;
-    line-height: 1.6 !important;
     overflow-x: hidden;
     height: 100%;
 }
@@ -206,7 +205,7 @@ a {
 
 /* Projects */
 #projects {
-
+    line-height: 1.6 !important;
 }
 .project-section-container {
     display: block;
