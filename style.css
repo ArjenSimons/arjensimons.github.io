@@ -67,6 +67,10 @@ a {
     text-decoration: none;
 }
 
+img {
+    max-width: 100%;
+}
+
 /* Common classes */
 .common-bar {
     min-height: 80px;
