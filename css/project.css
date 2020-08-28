@@ -54,3 +54,12 @@ strong {
     padding: 20px;
     z-index: 1;
 }
+.pp-dubble-portrait-container {
+    padding-bottom: 5px;
+    width: 100%;
+}
+.pp-portrait-img {
+    padding: 0.5rem;
+    display: inline-block;
+    width: 30%;
+}
