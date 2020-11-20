@@ -88,6 +88,123 @@
                             </p>
                             <button type="button" class="collapsible">
                                 <i class="fa fa-info collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Win/Loss condition in multiplayer</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>
+                                    For networking we used photon. It uses a peer to peer solution where one of the players is the host.<br>
+                                    <a href="https://bvanderwolf.github.io/" target="_blank">Benjamin van der Wolf</a> (one of the team members)
+                                    wrote a wrapper for photon's SDK. <br><br>
+                                    During the project I worked on the win/los condition using this photon wrapper. The system is made to make a fair judgement on who has won when the
+                                    game when two players die at approximately the same time.
+                                    <br><br>
+                                    When a player dies it sends a 'loss request' with a time stamp to the host. The host will wait for 200 millie seconds to collect all requests.
+                                    If other players send a 'loss request' to the host within this wait time the host will determine who died first.
+                                    If the last two players die at the same time, the game will result in a draw.
+                                </p>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-info collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Win/Loss condition flow chart</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The flow chart below shows how the host handles a loss request.
+                                    </p>
+                                    <p class="vertical-align-content-middle">
+                                        <img src="/arjensimons.github.io/assets/img_win_loss_condition_flow_diagram.svg" alt="Win/Loss condition flow diagram">
+                                    </p>
+                                    <br>
+                                </div>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-code collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Host decision making</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        This code shows the two methods used to decide if a player wins, loses, or draws.
+                                    </p>
+                                    <pre class="prettyprint linenums lang-cs" style="">//Decides on what decision to make based on the time difference from the requests
+private void DecideOnEndGameState(NetworkingRequest finishedRequest, NetworkingRequestType type, int targetViewId)
+{
+    //Create array of requests ordered by their timestamp
+    KeyValuePair&ltint, string>[] requests = finishedRequest.timeStamps.OrderBy(timeStamp => DateTime.Parse(timeStamp.Value)).ToArray();
+    Dictionary&ltint, int> content = new Dictionary&ltint, int>();
+    //Get the amount of players still alive
+    IEnumerable&ltPhotonPlayer> players = PhotonNetwork.PlayerList.Where(player => (int)player.CustomProperties[PlayerPropertyHandler.PlayerStateKey] == (int)PlayerState.Playing);
+    int amountOfPlayersAlive = players.Count();
+
+    if (requests.Length < amountOfPlayersAlive)
+    {
+        //If the amount of request is smaller than the amount of players alive all players requesting will lose
+        for (int i = 0; i < requests.Length; i++)
+        {
+            content.Add(requests[i].Key, (int)NetworkingLoseDesicionType.Lost);
+        }
+
+        if (requests.Length == amountOfPlayersAlive - 1)
+        {
+            //If there is only one player left that didn't make a loss request that player will win
+            Dictionary&ltint, string> dict = requests.ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var player in players)
+            {
+                if (!dict.ContainsKey(player.ActorNumber))
+                {
+                    //Raise event to notify the winner cliet it won
+                    RaiseEvent(NetworkingEventType.PlayerWinGame, null, new int[] { player.ActorNumber }, true);
+                    break;
+                }
+            }
+        }
+    }
+    else { content = GetCloseEndGameStateResults(requests); }
+
+    PhotonNetwork.RaiseEvent((byte)NetworkingRequestDecision.LoseDecision, new object[] { content, targetViewId }, GetEventOptions(finishedRequest), SendOptions.SendReliable);
+}
+
+//Gets the EndGame state result when it needs to decide if between winning, losing or a draw
+private Dictionary&ltint, int> GetCloseEndGameStateResults(KeyValuePair&ltint, string>[] requests)
+{
+    Dictionary&ltint, int> content = new Dictionary&ltint, int>();
+
+    NetworkingLoseDesicionType endState = NetworkingLoseDesicionType.Lost;
+
+    for (int i = 0; i < requests.Length; i++)
+    {
+        //Once it is draw all other request will be draw so no logic needs to be applied
+        if (endState != NetworkingLoseDesicionType.Draw)
+        {
+            if (i == requests.Length - 1)
+            {
+                //Win if request is the latest and no other requests are draw
+                endState = NetworkingLoseDesicionType.Win;
+            }
+            else if ((DateTime.Parse(requests[i].Value) - DateTime.Parse(requests[requests.Length - 1].Value)).TotalMilliseconds < GameStateManager.Instance.DrawMargin)
+            {
+                //Draw if the time between the the last request and this request is inside of the drawMargin
+                endState = NetworkingLoseDesicionType.Draw;
+            }
+            else { endState = NetworkingLoseDesicionType.Lost; }
+        }
+        //Add the state with player to the content dictionary
+        content.Add(requests[i].Key, (int)endState);
+    }
+
+    return content;
+}</pre>
+                                </div>
+                            </div>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-info collapsible-icon"></i>
                                 <span style="margin-left: 5px;">Scene loading/unloading flow</span>
                                 <div class="collapsible-indicator-icon">
                                     <i class="fa fa-plus indicator-icon"></i>
