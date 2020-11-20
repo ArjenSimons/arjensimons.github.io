@@ -91,6 +91,12 @@ img {
     overflow: hidden;
 }
 
+.vertical-align-content-middle {
+    display : flex;
+    align-items : center;
+    justify-content: center;
+}
+
 .row {
     display: -webkit-flex;
     display: -ms-flexbox;
