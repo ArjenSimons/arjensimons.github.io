@@ -87,8 +87,125 @@
                                 Setting up the base structure as modular as possible was the main focus since future student teams will continue development on this game.
                             </p>
                             <button type="button" class="collapsible">
-                                <i class="fa fa-code collapsible-icon"></i>
-                                <span style="margin-left: 5px;">Code | Scene loading/unloading flow</span>
+                                <i class="fa fa-info collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Win/Loss condition in multiplayer</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>
+                                    For networking we used photon. It uses a peer to peer solution where one of the players is the host.<br>
+                                    <a href="https://bvanderwolf.github.io/" target="_blank">Benjamin van der Wolf</a> (one of the team members)
+                                    wrote a wrapper for photon's SDK. <br><br>
+                                    During the project I worked on the win/los condition using this photon wrapper. The system is made to make a fair judgement on who has won when the
+                                    game when two players die at approximately the same time.
+                                    <br><br>
+                                    When a player dies it sends a 'loss request' with a time stamp to the host. The host will wait for 200 millie seconds to collect all requests.
+                                    If other players send a 'loss request' to the host within this wait time the host will determine who died first.
+                                    If the last two players die at the same time, the game will result in a draw.
+                                </p>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-info collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Win/Loss condition flow chart</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The flow chart below shows how the host handles a loss request.
+                                    </p>
+                                    <p class="vertical-align-content-middle">
+                                        <img src="/arjensimons.github.io/assets/img_win_loss_condition_flow_diagram.svg" alt="Win/Loss condition flow diagram">
+                                    </p>
+                                    <br>
+                                </div>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-code collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Host decision making</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        This code shows the two methods used to decide if a player wins, loses, or draws.
+                                    </p>
+                                    <pre class="prettyprint linenums lang-cs" style="">//Decides on what decision to make based on the time difference from the requests
+private void DecideOnEndGameState(NetworkingRequest finishedRequest, NetworkingRequestType type, int targetViewId)
+{
+    //Create array of requests ordered by their timestamp
+    KeyValuePair&ltint, string>[] requests = finishedRequest.timeStamps.OrderBy(timeStamp => DateTime.Parse(timeStamp.Value)).ToArray();
+    Dictionary&ltint, int> content = new Dictionary&ltint, int>();
+    //Get the amount of players still alive
+    IEnumerable&ltPhotonPlayer> players = PhotonNetwork.PlayerList.Where(player => (int)player.CustomProperties[PlayerPropertyHandler.PlayerStateKey] == (int)PlayerState.Playing);
+    int amountOfPlayersAlive = players.Count();
+
+    if (requests.Length < amountOfPlayersAlive)
+    {
+        //If the amount of request is smaller than the amount of players alive all players requesting will lose
+        for (int i = 0; i < requests.Length; i++)
+        {
+            content.Add(requests[i].Key, (int)NetworkingLoseDesicionType.Lost);
+        }
+
+        if (requests.Length == amountOfPlayersAlive - 1)
+        {
+            //If there is only one player left that didn't make a loss request that player will win
+            Dictionary&ltint, string> dict = requests.ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var player in players)
+            {
+                if (!dict.ContainsKey(player.ActorNumber))
+                {
+                    //Raise event to notify the winner cliet it won
+                    RaiseEvent(NetworkingEventType.PlayerWinGame, null, new int[] { player.ActorNumber }, true);
+                    break;
+                }
+            }
+        }
+    }
+    else { content = GetCloseEndGameStateResults(requests); }
+
+    PhotonNetwork.RaiseEvent((byte)NetworkingRequestDecision.LoseDecision, new object[] { content, targetViewId }, GetEventOptions(finishedRequest), SendOptions.SendReliable);
+}
+
+//Gets the EndGame state result when it needs to decide if between winning, losing or a draw
+private Dictionary&ltint, int> GetCloseEndGameStateResults(KeyValuePair&ltint, string>[] requests)
+{
+    Dictionary&ltint, int> content = new Dictionary&ltint, int>();
+
+    NetworkingLoseDesicionType endState = NetworkingLoseDesicionType.Lost;
+
+    for (int i = 0; i < requests.Length; i++)
+    {
+        //Once it is draw all other request will be draw so no logic needs to be applied
+        if (endState != NetworkingLoseDesicionType.Draw)
+        {
+            if (i == requests.Length - 1)
+            {
+                //Win if request is the latest and no other requests are draw
+                endState = NetworkingLoseDesicionType.Win;
+            }
+            else if ((DateTime.Parse(requests[i].Value) - DateTime.Parse(requests[requests.Length - 1].Value)).TotalMilliseconds < GameStateManager.Instance.DrawMargin)
+            {
+                //Draw if the time between the the last request and this request is inside of the drawMargin
+                endState = NetworkingLoseDesicionType.Draw;
+            }
+            else { endState = NetworkingLoseDesicionType.Lost; }
+        }
+        //Add the state with player to the content dictionary
+        content.Add(requests[i].Key, (int)endState);
+    }
+
+    return content;
+}</pre>
+                                </div>
+                            </div>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-info collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Scene loading/unloading flow</span>
                                 <div class="collapsible-indicator-icon">
                                     <i class="fa fa-plus indicator-icon"></i>
                                 </div>
@@ -98,17 +215,35 @@
                                     or having to rework a lot of elements for small changed I used a scalable solution. Instead of having a prefab of the UI, there is
                                     a scene that loads additively with the game scene and displays the UI. Al UI elements only need references to objects in the UI scene.
                                     Using the MVP pattern the UI script only needs to subscribe to events from a presenter to update correctly.
-                                    <br><br>
-                                    The flow chart below shows how the scene loading solution works inside Hunter Gatherer.
                                 </p>
-                                <p class="vertical-align-content-middle">
-                                    <img src="/arjensimons.github.io/assets/img_scene_loading_flow_diagram.svg" alt="Scene loading flow diagram">
-                                </p>
-                                <br>
-                                <p>
-                                    The following code snippet shows the LoadGameScene method which loads the new and UI scene and unloads the previous scene.
-                                </p>
-                                <pre class="prettyprint linenums lang-cs" style="">//Loads a game scene
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-info collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Scene loading flow chart</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The flow chart below shows how the scene loading solution works inside Hunter Gatherer.
+                                    </p>
+                                    <p class="vertical-align-content-middle">
+                                        <img src="/arjensimons.github.io/assets/img_scene_loading_flow_diagram.svg" alt="Scene loading flow diagram">
+                                    </p>
+                                    <br>
+                                </div>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-code collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">LoadGameScene method</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The following code snippet shows the LoadGameScene method which loads the new scene and if needed the UI. After the new scene is loaded it unloads the previous scene.
+                                    </p>
+                                    <pre class="prettyprint linenums lang-cs" style="">//Loads a game scene
 public void LoadGameScene(string sceneName)
 {
     //Don't continue if scene doesn't exits
@@ -145,6 +280,65 @@ public void LoadGameScene(string sceneName)
         LoadLoadedOrLoadingSceneError(sceneName);
     }
 }</pre>
+                                </div>
+                            </div>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-code collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Flooding system</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>The flooding system is made to be a designer friendly tool. It allows the designer to easily change the amount of flood sections depending on the map. The height
+                                    of flood sections can easily be adjusted with a flood indicator that shows the flood on top of the section.
+                                </p>
+<!--                                <div class="vertical-align-content-middle">-->
+<!--                                    <img src="/arjensimons.github.io/assets/gif_flooding_system.gif" alt="Scene loading flow diagram">-->
+<!--                                </div>-->
+                                <p>
+                                    The following code shows a method used to add new flood sections.
+                                </p>
+                                <pre class="prettyprint linenums lang-cs" style="">//Adds flood sections
+private void AddSections(int amount)
+{
+    if (amount <= 0) { return; }
+
+    for (int i = 0; i < amount; i++)
+    {
+        //Spawn section and set parent
+        Transform sectionEdge = Instantiate(floodSectionPrefab, base.transform);
+        sectionEdge.transform.parent = gameObject.transform;
+
+        //Set position of section
+        sectionEdge.position = new Vector3(
+            sectionEdge.position.x,
+            SectionEdges.Count == 0 ? 0 : SectionEdges[SectionEdges.Count - 1].transform.position.y + 10,
+            sectionEdge.position.z);
+
+        SectionEdges.Add(sectionEdge.GetComponent&ltSectionSettings&gt());
+    }
+}</pre>
+                                <p>
+                                    The following code shows a method used to remove flood sections.
+                                </p>
+                                <pre class="prettyprint linenums lang-cs" style="">    //Removes and deletes flood sections
+    private void RemoveSections(int amount)
+    {
+        if (amount <= 0) { return; }
+
+#if UNITY_EDITOR
+        for (int i = 0; i < amount; i++)
+        {
+            //Delay the deletion of object because destroyImmediate can't be called in OnValidate and Destroy can't be called in the editor
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(SectionEdges[SectionEdges.Count - 1].gameObject);
+                SectionEdges.RemoveAt(SectionEdges.Count - 1);
+            };
+        }
+#endif
+    }</pre>
                             </div>
                         </div>
                     </div>
@@ -154,5 +348,15 @@ public void LoadGameScene(string sceneName)
     </div>
     </div>
     <script src="/arjensimons.github.io/javascript/collapsible.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    (function () {
+        function htmlEscape(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    })();
+    </script>
 </body>
 </html>
