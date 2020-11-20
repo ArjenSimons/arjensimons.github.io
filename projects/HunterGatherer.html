@@ -7,8 +7,13 @@
     <link href="/arjensimons.github.io/style.css" type="text/css" rel="stylesheet">
     <link href="/arjensimons.github.io/css/project.css" type="text/css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/arjensimons.github.io/external/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/arjensimons.github.io/external/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/arjensimons.github.io/css/tomorrow-night.min.css">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/720655e459.js"></script>
 </head>
-<body>
+<body onload="PR.prettyPrint()">
     <!-- Navigation bar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav">
         <a class="navbar-brand" href="/arjensimons.github.io/index.html">Arjen Simons</a>
@@ -81,6 +86,66 @@
                                 <br>
                                 Setting up the base structure as modular as possible was the main focus since future student teams will continue development on this game.
                             </p>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-code collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Code | Scene loading/unloading flow</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>To make sure we don't run into problems with the User Interface when switching scenes, like having to reset references
+                                    or having to rework a lot of elements for small changed I used a scalable solution. Instead of having a prefab of the UI, there is
+                                    a scene that loads additively with the game scene and displays the UI. Al UI elements only need references to objects in the UI scene.
+                                    Using the MVP pattern the UI script only needs to subscribe to events from a presenter to update correctly.
+                                    <br><br>
+                                    The flow chart below shows how the scene loading solution works inside Hunter Gatherer.
+                                </p>
+                                <p class="vertical-align-content-middle">
+                                    <img src="/arjensimons.github.io/assets/img_scene_loading_flow_diagram.svg" alt="Scene loading flow diagram">
+                                </p>
+                                <br>
+                                <p>
+                                    The following code snippet shows the LoadGameScene method which loads the new and UI scene and unloads the previous scene.
+                                </p>
+                                <pre class="prettyprint linenums lang-cs" style="">//Loads a game scene
+public void LoadGameScene(string sceneName)
+{
+    //Don't continue if scene doesn't exits
+    if (!SceneIsLoadable(sceneName))
+    {
+        return;
+    }
+
+    //Don't load the scene if it's already loaded
+    if (!UnitySceneManager.GetSceneByName(sceneName).isLoaded && !isLoading)
+    {
+        isLoading = true;
+
+        //Load new game scene
+        UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).completed += loadOperation =>
+        {
+            //Unload current game scene
+            UnitySceneManager.UnloadSceneAsync(UnitySceneManager.GetActiveScene()).completed += unloadOperation =>
+            {
+                //Set new game scene as active scene
+                UnitySceneManager.SetActiveScene(UnitySceneManager.GetSceneByName(sceneName));
+            };
+
+            isLoading = false;
+
+            StartCoroutine(CheckPlayersLoaded());
+
+            //Load the GameUI scene
+            LoadGameUIScene(gameUISceneName);
+        };
+    }
+    else
+    {
+        LoadLoadedOrLoadingSceneError(sceneName);
+    }
+}</pre>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,5 +153,6 @@
         </div>
     </div>
     </div>
+    <script src="/arjensimons.github.io/javascript/collapsible.js"></script>
 </body>
 </html>
