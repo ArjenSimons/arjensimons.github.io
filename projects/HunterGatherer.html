@@ -87,8 +87,8 @@
                                 Setting up the base structure as modular as possible was the main focus since future student teams will continue development on this game.
                             </p>
                             <button type="button" class="collapsible">
-                                <i class="fa fa-code collapsible-icon"></i>
-                                <span style="margin-left: 5px;">Code | Scene loading/unloading flow</span>
+                                <i class="fa fa-info collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Scene loading/unloading flow</span>
                                 <div class="collapsible-indicator-icon">
                                     <i class="fa fa-plus indicator-icon"></i>
                                 </div>
@@ -98,17 +98,35 @@
                                     or having to rework a lot of elements for small changed I used a scalable solution. Instead of having a prefab of the UI, there is
                                     a scene that loads additively with the game scene and displays the UI. Al UI elements only need references to objects in the UI scene.
                                     Using the MVP pattern the UI script only needs to subscribe to events from a presenter to update correctly.
-                                    <br><br>
-                                    The flow chart below shows how the scene loading solution works inside Hunter Gatherer.
                                 </p>
-                                <p class="vertical-align-content-middle">
-                                    <img src="/arjensimons.github.io/assets/img_scene_loading_flow_diagram.svg" alt="Scene loading flow diagram">
-                                </p>
-                                <br>
-                                <p>
-                                    The following code snippet shows the LoadGameScene method which loads the new and UI scene and unloads the previous scene.
-                                </p>
-                                <pre class="prettyprint linenums lang-cs" style="">//Loads a game scene
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-info collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">Scene loading flow chart</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The flow chart below shows how the scene loading solution works inside Hunter Gatherer.
+                                    </p>
+                                    <p class="vertical-align-content-middle">
+                                        <img src="/arjensimons.github.io/assets/img_scene_loading_flow_diagram.svg" alt="Scene loading flow diagram">
+                                    </p>
+                                    <br>
+                                </div>
+                                <button type="button" class="collapsible">
+                                    <i class="fa fa-code collapsible-icon"></i>
+                                    <span style="margin-left: 5px;">LoadGameScene method</span>
+                                    <div class="collapsible-indicator-icon">
+                                        <i class="fa fa-plus indicator-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="collapsible-inner">
+                                    <p>
+                                        The following code snippet shows the LoadGameScene method which loads the new and UI scene and unloads the previous scene.
+                                    </p>
+                                    <pre class="prettyprint linenums lang-cs" style="">//Loads a game scene
 public void LoadGameScene(string sceneName)
 {
     //Don't continue if scene doesn't exits
@@ -145,6 +163,65 @@ public void LoadGameScene(string sceneName)
         LoadLoadedOrLoadingSceneError(sceneName);
     }
 }</pre>
+                                </div>
+                            </div>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-code collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Flooding system</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>The flooding system is made to be a designer friendly tool. It allows the designer to easily change the amount of flood sections depending on the map. The height
+                                    of flood sections can easily be adjusted with a flood indicator that shows the flood on top of the section.
+                                </p>
+<!--                                <div class="vertical-align-content-middle">-->
+<!--                                    <img src="/arjensimons.github.io/assets/gif_flooding_system.gif" alt="Scene loading flow diagram">-->
+<!--                                </div>-->
+                                <p>
+                                    The following code shows a method used to add new flood sections.
+                                </p>
+                                <pre class="prettyprint linenums lang-cs" style="">//Adds flood sections
+private void AddSections(int amount)
+{
+    if (amount <= 0) { return; }
+
+    for (int i = 0; i < amount; i++)
+    {
+        //Spawn section and set parent
+        Transform sectionEdge = Instantiate(floodSectionPrefab, base.transform);
+        sectionEdge.transform.parent = gameObject.transform;
+
+        //Set position of section
+        sectionEdge.position = new Vector3(
+            sectionEdge.position.x,
+            SectionEdges.Count == 0 ? 0 : SectionEdges[SectionEdges.Count - 1].transform.position.y + 10,
+            sectionEdge.position.z);
+
+        SectionEdges.Add(sectionEdge.GetComponent&ltSectionSettings&gt());
+    }
+}</pre>
+                                <p>
+                                    The following code shows a method used to remove flood sections.
+                                </p>
+                                <pre class="prettyprint linenums lang-cs" style="">    //Removes and deletes flood sections
+    private void RemoveSections(int amount)
+    {
+        if (amount <= 0) { return; }
+
+#if UNITY_EDITOR
+        for (int i = 0; i < amount; i++)
+        {
+            //Delay the deletion of object because destroyImmediate can't be called in OnValidate and Destroy can't be called in the editor
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(SectionEdges[SectionEdges.Count - 1].gameObject);
+                SectionEdges.RemoveAt(SectionEdges.Count - 1);
+            };
+        }
+#endif
+    }</pre>
                             </div>
                         </div>
                     </div>
@@ -154,5 +231,15 @@ public void LoadGameScene(string sceneName)
     </div>
     </div>
     <script src="/arjensimons.github.io/javascript/collapsible.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    (function () {
+        function htmlEscape(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    })();
+    </script>
 </body>
 </html>
