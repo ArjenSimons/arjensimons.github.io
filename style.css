@@ -380,3 +380,51 @@ img {
 .social-icon:hover {
     color: black;
 }
+
+.collapsible {
+    margin-bottom: 5px;
+    background-color: #3b3b3b;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none !important;
+    font-size: 17px;
+    border-radius: 5px;
+}
+.collapsible:hover {
+    background-color: #4b4b4b;
+}
+
+.collapsible-icon {
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.collapsible-indicator-icon {
+    font-size: 14px;
+    padding-left: 5px;
+    padding-top: 4px;
+    padding-right: 8px;
+    vertical-align: top;
+    float: right;
+    transition: transform 0.2s ease-in-out;
+
+}
+.collapsible-indicator-icon:focus {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.collapsible-inner {
+    padding-left: 10px;
+    padding-right: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+
