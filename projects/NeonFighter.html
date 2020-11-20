@@ -7,9 +7,14 @@
     <link href="/arjensimons.github.io/style.css" type="text/css" rel="stylesheet">
     <link href="/arjensimons.github.io/css/project.css" type="text/css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!--    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">-->
+    <script src="/arjensimons.github.io/external/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/arjensimons.github.io/external/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/arjensimons.github.io/css/tomorrow-night.min.css">
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/720655e459.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true;skin=tomorrow-night.min"></script>-->
 </head>
-<body>
+<body onload="PR.prettyPrint()">
 
 <!-- Navigation bar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav">
@@ -81,13 +86,47 @@
                             </p>
                             <button type="button" class="collapsible">
                                 <i class="fa fa-code collapsible-icon"></i>
-                                <span style="margin-left: 5px;">Exploding bullet</span>
+                                <span style="margin-left: 5px;">Code | Exploding bullet</span>
                                 <div class="collapsible-indicator-icon">
                                     <i class="fa fa-plus indicator-icon"></i>
                                 </div>
                             </button>
                             <div class="collapsible-inner">
-                                <p>The following script lets a bullet explode once it reaches a certain position.</p>
+                                <p>The following script lets a bullet explode once it reaches a certain position. When exploding it spawns an
+                                n amount of bullets in a circle around the exploding bullet.</p>
+                                <pre class="prettyprint linenums lang-cs" style="">using UnityEngine;
+
+public class BulletExplode : MonoBehaviour {
+
+    [SerializeField] private float explodingPoint;
+    [SerializeField] private float bulletAmount;
+
+    private float rotationChange;
+
+    private void Start()
+    {
+        rotationChange = 360 / bulletAmount;
+    }
+
+    private void FixedUpdate()
+    {
+        if (transform.position.x < explodingPoint)
+        {
+            //Play audio effect
+            AudioManager.instance.Play("BulletExplode");
+
+            float rot = 0;
+
+            //Spawn bullets
+            for (int i = 0; i < bulletAmount; i++)
+            {
+                rot += rotationChange;
+                Pooler.instance.Spawn(PoolerObject.BULLET, transform.position, Quaternion.Euler(0, 0, rot));
+            }
+            Destroy(gameObject);
+        }
+    }
+}</pre>
                             </div>
                         </div>
                     </div>
