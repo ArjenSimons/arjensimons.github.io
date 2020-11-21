@@ -101,7 +101,7 @@
                                     During the project I worked on the win/los condition using this photon wrapper. The system is made to make a fair judgement on who has won when the
                                     game when two players die at approximately the same time.
                                     <br><br>
-                                    When a player dies it sends a 'loss request' with a time stamp to the host. The host will wait for 200 millie seconds to collect all requests.
+                                    When a player dies it sends a 'loss request' with a time stamp to the host. The host will wait for 200 ms to collect all requests.
                                     If other players send a 'loss request' to the host within this wait time the host will determine who died first.
                                     If the last two players die at the same time, the game will result in a draw.
                                 </p>
@@ -130,7 +130,7 @@
                                 </button>
                                 <div class="collapsible-inner">
                                     <p>
-                                        This code shows the two methods used to decide if a player wins, loses, or draws.
+                                        These code blocks show the two methods used to decide if a player wins, loses, or draws.
                                     </p>
                                     <pre class="prettyprint linenums lang-cs" style="">//Decides on what decision to make based on the time difference from the requests
 private void DecideOnEndGameState(NetworkingRequest finishedRequest, NetworkingRequestType type, int targetViewId)
@@ -138,6 +138,7 @@ private void DecideOnEndGameState(NetworkingRequest finishedRequest, NetworkingR
     //Create array of requests ordered by their timestamp
     KeyValuePair&ltint, string>[] requests = finishedRequest.timeStamps.OrderBy(timeStamp => DateTime.Parse(timeStamp.Value)).ToArray();
     Dictionary&ltint, int> content = new Dictionary&ltint, int>();
+
     //Get the amount of players still alive
     IEnumerable&ltPhotonPlayer> players = PhotonNetwork.PlayerList.Where(player => (int)player.CustomProperties[PlayerPropertyHandler.PlayerStateKey] == (int)PlayerState.Playing);
     int amountOfPlayersAlive = players.Count();
@@ -169,9 +170,8 @@ private void DecideOnEndGameState(NetworkingRequest finishedRequest, NetworkingR
     else { content = GetCloseEndGameStateResults(requests); }
 
     PhotonNetwork.RaiseEvent((byte)NetworkingRequestDecision.LoseDecision, new object[] { content, targetViewId }, GetEventOptions(finishedRequest), SendOptions.SendReliable);
-}
-
-//Gets the EndGame state result when it needs to decide if between winning, losing or a draw
+}</pre>
+                                    <pre class="prettyprint linenums lang-cs" style="">//Gets the EndGame state result when it needs to decide if between winning, losing or a draw
 private Dictionary&ltint, int> GetCloseEndGameStateResults(KeyValuePair&ltint, string>[] requests)
 {
     Dictionary&ltint, int> content = new Dictionary&ltint, int>();
@@ -212,7 +212,7 @@ private Dictionary&ltint, int> GetCloseEndGameStateResults(KeyValuePair&ltint, s
                             </button>
                             <div class="collapsible-inner">
                                 <p>To make sure we don't run into problems with the User Interface when switching scenes, like having to reset references
-                                    or having to rework a lot of elements for small changed I used a scalable solution. Instead of having a prefab of the UI, there is
+                                    or having to rework a lot of elements for small changes, I used a scalable solution. Instead of having a prefab of the UI, there is
                                     a scene that loads additively with the game scene and displays the UI. Al UI elements only need references to objects in the UI scene.
                                     Using the MVP pattern the UI script only needs to subscribe to events from a presenter to update correctly.
                                 </p>
