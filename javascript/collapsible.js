@@ -14,7 +14,6 @@ for (var i = 0; i < coll.length; i++) {
         if (content.parentElement.classList[0] === "collapsible-inner")
         {
             var parentElement = content.parentElement;
-
             var parentHeight = parseInt(parentElement.style.maxHeight.replace('px', ''));
             var ownHeight = parseInt(content.style.maxHeight.replace('px', ''));
 
