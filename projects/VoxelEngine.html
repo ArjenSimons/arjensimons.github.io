@@ -161,15 +161,15 @@ void VertexBuffer::Unbind() const
                                 <br>
                                 <h5>Vertex Buffer Attribute</h5>
                                 <p>
-                                    The VBO is used to tell OpenGL the layout of the data inside the VBO. In this case we have a
+                                    The VBA is used to tell OpenGL the layout of the data inside the VBO. In this case we have a
                                     position (3 floats), normal (3 floats), color (3 floats) and uv coordinate (2 floats).
-                                    I use the VBO to tell that the first three floats of the vertex is the position, the 3 floats after that the normal, etc..
+                                    I use the VBA to tell that the first three floats of the vertex is the position, the 3 floats after that the normal, etc..
                                     <br><br>
                                     This is done inside of the Mesh class.
                                 </p>
                                 <button type="button" class="collapsible">
                                     <i class="fa fa-code collapsible-icon"></i>
-                                    <span style="margin-left: 5px;">VBO</span>
+                                    <span style="margin-left: 5px;">VBA</span>
                                     <div class="collapsible-indicator-icon">
                                         <i class="fa fa-plus indicator-icon"></i>
                                     </div>
@@ -278,7 +278,7 @@ void main()
                                 </div>
                             </div>
                             <button type="button" class="collapsible">
-                                <i class="fa fa-info collapsible-icon"></i>
+                                <i class="fa fa-code collapsible-icon"></i>
                                 <span style="margin-left: 5px;">Terrain</span>
                                 <div class="collapsible-indicator-icon">
                                     <i class="fa fa-plus indicator-icon"></i>
@@ -289,13 +289,14 @@ void main()
                                     The terrain is generated using one layer of Perlin noise.
                                     To create a mesh of the terrain only the visible parts of the cubes must be added to the mesh.
 
-                                    Visible quads are their vertex and indices information are stored in vectors from the standard library.
+                                    Visible quads their vertex and index information is stored in vectors from the standard library.
                                     These vectors are, when calling the Mesh constructor, used to create the VBO and Index Buffer Object (IBO).
 
-                                    The code code snippet below shows the code that code that creates the mesh of a terrain.
+                                    The code code snippet below shows the code that creates the mesh of a terrain.
                                 </p>
                                 <pre class="prettyprint linenums lang-cpp" style="">void Chunk::GenerateMesh()
 {
+        //Empty the vertices and indices vectors
 	vertices.clear();
 	indices.clear();
 
@@ -305,6 +306,7 @@ void main()
 		{
 			for (unsigned int y = 0; y < ySize; y++)
 			{
+                                //Don't call the MakeCube function if block is of type AIR
 				if (static_cast&ltBlock>(GetCell(x, y, z)) == AIR)
 					continue;
 
@@ -319,6 +321,7 @@ void Chunk::MakeCube(glm::vec3 &position)
 {
 	for (int i = 0; i < 6; i++)
 	{
+                //Check if face is visible
 		if (GetNeighbor(position.x, position.y, position.z, static_cast&ltDirection>(i)) == AIR)
 			MakeFace(i, position);
 	}
@@ -329,6 +332,8 @@ void Chunk::MakeFace(int &dir, glm::vec3 &position)
 	int nVertices = vertices.size();
 
 	GetFaceVertices(dir, position);
+
+        //Add face indices to the indices vector
 	indices.emplace_back(nVertices);
 	indices.emplace_back(nVertices + 2);
 	indices.emplace_back(nVertices + 1);
@@ -344,6 +349,7 @@ void Chunk::GetFaceVertices(int &dir, glm::vec3 &position)
 	glm::vec3 color = GetColor(blockType);
 	const glm::vec2* uvCoords = GetUVs(blockType, dir);
 
+        //Add face vertices to the vertices vector
 	vertices.emplace_back(
 		normalizedVertices[quads[dir].x] + position + m_Offset,
 		normals[dir],
@@ -364,6 +370,113 @@ void Chunk::GetFaceVertices(int &dir, glm::vec3 &position)
 		normals[dir],
 		color,
 		uvCoords[3]);
+}</pre>
+                            </div>
+                            <button type="button" class="collapsible">
+                                <i class="fa fa-code collapsible-icon"></i>
+                                <span style="margin-left: 5px;">Camera</span>
+                                <div class="collapsible-indicator-icon">
+                                    <i class="fa fa-plus indicator-icon"></i>
+                                </div>
+                            </button>
+                            <div class="collapsible-inner">
+                                <p>
+                                    The following code shows the cpp file of the camera class.
+                                </p>
+                                <pre class="prettyprint linenums lang-cpp" style="">#include "Camera.h"
+#include &ltglm/gtc/matrix_transform.hpp>
+#include &ltiostream>
+
+Camera::Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up)
+	: m_Position(position), m_Front(front), m_Up(up)
+{
+	m_ViewMatrix = glm::lookAt(position, GetViewDir(), up);
+	m_LastFrame = glfwGetTime();
+	m_Yaw = -90;
+	m_Pitch = 0;
+}
+
+Camera::~Camera()
+{
+}
+
+void Camera::ProcessInput(GLFWwindow* window)
+{
+	SetTime();
+
+	CalculatePosition(window);
+	CalculateDirection(window);
+
+	m_ViewMatrix = glm::lookAt(m_Position, GetViewDir(), m_Up);
+}
+
+void Camera::CalculatePosition(GLFWwindow* window)
+{
+	//Press shift to move faster
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+		m_CurrentSpeed = m_FastSpeed;
+	else m_CurrentSpeed = m_Speed;
+
+	//Move using WASD keys
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		m_Position += GetSpeed() * m_Front;
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		m_Position -= GetSpeed() * m_Front;
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		m_Position -= GetSpeed() * glm::normalize(glm::cross(m_Front, m_Up));
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		m_Position += GetSpeed() * glm::normalize(glm::cross(m_Front, m_Up));
+}
+
+void Camera::CalculateDirection(GLFWwindow* window)
+{
+	double xPos;
+	double yPos;
+	glfwGetCursorPos(window, &xPos, &yPos);
+
+	//Set prefious positions to current position if it's the first time this method is called
+	if (firstCursorMovement)
+	{
+		prefXPos = xPos;
+		prefYPos = yPos;
+		firstCursorMovement = false;
+	}
+
+	//Get the amount of mouse movement
+	deltaX = xPos - prefXPos;
+	deltaY = yPos - prefYPos;
+	prefXPos = xPos;
+	prefYPos = yPos;
+
+	deltaX *= m_Sensitivity;
+	deltaY *= m_Sensitivity;
+
+	m_Pitch -= deltaY;
+	m_Yaw += deltaX;
+
+	//Limit the Pitch to prevent the view flipping upside down
+	m_Pitch = glm::clamp(m_Pitch, -89.9f, 89.9f);
+
+	glm::vec3 dir;
+
+	//Calculate the rotation on the x, y and z axis.
+	dir.x = glm::cos(glm::radians(m_Yaw)) * glm::cos(glm::radians(m_Pitch));
+	dir.y = glm::sin(glm::radians(m_Pitch));
+	dir.z = glm::sin(glm::radians(m_Yaw)) * glm::cos(glm::radians(m_Pitch));
+	m_Front = glm::normalize(dir);
+}
+
+void Camera::SetTime()
+{
+	//Get the delta time (this is used to make movement framerate independent)
+	m_CurrentFrame = glfwGetTime();
+	m_DeltaTime = m_CurrentFrame - m_LastFrame;
+	m_LastFrame = m_CurrentFrame;
+
+	//Print the frame rate
+	float frameRate;
+	frameRate = 1 / m_DeltaTime;
+	std::cout << frameRate << std::endl;
 }</pre>
                             </div>
                         </div>
