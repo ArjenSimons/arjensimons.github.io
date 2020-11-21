@@ -237,7 +237,7 @@ img {
 }
 .project-item {
     height: 350px;
-    border: 2px solid;
+    border: 3px solid;
     border-color: #545454;
     border-radius: 5px;
     position: relative;
@@ -271,8 +271,8 @@ img {
     bottom: 0;
     text-align: center;
     line-height: 35px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
     pointer-events: none;
     padding-bottom: 12px;
     padding-top: 12px;
