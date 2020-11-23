@@ -4,6 +4,8 @@ let checked = false;
 let qt;
 
 function setup() {
+    background(51);
+
     canvas = createCanvas(windowWidth, windowHeight + 30);
     canvas.parent('homecontent');
 
