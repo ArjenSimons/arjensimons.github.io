@@ -213,7 +213,7 @@ private Dictionary&ltint, int> GetCloseEndGameStateResults(KeyValuePair&ltint, s
                             <div class="collapsible-inner">
                                 <p>To make sure we don't run into problems with the User Interface when switching scenes, like having to reset references
                                     or having to rework a lot of elements for small changes, I used a scalable solution. Instead of having a prefab of the UI, there is
-                                    a scene that loads additively with the game scene and displays the UI. Al UI elements only need references to objects within the UI scene.
+                                    a scene that loads additively with the game scene and displays the UI. All UI elements only need references to objects within the UI scene.
                                     Using the MVP pattern the UI script only needs to subscribe to events from a presenter to update correctly.
                                 </p>
                                 <button type="button" class="collapsible">
