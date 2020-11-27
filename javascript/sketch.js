@@ -61,7 +61,7 @@ function windowResized() {
 
 function spawnBoids(){
     boids = [];
-    for (let i = 0; i < 350; i++){
+    for (let i = 0; i < 330; i++){
         boids.push(new Boid());
     }
 }
