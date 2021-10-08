@@ -34,7 +34,8 @@ function draw() {
         weight = 10
     }
     strokeWeight(weight);
-    stroke(255);
+    stroke(0, 232, 232);
+
 
     for(let boid of boids){
         boid.show();
@@ -46,7 +47,7 @@ function draw() {
         //if (!checked) console.log(boidsInRange.length);
     }
     checked = true;
-
+    stroke(255);
     //qt.show();
 
     textSize(32);
