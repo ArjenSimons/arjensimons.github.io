@@ -1,9 +1,9 @@
 class Boid {
     constructor() {
-        let halfWidth = width / 2;
-        let quarterWidth = width / 10;
-        let halfHeight = height / 2;
-        let quarterHeight = height / 10;
+        let halfWidth = width * .5;
+        let quarterWidth = width * .1;
+        let halfHeight = height *.5;
+        let quarterHeight = height * .1;
         this.position = createVector(
             random(halfWidth - quarterWidth, halfWidth + quarterWidth),
             random(halfHeight - quarterHeight, halfHeight + quarterHeight)
@@ -38,12 +38,12 @@ class Boid {
 
     update() {
         this.velocity.limit(this.maxSpeed);
-        this.position.add(p5.Vector.mult(this.velocity, deltaTime / 50));
+        this.position.add(p5.Vector.mult(this.velocity, deltaTime * .02));
         this.velocity.add(this.acceleration);
         this.acceleration.set(0, 0);
 
 
-        this.maxSpeed = 15 * (width / 500);
+        this.maxSpeed = 15 * (width * .002);
         if (this.maxSpeed > 24) {
             this.maxSpeed = 24;
         }

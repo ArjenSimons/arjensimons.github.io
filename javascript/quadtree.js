@@ -4,8 +4,8 @@ class Rectangle {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.halfWidth = this.w / 2;
-        this.halfHeight = this.h / 2;
+        this.halfWidth = this.w * .5;
+        this.halfHeight = this.h * .5;
     }
 
     contains(point) {
@@ -52,10 +52,10 @@ class QuadTree {
     }
 
     subdivide() {
-        let halfWidth = this.boundry.w / 2;
-        let halfHeight = this.boundry.h / 2;
-        let quarterWidth = halfWidth / 2;
-        let quarterHeight = halfHeight / 2;
+        let halfWidth = this.boundry.w * .5;
+        let halfHeight = this.boundry.h * .5;
+        let quarterWidth = halfWidth * .5;
+        let quarterHeight = halfHeight * .5;
 
         this.topLeft = new QuadTree(new Rectangle(this.boundry.x - quarterWidth, this.boundry.y + quarterHeight, halfWidth, halfHeight));
         this.topRight = new QuadTree(new Rectangle(this.boundry.x + quarterWidth, this.boundry.y + quarterHeight, halfWidth, halfHeight));

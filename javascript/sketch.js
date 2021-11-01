@@ -17,7 +17,16 @@ function setup() {
 
 function draw() {
     background(51);
-    qt = new QuadTree(new Rectangle(canvas.width / 2, canvas.height / 2, canvas.width, canvas.height));
+    updateBoids();
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight + 30);
+    spawnBoids();
+}
+
+function updateBoids(){
+    qt = new QuadTree(new Rectangle(canvas.width * .5, canvas.height * .5, canvas.width, canvas.height));
 
     // for(let i = 0;  i < 239; i ++){
     //     qt.insert(createVector(random(canvas.width), random(canvas.height)));
@@ -29,7 +38,7 @@ function draw() {
     }
 
     //Setting stroke for boids
-    let weight = width / 100;
+    let weight = width * .01;
     if (weight > 10) {
         weight = 10
     }
@@ -53,11 +62,6 @@ function draw() {
     textSize(32);
 
     //text(frameRate(), width / 2, height / 2);
-}
-
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight + 30);
-    spawnBoids();
 }
 
 function spawnBoids(){
