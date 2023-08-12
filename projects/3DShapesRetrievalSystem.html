@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arjen Simons | Portfolio</title>
+    <link rel="shortcut icon" href="/assets/img_controller.png">
+
+    <link href="/style.css" type="text/css" rel="stylesheet">
+    <link href="/css/project.css" type="text/css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/external/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/external/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/css/tomorrow-night.min.css">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/720655e459.js"></script>
+</head>
+<body onload="PR.prettyPrint()">
+    <!-- Navigation bar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav">
+        <a class="navbar-brand" href="/arjensimons.github.io/index.html">Arjen Simons</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" style="color:#fff; font-size:25px;"></i>
+        </button>
+        <div class="collapse navbar-collapse navbar-right" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#projects">Projects</a>
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#about">About me</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Page content -->
+    <div id="page-container">
+        <div id="background-frame"></div>
+        <div id="page">
+        <div id="pp-container" style="opacity: 1;">
+            <div class="container pp-contents-container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <!-- Title -->
+                        <div class="pp-title-container">
+                            <div class="pp-title">
+                                <span>CPU Raytracer</span>
+                            </div>
+                        </div>
+                        <!-- Information -->
+                        <div class="pp-information-container">
+                            <table style="margin: auto;">
+                                <tbody>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Project Type</strong>
+                                    </td>
+                                    <td class="pp-information-cell">University project | 3 students</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Project Timeline</strong>
+                                    </td>
+                                    <td class="pp-information-cell">3 months | 2022</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Software Used</strong>
+                                    </td>
+                                    <td class="pp-information-cell">Visual Studio Code</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Languages Used</strong>
+                                    </td>
+                                    <td class="pp-information-cell">Python</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Description -->
+                        <div class="pp-contents">
+                            <p>
+                                <img src="/assets/tsne_shapes.png" alt="t-SNE plot showing shapes in a 3D shapes dataset.">
+                            </p>
+                            <p>
+                                <a href="/assets/UU_Multimedia_Retrieval.pdf" download target="_blank">Download the report.</a> <br>
+                                <a href="https://github.com/rosaliedewinther/UU_Multimedia_Retrieval" target="_blank">View github repository.</a> <br>
+                                <b>Report Abstract</b>
+                                Retrieving multimedia objects can be a hard task. This paper aims
+to create a Content-Based Shape Retrieval (CBSR) system which
+is able to return 3D shapes that are similar to a given query shape.
+We show how to pre-process shape databases [10][3] in order to
+extract the features used to compare different shapes. The compari-
+son results in a distance between the shapes computed using the
+Euclidean or Earth mover’s distances between individual features.
+An understandable visualisation of the dataset and its distances is
+presented using a t-SNE plot, which clearly shows which shapes
+are considered similar to one another. We show that the result-
+ing CBSR system can accurately retrieve objects that have a lot of
+similar geometric attributes. To calculate the sensitivity and speci-
+ficity of the presented pipeline, a Receiver Operating Characteristic
+(ROC) curve is computed for every class. Over the entire Labeled
+PSB dataset [3], the system has an average Area Under the ROC
+(AUROC) of 0.82. Some shape classes have an average AUROC up
+to 0.96.
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="/javascript/collapsible.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    (function () {
+        function htmlEscape(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    })();
+    </script>
+</body>
+</html>

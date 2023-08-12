@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arjen Simons | Portfolio</title>
+    <link rel="shortcut icon" href="/assets/img_controller.png">
+
+    <link href="/style.css" type="text/css" rel="stylesheet">
+    <link href="/css/project.css" type="text/css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/external/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/external/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/css/tomorrow-night.min.css">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/720655e459.js"></script>
+</head>
+<body onload="PR.prettyPrint()">
+    <!-- Navigation bar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark nav">
+        <a class="navbar-brand" href="/arjensimons.github.io/index.html">Arjen Simons</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" style="color:#fff; font-size:25px;"></i>
+        </button>
+        <div class="collapse navbar-collapse navbar-right" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#projects">Projects</a>
+                <a class="nav-item nav-link active" href="/arjensimons.github.io/index.html#about">About me</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Page content -->
+    <div id="page-container">
+        <div id="background-frame"></div>
+        <div id="page">
+        <div id="pp-container" style="opacity: 1;">
+            <div class="container pp-contents-container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <!-- Title -->
+                        <div class="pp-title-container">
+                            <div class="pp-title">
+                                <span>Analyzing and improving the quality of Voronoi Hausdorff morphing using component reduction</span>
+                            </div>
+                        </div>
+                        <!-- Information -->
+                        <div class="pp-information-container">
+                            <table style="margin: auto;">
+                                <tbody>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Project Type</strong>
+                                    </td>
+                                    <td class="pp-information-cell">University master thesis</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Project Timeline</strong>
+                                    </td>
+                                    <td class="pp-information-cell">3 months | 2022</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Software Used</strong>
+                                    </td>
+                                    <td class="pp-information-cell">Visual Studio Code</td>
+                                </tr>
+                                <tr>
+                                    <td class="pp-information-cell">
+                                        <strong>Languages Used</strong>
+                                    </td>
+                                    <td class="pp-information-cell">Python</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Description -->
+                        <div class="pp-contents">
+                            <p>
+                                <img src="/assets/mixedVCR-belgium-italy.gif" alt="Morphing result when morphing from the outline of Belgium to the outline of Italy">
+                            </p>
+                            <p>
+                                <a href="https://github.com/rosaliedewinther/UU_Multimedia_Retrieval" target="_blank">View full thesis.</a> <br>
+                                <b>Thesis Abstract</b>
+                                This thesis introduces a new quantitative metric, used to determine the quality of a morph. This metric is based on the angular change of all enclosed boundary loops and is experimentally shown to effectively distinguish between morphs that are visually appealing and morphs that are worse in terms of visual quality. This thesis also improves the Voronoi and mixed morphs [15] using two approaches. The first approach experimentally shows that a dynamic variable for the mixed morph can result in morphs that better balance all quantitative metrics and results in visually more appealing morphs. The second approach is the introduction of a new abstract morph and its mixed variant, that adjust the Voronoi morph to reduce the number of components present in intermediate shapes. We prove some basic properties on the creation of components in the Voronoi morph and that the new morph also adheres to the Hausdorff property [16]. In an experimental analysis of the new morphs, we record data on the area, perimeter and total angular change development throughout the morph, and the number of holes and components. We show that one of the new morphs performs best on our quantitative analysis and also visually appears most attractive.
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="/javascript/collapsible.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    (function () {
+        function htmlEscape(s) {
+            return s
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    })();
+    </script>
+</body>
+</html>
