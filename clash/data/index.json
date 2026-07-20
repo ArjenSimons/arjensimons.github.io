@@ -1,0 +1,6 @@
+{
+  "tournaments": [
+    "tournaments/test-tournament.json",
+    "tournaments/example-cup.json"
+  ]
+}

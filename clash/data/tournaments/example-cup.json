@@ -1,0 +1,35 @@
+{
+  "id": "example-cup",
+  "name": "Example Clash Cup",
+  "date": "2026-07-18",
+  "tier": 2,
+  "placement": 1,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "Example Opponents",
+      "result": "win",
+      "durationSeconds": 1880,
+      "players": [
+        { "playerId": "player-1", "role": "TOP", "champion": "Ornn", "kills": 3, "deaths": 2, "assists": 11, "cs": 221, "gold": 12420, "damage": 18210, "visionScore": 31 },
+        { "playerId": "player-2", "role": "JUNGLE", "champion": "Vi", "kills": 5, "deaths": 5, "assists": 10, "cs": 168, "gold": 11820, "damage": 15700, "visionScore": 42 },
+        { "playerId": "player-3", "role": "MIDDLE", "champion": "Syndra", "kills": 10, "deaths": 3, "assists": 8, "cs": 245, "gold": 14700, "damage": 31500, "visionScore": 25 },
+        { "playerId": "player-4", "role": "BOTTOM", "champion": "Jinx", "kills": 8, "deaths": 4, "assists": 7, "cs": 281, "gold": 15300, "damage": 29800, "visionScore": 19 },
+        { "playerId": "player-5", "role": "UTILITY", "champion": "Nautilus", "kills": 1, "deaths": 6, "assists": 16, "cs": 38, "gold": 8400, "damage": 7200, "visionScore": 79 }
+      ]
+    },
+    {
+      "opponent": "Role Swap United",
+      "result": "loss",
+      "durationSeconds": 2010,
+      "players": [
+        { "playerId": "player-6", "role": "TOP", "champion": "Gnar", "kills": 2, "deaths": 5, "assists": 6, "cs": 238, "gold": 12100, "damage": 20700, "visionScore": 29 },
+        { "playerId": "player-1", "role": "JUNGLE", "champion": "Sejuani", "kills": 1, "deaths": 4, "assists": 10, "cs": 154, "gold": 10100, "damage": 9900, "visionScore": 48 },
+        { "playerId": "player-3", "role": "MIDDLE", "champion": "Orianna", "kills": 6, "deaths": 4, "assists": 7, "cs": 267, "gold": 13800, "damage": 28100, "visionScore": 24 },
+        { "playerId": "player-4", "role": "BOTTOM", "champion": "Kai'Sa", "kills": 7, "deaths": 5, "assists": 5, "cs": 292, "gold": 14900, "damage": 30200, "visionScore": 18 },
+        { "playerId": "player-5", "role": "UTILITY", "champion": "Rakan", "kills": 0, "deaths": 7, "assists": 13, "cs": 31, "gold": 7900, "damage": 5800, "visionScore": 87 }
+      ]
+    }
+  ]
+}
