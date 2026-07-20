@@ -4,20 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Clash Dashboard</title>
+    <title>Knoller Clash Results</title>
     <link rel="stylesheet" href="css/clash.css">
 </head>
 
 <body>
     <main class="shell">
-        <nav class="topbar"><a class="brand" href="./">CLASH ARCHIVE</a>
-            <div class="nav"><a href="admin.html">Add tournament</a> <!--<a href="../">Portfolio</a></div> -->
+        <nav class="topbar"><a class="brand" href="./">KNOLLER CLASH RESULTS</a>
+            <div class="nav"><a href="admin.html">Add tournament</a></div>
         </nav>
-        <header class="hero">
-            <p class="eyebrow">League of Legends</p>
-            <h1 id="team-name">Clash Team</h1>
+        <header class="hero compact-home">
             <div class="summary" id="summary"></div>
         </header>
+        <section class="players-section">
+            <p class="eyebrow">Team players</p>
+            <div id="players" class="player-grid"></div>
+        </section>
         <section>
             <p class="eyebrow">Tournament history</p>
             <div id="tournaments"></div>
