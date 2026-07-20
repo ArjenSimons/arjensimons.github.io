@@ -1,1 +1,35 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Add Clash Tournament</title><link rel="stylesheet" href="css/clash.css"></head><body><main class="shell"><nav class="topbar"><a class="brand" href="./">← CLASH ARCHIVE</a></nav><header class="hero compact"><p class="eyebrow">Manual data entry</p><h1>Add tournament</h1><p>Choose any five players per game. Roles may change between games.</p></header><form id="builder"><section class="card"><div class="form-grid"><label>Tournament name<input name="name" required></label><label>Date<input name="date" type="date" required></label><label>Tier<input name="tier" type="number" min="1" max="4"></label><label>Placement<input name="placement" type="number" min="1"></label></div></section><div id="games"></div><div class="actions"><button id="add-game" type="button">+ Add game</button><button type="submit">Export tournament JSON</button></div></form><p id="manifest-help" class="notice">The exported file goes in <code>clash/data/tournaments/</code>. Then add its path to <code>clash/data/index.json</code>.</p></main><script type="module" src="js/admin.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Add Clash Tournament</title>
+    <link rel="stylesheet" href="css/clash.css">
+</head>
+
+<body>
+    <main class="shell">
+        <nav class="topbar"><a class="brand" href="./">← KNOLLER CLASH RESULTS</a></nav>
+        <header class="hero compact">
+            <p class="eyebrow">Manual data entry</p>
+            <h1>Add tournament</h1>
+            <p>Choose any five players per game. Roles may change between games.</p>
+        </header>
+        <form id="builder">
+            <section class="card">
+                <div class="form-grid"><label>Tournament name<input name="name" required></label><label>Date<input
+                            name="date" type="date" required></label><label>Tier<input name="tier" type="number" min="1"
+                            max="4"></label><label>Placement<input name="placement" type="number" min="1"></label></div>
+            </section>
+            <div id="games"></div>
+            <div class="actions"><button id="add-game" type="button">+ Add game</button><button type="submit">Export
+                    tournament JSON</button></div>
+        </form>
+        <p id="manifest-help" class="notice">The exported file goes in <code>clash/data/tournaments/</code>. Then add
+            its path to <code>clash/data/index.json</code>.</p>
+    </main>
+    <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>

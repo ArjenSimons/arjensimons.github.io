@@ -1,11 +1,11 @@
-export const ROLES = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"];
+export const ROLES = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"];
 
 const weights = {
   TOP:     { kda: .18, kp: .13, damage: .19, gold: .13, cs: .15, vision: .07, deaths: .10, result: .05 },
   JUNGLE:  { kda: .18, kp: .20, damage: .12, gold: .10, cs: .08, vision: .17, deaths: .10, result: .05 },
   MIDDLE:  { kda: .18, kp: .14, damage: .22, gold: .14, cs: .14, vision: .07, deaths: .06, result: .05 },
   BOTTOM:  { kda: .19, kp: .14, damage: .24, gold: .16, cs: .15, vision: .05, deaths: .02, result: .05 },
-  UTILITY: { kda: .17, kp: .22, damage: .07, gold: .05, cs: .02, vision: .30, deaths: .12, result: .05 }
+  SUPPORT: { kda: .17, kp: .22, damage: .07, gold: .05, cs: .02, vision: .30, deaths: .12, result: .05 }
 };
 
 const targets = {
@@ -13,7 +13,7 @@ const targets = {
   JUNGLE:  { kda: 3.2, kp: .68, damage: 480, gold: 350, cs: 5.2, vision: 1.5, deaths: 4.5 },
   MIDDLE:  { kda: 3.5, kp: .62, damage: 750, gold: 420, cs: 7.5, vision: .9, deaths: 4.0 },
   BOTTOM:  { kda: 3.5, kp: .61, damage: 800, gold: 450, cs: 8.1, vision: .65, deaths: 4.0 },
-  UTILITY: { kda: 3.4, kp: .72, damage: 250, gold: 270, cs: 1.2, vision: 2.4, deaths: 5.0 }
+  SUPPORT: { kda: 3.4, kp: .72, damage: 250, gold: 270, cs: 1.2, vision: 2.4, deaths: 5.0 }
 };
 
 const clamp = n => Math.max(0, Math.min(100, n));

@@ -267,27 +267,91 @@ select {
     font-size: 1.35rem
 }
 
-.player-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px
-}
-
-.player-stats span {
-    display: grid;
-    gap: 3px;
-    color: var(--muted);
-    font-size: .78rem;
-    text-transform: uppercase;
-    letter-spacing: .06em
-}
-
-.player-stats b {
-    color: var(--text);
-    font-size: 1.35rem;
-    letter-spacing: 0
-}
 
 .player-row select[name="champion"] {
     min-width: 145px
+}
+/* Cleaner homepage summary */
+.hero.compact-home {
+    padding: 36px 0 34px;
+}
+
+.summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.summary-card {
+    min-height: 132px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(20, 42, 59, .92), rgba(15, 32, 48, .92));
+    box-shadow: 0 18px 45px #0004;
+}
+
+.summary-card span {
+    color: var(--muted);
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.summary-card strong {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1;
+}
+
+/* Easier-to-scan player cards */
+.player-card h2 {
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+}
+
+.player-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0;
+}
+
+.player-stats div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(41, 65, 81, .65);
+}
+
+.player-stats div:last-child {
+    border-bottom: 0;
+}
+
+.player-stats dt {
+    color: var(--muted);
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.player-stats dd {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+@media(max-width:800px) {
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        min-height: 105px;
+    }
 }

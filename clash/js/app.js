@@ -4,12 +4,14 @@ import { summarizeTournament } from './scoring.js';
 const root = document.querySelector('#tournaments');
 try {
   const [roster, manifest] = await Promise.all([loadJson('./data/players.json'), loadJson('./data/index.json')]);
-  document.querySelector('#team-name').textContent = roster.teamName;
   const tournaments = await Promise.all(manifest.tournaments.map(path => loadJson(`./data/${path}`)));
   tournaments.sort((a,b) => b.date.localeCompare(a.date));
   const wins = tournaments.reduce((n,t) => n + t.games.filter(g => g.result === 'win').length, 0);
   const games = tournaments.reduce((n,t) => n + t.games.length, 0);
-  document.querySelector('#summary').innerHTML = `<strong>${tournaments.length}</strong><span>Tournaments</span><strong>${wins}-${games-wins}</strong><span>Match record</span><strong>${games ? Math.round(wins/games*100) : 0}%</strong><span>Win rate</span>`;
+  document.querySelector('#summary').innerHTML = `
+    <article class="summary-card"><span>Tournaments</span><strong>${tournaments.length}</strong></article>
+    <article class="summary-card"><span>Match record</span><strong>${wins}-${games-wins}</strong></article>
+    <article class="summary-card"><span>Win rate</span><strong>${games ? Math.round(wins/games*100) : 0}%</strong></article>`;
   const playerStats = new Map(roster.players.map(player => [player.id, { ...player, games: 0, wins: 0, mvps: 0, ints: 0 }]));
   tournaments.forEach(tournament => {
     const summary = summarizeTournament(tournament);
@@ -24,7 +26,7 @@ try {
   });
   document.querySelector('#players').innerHTML = [...playerStats.values()].map(player => {
     const winrate = player.games ? Math.round(player.wins / player.games * 100) : 0;
-    return `<article class="card player-card"><h2>${player.name}</h2><div class="player-stats"><span><b>${player.games}</b>Games</span><span><b>${winrate}%</b>Win rate</span><span><b>${player.mvps}</b>MVPs</span><span><b>${player.ints}</b>INTs</span></div></article>`;
+    return `<article class="card player-card"><h2>${player.name}</h2><dl class="player-stats"><div><dt>Games</dt><dd>${player.games}</dd></div><div><dt>Win rate</dt><dd>${winrate}%</dd></div><div><dt>MVPs</dt><dd>${player.mvps}</dd></div><div><dt>INTs</dt><dd>${player.ints}</dd></div></dl></article>`;
   }).join('');
   root.innerHTML = tournaments.map(t => {
     const s = summarizeTournament(t);
