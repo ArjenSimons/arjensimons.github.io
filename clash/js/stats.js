@@ -15,6 +15,7 @@ try {
     games: 0,
     score: 0,
     kda: 0,
+    totalMinutes: 0,
     cs: 0,
     kp: 0,
     gold: 0,
@@ -37,6 +38,7 @@ try {
           games: 0,
           score: 0,
           kda: 0,
+          totalMinutes: 0,
           cs: 0,
           kp: 0,
           gold: 0,
@@ -50,6 +52,7 @@ try {
       player.games += 1;
       player.score += row.score;
       player.kda += row.kda;
+      player.totalMinutes += Math.max(0, Number(game.durationSeconds || 0)) / 60;
       player.cs += Number(row.cs || 0);
       player.kp += row.kp;
       player.gold += Number(row.gold || 0);
@@ -75,12 +78,12 @@ try {
       ...player,
       averageScore: player.score / player.games,
       averageKda: player.kda / player.games,
-      averageCs: player.cs / player.games,
+      csPerMinute: player.totalMinutes > 0 ? player.cs / player.totalMinutes : 0,
       averageKp: player.kp / player.games,
-      averageGold: player.gold / player.games,
+      goldPerMinute: player.totalMinutes > 0 ? player.gold / player.totalMinutes : 0,
       averageDeaths: player.deaths / player.games,
-      averageVision: player.vision / player.games,
-      averageDamage: player.damage / player.games
+      visionPerMinute: player.totalMinutes > 0 ? player.vision / player.totalMinutes : 0,
+      damagePerMinute: player.totalMinutes > 0 ? player.damage / player.totalMinutes : 0
     }));
 
   const rankedChampions = [...champions.values()]
@@ -111,10 +114,10 @@ try {
   const playerAwards = [
     { icon: '⚔️', title: 'KDA Leader', ranking: topPlayers('averageKda'), value: player => `${format(player.averageKda, 2)} KDA` },
     { icon: '🤝', title: 'Contribute King', ranking: topPlayers('averageKp'), value: player => `${Math.round(player.averageKp * 100)}% KP` },
-    { icon: '🌾', title: 'CS Leader', ranking: topPlayers('averageCs'), value: player => `${format(player.averageCs)} CS` },
-    { icon: '🪙', title: 'Gold Goblin', ranking: topPlayers('averageGold'), value: player => `${Math.round(player.averageGold).toLocaleString()} gold` },
-    { icon: '👁️', title: 'Visionair', ranking: topPlayers('averageVision'), value: player => `${format(player.averageVision)} vision` },
-    { icon: '💥', title: 'Health Bar Eraser', ranking: topPlayers('averageDamage'), value: player => `${Math.round(player.averageDamage).toLocaleString()} damage` },
+    { icon: '🌾', title: 'CS Leader', ranking: topPlayers('csPerMinute'), value: player => `${format(player.csPerMinute, 2)} CS/min` },
+    { icon: '🪙', title: 'Gold Goblin', ranking: topPlayers('goldPerMinute'), value: player => `${Math.round(player.goldPerMinute).toLocaleString()} gold/min` },
+    { icon: '👁️', title: 'Visionair', ranking: topPlayers('visionPerMinute'), value: player => `${format(player.visionPerMinute, 2)} vision/min` },
+    { icon: '💥', title: 'Health Bar Eraser', ranking: topPlayers('damagePerMinute'), value: player => `${Math.round(player.damagePerMinute).toLocaleString()} damage/min` },
     { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths` }
   ];
 

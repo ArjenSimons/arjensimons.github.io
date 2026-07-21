@@ -1,6 +1,6 @@
 {
   "tournaments": [
-    "tournaments/test-tournament.json",
-    "tournaments/example-cup.json"
+    "tournaments/msi-cup-day-2.json",
+    "tournaments/msi-cup-day-1.json"
   ]
 }

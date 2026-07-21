@@ -1,0 +1,323 @@
+{
+  "id": "msi-cup-day-1",
+  "name": "MSI CUP Day 1",
+  "date": "2026-07-18",
+  "tier": 4,
+  "placement": 5,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "MMK",
+      "result": "loss",
+      "durationSeconds": 2160,
+      "enemyTeamKills": 24,
+      "ourBans": [
+        "Bel'Veth",
+        "Akshan",
+        "Vayne",
+        "Neeko",
+        "Leona"
+      ],
+      "enemyBans": [
+        "Caitlyn",
+        "Nocturne",
+        "Trundle",
+        "Olaf",
+        "Thresh"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Cho'Gath"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Xin Zhao"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Naafiri"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Tristana"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Zyra"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Shen",
+          "kills": 3,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 276,
+          "gold": 12710,
+          "damage": 22318,
+          "visionScore": 25
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Warwick",
+          "kills": 2,
+          "deaths": 7,
+          "assists": 0,
+          "cs": 195,
+          "gold": 10734,
+          "damage": 6396,
+          "visionScore": 28
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "MIDDLE",
+          "champion": "Ahri",
+          "kills": 2,
+          "deaths": 6,
+          "assists": 4,
+          "cs": 257,
+          "gold": 11737,
+          "damage": 20346,
+          "visionScore": 26
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Smolder",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 3,
+          "cs": 308,
+          "gold": 13606,
+          "damage": 27631,
+          "visionScore": 21
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Lulu",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 7,
+          "cs": 44,
+          "gold": 8176,
+          "damage": 5938,
+          "visionScore": 100
+        }
+      ]
+    },
+    {
+      "opponent": "ADC",
+      "result": "win",
+      "durationSeconds": 2220,
+      "enemyTeamKills": 25,
+      "ourBans": [
+        "Twitch",
+        "Sett",
+        "Soraka",
+        "Zyra",
+        "Kha'Zix"
+      ],
+      "enemyBans": [
+        "Trundle",
+        "Orianna",
+        "Kayn",
+        "Singed",
+        "Shen"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Jax"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Nasus"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "LeBlanc"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Tristana"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Yuumi"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Garen",
+          "kills": 9,
+          "deaths": 3,
+          "assists": 5,
+          "cs": 343,
+          "gold": 18737,
+          "damage": 30946,
+          "visionScore": 39
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Nocturne",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 11,
+          "cs": 215,
+          "gold": 12907,
+          "damage": 15664,
+          "visionScore": 32
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "MIDDLE",
+          "champion": "Ahri",
+          "kills": 3,
+          "deaths": 6,
+          "assists": 11,
+          "cs": 234,
+          "gold": 12457,
+          "damage": 22937,
+          "visionScore": 34
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 10,
+          "deaths": 6,
+          "assists": 11,
+          "cs": 287,
+          "gold": 17849,
+          "damage": 38183,
+          "visionScore": 28
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Thresh",
+          "kills": 3,
+          "deaths": 4,
+          "assists": 21,
+          "cs": 44,
+          "gold": 11124,
+          "damage": 13481,
+          "visionScore": 121
+        }
+      ]
+    },
+    {
+      "opponent": "CFM",
+      "result": "loss",
+      "durationSeconds": 3360,
+      "enemyTeamKills": 40,
+      "ourBans": [
+        "Aphelios",
+        "Amumu",
+        "Ezreal",
+        "Thresh",
+        "Alistar"
+      ],
+      "enemyBans": [
+        "Ahri",
+        "Trundle",
+        "Warwick",
+        "Shen",
+        "Singed"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Gragas"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Sejuani"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Aurora"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Smolder"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Darius"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Jax",
+          "kills": 9,
+          "deaths": 11,
+          "assists": 12,
+          "cs": 298,
+          "gold": 20548,
+          "damage": 62127,
+          "visionScore": 56
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Nocturne",
+          "kills": 4,
+          "deaths": 8,
+          "assists": 16,
+          "cs": 340,
+          "gold": 19884,
+          "damage": 25669,
+          "visionScore": 44
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "MIDDLE",
+          "champion": "Anivia",
+          "kills": 6,
+          "deaths": 9,
+          "assists": 12,
+          "cs": 331,
+          "gold": 18994,
+          "damage": 40642,
+          "visionScore": 41
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Jhin",
+          "kills": 26,
+          "deaths": 4,
+          "assists": 9,
+          "cs": 381,
+          "gold": 28658,
+          "damage": 107064,
+          "visionScore": 37
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Morgana",
+          "kills": 2,
+          "deaths": 8,
+          "assists": 27,
+          "cs": 64,
+          "gold": 16753,
+          "damage": 50418,
+          "visionScore": 181
+        }
+      ]
+    }
+  ]
+}

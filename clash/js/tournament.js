@@ -35,6 +35,16 @@ try {
       const ourKills = game.players.reduce((sum, player) => sum + Number(player.kills || 0), 0);
       const enemyKills = Number.isFinite(Number(game.enemyTeamKills)) ? Number(game.enemyTeamKills) : game.players.reduce((sum, player) => sum + Number(player.deaths || 0), 0);
       const enemyByRole = new Map((game.enemyPlayers || []).map(player => [player.role, player.champion]));
+      const maxima = {
+        kda: Math.max(...rows.map(player => Number(player.kda || 0))),
+        kp: Math.max(...rows.map(player => Number(player.kp || 0))),
+        cs: Math.max(...rows.map(player => Number(player.cs || 0))),
+        gold: Math.max(...rows.map(player => Number(player.gold || 0))),
+        damage: Math.max(...rows.map(player => Number(player.damage || 0))),
+        visionScore: Math.max(...rows.map(player => Number(player.visionScore || 0))),
+        score: Math.max(...rows.map(player => Number(player.score || 0)))
+      };
+      const leaderClass = (player, key) => Math.abs(Number(player[key] || 0) - maxima[key]) < 1e-9 ? 'stat-leader' : '';
       return `<section class="card game">
         <div class="game-head">
           <div><p class="eyebrow">Game ${index + 1}</p><h2 class="${game.result}">${resultLabel(game.result)} vs ${game.opponent}</h2></div>
@@ -48,7 +58,7 @@ try {
           <div class="draft-column"><h3>Banned by enemy</h3><div class="draft-chips">${list(game.enemyBans)}</div></div>
         </div>
 
-        <div class="table-wrap"><table><thead><tr><th>Role</th><th>Player</th><th>Champion</th><th>K/D/A</th><th>KDA</th><th>KP</th><th>CS</th><th>Gold</th><th>Damage</th><th>Vision</th><th>Rating</th></tr></thead><tbody>${rows.map(player => `<tr><td>${player.role}</td><td>${playerName(roster.players, player.playerId)}</td><td>${player.champion}</td><td>${player.kills}/${player.deaths}/${player.assists}</td><td>${player.kda.toFixed(2)}</td><td>${Math.round(player.kp * 100)}%</td><td>${player.cs}</td><td>${Number(player.gold).toLocaleString()}</td><td>${Number(player.damage).toLocaleString()}</td><td>${player.visionScore}</td><td><b>${player.score.toFixed(1)} · ${player.grade}</b></td></tr>`).join('')}</tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Role</th><th>Player</th><th>Champion</th><th>K/D/A</th><th>KDA</th><th>KP</th><th>CS</th><th>Gold</th><th>Damage</th><th>Vision</th><th>Rating</th></tr></thead><tbody>${rows.map(player => `<tr><td>${player.role}</td><td>${playerName(roster.players, player.playerId)}</td><td>${player.champion}</td><td>${player.kills}/${player.deaths}/${player.assists}</td><td class="${leaderClass(player, 'kda')}">${player.kda.toFixed(2)}</td><td class="${leaderClass(player, 'kp')}">${Math.round(player.kp * 100)}%</td><td class="${leaderClass(player, 'cs')}">${player.cs}</td><td class="${leaderClass(player, 'gold')}">${Number(player.gold).toLocaleString()}</td><td class="${leaderClass(player, 'damage')}">${Number(player.damage).toLocaleString()}</td><td class="${leaderClass(player, 'visionScore')}">${player.visionScore}</td><td class="${leaderClass(player, 'score')}"><b>${player.score.toFixed(1)} · ${player.grade}</b></td></tr>`).join('')}</tbody></table></div>
       </section>`;
     }).join('')}`;
 } catch (error) {
