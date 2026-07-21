@@ -45,7 +45,7 @@ try {
         score: Math.max(...rows.map(player => Number(player.score || 0)))
       };
       const leaderClass = (player, key) => Math.abs(Number(player[key] || 0) - maxima[key]) < 1e-9 ? 'stat-leader' : '';
-      return `<section class="card game">
+      return `<section class="card game" id="game-${index + 1}">
         <div class="game-head">
           <div><p class="eyebrow">Game ${index + 1}</p><h2 class="${game.result}">${resultLabel(game.result)} vs ${game.opponent}</h2></div>
           <div class="game-score"><strong>${ourKills} – ${enemyKills}</strong><span>${Math.floor(game.durationSeconds / 60)}:${String(game.durationSeconds % 60).padStart(2, '0')}</span></div>

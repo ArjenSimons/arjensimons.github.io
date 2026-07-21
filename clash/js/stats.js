@@ -27,7 +27,7 @@ try {
   const bans = new Map();
   const gameAwards = [];
 
-  tournaments.forEach(tournament => tournament.games.forEach((game, gameIndex) => {
+  tournaments.forEach((tournament, tournamentIndex) => tournament.games.forEach((game, gameIndex) => {
     const durationSeconds = Math.max(0, Number(game.durationSeconds || 0));
     const teamKills = (game.players || []).reduce(
       (total, player) => total + Math.max(0, Number(player.kills || 0)),
@@ -37,6 +37,7 @@ try {
     gameAwards.push({
       tournamentName: tournament.name || 'Unknown tournament',
       tournamentDate: tournament.date || '',
+      tournamentId: manifest.tournaments[tournamentIndex].split('/').at(-1).replace('.json', ''),
       opponent: game.opponent || 'Unknown opponent',
       gameNumber: gameIndex + 1,
       durationSeconds,
@@ -167,10 +168,15 @@ try {
       <small>${entry ? value(entry) : ''}</small>
     </div>`;
 
-  const rankingCard = ({ icon, title, ranking, name, value }) => {
+  const rankingCard = ({ icon, title, ranking, name, value, href }) => {
     const [winner, second, third] = ranking;
+    const destination = winner && href ? href(winner) : '';
+    const tag = destination ? 'a' : 'article';
+    const linkAttributes = destination
+      ? ` href="${destination}" class="card fun-card fun-card-link" aria-label="Open ${title} game"`
+      : ' class="card fun-card"';
     return `
-      <article class="card fun-card">
+      <${tag}${linkAttributes}>
         <div class="fun-card-head">
           <span class="fun-icon">${icon}</span>
           <p class="eyebrow">${title}</p>
@@ -184,7 +190,7 @@ try {
           ${runnerUp(second, '2', name, value)}
           ${runnerUp(third, '3', name, value)}
         </div>
-      </article>`;
+      </${tag}>`;
   };
 
   const playerCard = card => rankingCard({
@@ -213,7 +219,8 @@ try {
     title,
     ranking,
     name: gameLabel,
-    value: game => `${metric(game)} · ${gameContext(game)}`
+    value: game => `${metric(game)} · ${gameContext(game)}`,
+    href: game => `tournament.html?id=${encodeURIComponent(game.tournamentId)}#game-${game.gameNumber}`
   });
 
   root.innerHTML = `
