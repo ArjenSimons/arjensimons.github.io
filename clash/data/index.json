@@ -1,10 +1,10 @@
 {
   "tournaments": [
-    "tournaments/msi-cup-day-2.json",
-    "tournaments/msi-cup-day-1.json",
-    "tournaments/zaun-cup-day-2.json",
-    "tournaments/zaun-cup-day-1.json",
+    "tournaments/2026 msi-cup-day-2.json",
+    "tournaments/2026 msi-cup-day-1.json",
+    "tournaments/2026 zaun-cup-day-2.json",
+    "tournaments/2026 zaun-cup-day-1.json",
     "tournaments/2026 demacia-cup-day-2.json",
-    "tournaments/freljord-cup-day-1.json"
+    "tournaments/2025 freljord-cup-day-1.json"
   ]
 }
