@@ -2,6 +2,32 @@ import { loadJson, playerName, formatDate } from './common.js';
 import { summarizeTournament, scoreGame } from './scoring.js';
 
 const root = document.querySelector('#tournaments');
+
+function tournamentLeaders(tournament) {
+  let kills=null, assists=null, deaths=null, damage=null;
+  tournament.games.forEach(game=>{
+    game.players.forEach(player=>{
+      const p={
+        playerId: player.playerId,
+        kills:Number(player.kills||0),
+        assists:Number(player.assists||0),
+        deaths:Number(player.deaths||0),
+        damage:Number(player.damage||0)
+      };
+      if(!kills || p.kills>kills.kills) kills=p;
+      if(!assists || p.assists>assists.assists) assists=p;
+      if(!deaths || p.deaths<deaths.deaths) deaths=p;
+      if(!damage || p.damage>damage.damage) damage=p;
+    });
+  });
+  return {kills,assists,deaths,damage};
+}
+
+function formatNumber(value) {
+  const n=Number(value||0);
+  if(n>=10000) return (n/1000).toFixed(1)+'k';
+  return new Intl.NumberFormat('en-US').format(n);
+}
 try {
   const [roster, manifest] = await Promise.all([loadJson('./data/players.json'), loadJson('./data/index.json')]);
   const tournaments = await Promise.all(manifest.tournaments.map(path => loadJson(`./data/${path}`)));
@@ -35,6 +61,26 @@ try {
 
   root.innerHTML = tournaments.map(t => {
     const s = summarizeTournament(t);
-    return `<article class="card tournament-card"><div><p class="eyebrow">${formatDate(t.date)} · Tier ${t.tier ?? '—'}</p><h2>${t.name}</h2><p>${t.placement === 1 ? '🏆 Champions' : `Placement: ${t.placement ?? '—'}`} · ${t.games.filter(g=>g.result==='win').length}-${t.games.filter(g=>g.result!=='win').length}</p></div><div class="awards"><span>🏅 MVP <b>${playerName(roster.players,s.mvp?.playerId)}</b></span><span>💀 Inter <b>${playerName(roster.players,s.inter?.playerId)}</b></span></div><a class="button" href="tournament.html?id=${encodeURIComponent(t.id)}">Open tournament</a></article>`;
+    const leaders = tournamentLeaders(t);
+    return `<article class="card tournament-card">
+      <div class="tournament-card-main">
+        <p class="eyebrow">${formatDate(t.date)} · Tier ${t.tier ?? '—'}</p>
+        <h2>${t.name}</h2>
+        <p>${t.placement === 1 ? '🏆 Champions' : `Placement: ${t.placement ?? '—'}`} · ${t.games.filter(g=>g.result==='win').length}-${t.games.filter(g=>g.result!=='win').length}</p>
+      </div>
+      <div class="tournament-highlights">
+        <div class="awards">
+          <span>🏅 MVP <b>${playerName(roster.players,s.mvp?.playerId)}</b></span>
+          <span>💀 Inter <b>${playerName(roster.players,s.inter?.playerId)}</b></span>
+        </div>
+        <dl class="tournament-leaders">
+          <div><dt>Most kills</dt><dd><b>${formatNumber(leaders.kills?.kills)}</b> · ${playerName(roster.players, leaders.kills?.playerId)}</dd></div>
+          <div><dt>Most assists</dt><dd><b>${formatNumber(leaders.assists?.assists)}</b> · ${playerName(roster.players, leaders.assists?.playerId)}</dd></div>
+          <div><dt>Fewest deaths</dt><dd><b>${formatNumber(leaders.deaths?.deaths)}</b> · ${playerName(roster.players, leaders.deaths?.playerId)}</dd></div>
+          <div><dt>Most damage</dt><dd><b>${formatNumber(leaders.damage?.damage)}</b> · ${playerName(roster.players, leaders.damage?.playerId)}</dd></div>
+        </dl>
+      </div>
+      <a class="button" href="tournament.html?id=${encodeURIComponent(t.id)}">Open tournament</a>
+    </article>`;
   }).join('') || '<p>No tournaments yet.</p>';
 } catch (e) { root.innerHTML = `<p class="error">${e.message}. Open this through a web server rather than directly from the file system.</p>`; }
