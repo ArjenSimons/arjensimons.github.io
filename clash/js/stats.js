@@ -33,6 +33,11 @@ try {
       (total, player) => total + Math.max(0, Number(player.kills || 0)),
       0
     );
+    const teamDeaths = (game.players || []).reduce(
+      (total, player) => total + Math.max(0, Number(player.deaths || 0)),
+      0
+    );
+    const enemyTeamKills = Math.max(0, Number(game.enemyTeamKills || 0));
 
     gameAwards.push({
       tournamentName: tournament.name || 'Unknown tournament',
@@ -41,7 +46,11 @@ try {
       opponent: game.opponent || 'Unknown opponent',
       gameNumber: gameIndex + 1,
       durationSeconds,
-      teamKills
+      teamKills,
+      teamDeaths,
+      enemyTeamKills,
+      killDifference: teamKills - enemyTeamKills,
+      result: String(game.result || '').toLowerCase()
     });
 
     (game.enemyBans || []).filter(Boolean).forEach(champion => {
@@ -142,6 +151,17 @@ try {
     .slice(0, 3);
   const highestKillGames = [...gameAwards]
     .sort((a, b) => b.teamKills - a.teamKills || b.durationSeconds - a.durationSeconds)
+    .slice(0, 3);
+  const safestGames = [...gameAwards]
+    .sort((a, b) => a.teamDeaths - b.teamDeaths || b.killDifference - a.killDifference)
+    .slice(0, 3);
+  const mostPainfulLosses = [...gameAwards]
+    .filter(game => game.result === 'loss')
+    .sort((a, b) => b.killDifference - a.killDifference || b.teamKills - a.teamKills)
+    .slice(0, 3);
+  const mostDominantWins = [...gameAwards]
+    .filter(game => game.result === 'win')
+    .sort((a, b) => b.killDifference - a.killDifference || b.teamKills - a.teamKills)
     .slice(0, 3);
 
   const legends = [
@@ -246,6 +266,9 @@ try {
         ${gameCard('⏱️', 'Longest Game', longestGames, game => formatDuration(game.durationSeconds))}
         ${gameCard('⚡', 'Shortest Game', shortestGames, game => formatDuration(game.durationSeconds))}
         ${gameCard('🔥', 'Highest Kill Game', highestKillGames, game => `${game.teamKills} team kills`)}
+        ${gameCard('🛡️', 'Safest Game', safestGames, game => `${game.teamDeaths} team deaths`)}
+        ${gameCard('💔', 'Most Painful Loss', mostPainfulLosses, game => `${game.teamKills}–${game.enemyTeamKills} kills (${game.killDifference >= 0 ? '+' : ''}${game.killDifference})`)}
+        ${gameCard('👊', 'Most Dominant Win', mostDominantWins, game => `${game.teamKills}–${game.enemyTeamKills} kills (+${game.killDifference})`)}
       </div>
     </section>`;
 } catch (error) {
