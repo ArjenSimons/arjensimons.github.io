@@ -1,0 +1,323 @@
+{
+  "id": "worlds-cup-day-2",
+  "name": "WORLDS CUP Day 2",
+  "date": "2025-10-19",
+  "tier": 4,
+  "placement": 2,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "PPP",
+      "result": "win",
+      "durationSeconds": 2220,
+      "enemyTeamKills": 15,
+      "ourBans": [
+        "Mel",
+        "Ashe",
+        "Shen",
+        "Lee Sin",
+        "Yasuo"
+      ],
+      "enemyBans": [
+        "Ahri",
+        "Kayle",
+        "Trundle",
+        "Xerath",
+        "Nunu & Willump"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ornn"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Xin Zhao"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Malzahar"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Lucian"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Lux"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Poppy",
+          "kills": 3,
+          "deaths": 7,
+          "assists": 4,
+          "cs": 221,
+          "gold": 12917,
+          "damage": 18552,
+          "visionScore": 24
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 6,
+          "deaths": 1,
+          "assists": 16,
+          "cs": 204,
+          "gold": 14532,
+          "damage": 20944,
+          "visionScore": 26
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "LeBlanc",
+          "kills": 13,
+          "deaths": 1,
+          "assists": 13,
+          "cs": 190,
+          "gold": 15143,
+          "damage": 46374,
+          "visionScore": 38
+        },
+        {
+          "playerId": "Tebasaki#ABI",
+          "role": "BOTTOM",
+          "champion": "Kai'Sa",
+          "kills": 11,
+          "deaths": 3,
+          "assists": 9,
+          "cs": 229,
+          "gold": 16056,
+          "damage": 32149,
+          "visionScore": 21
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "SUPPORT",
+          "champion": "Rell",
+          "kills": 2,
+          "deaths": 3,
+          "assists": 18,
+          "cs": 48,
+          "gold": 11078,
+          "damage": 6806,
+          "visionScore": 85
+        }
+      ]
+    },
+    {
+      "opponent": "MTR",
+      "result": "win",
+      "durationSeconds": 1680,
+      "enemyTeamKills": 10,
+      "ourBans": [
+        "Jarvan IV",
+        "Sion",
+        "Nami",
+        "Yuumi",
+        "Milio"
+      ],
+      "enemyBans": [
+        "LeBlanc",
+        "Trundle",
+        "Kai'Sa",
+        "Rell",
+        "Aatrox"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ornn"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Udyr"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Orianna"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Tristana"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Seraphine"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Tryndamere",
+          "kills": 4,
+          "deaths": 2,
+          "assists": 3,
+          "cs": 261,
+          "gold": 13525,
+          "damage": 13293,
+          "visionScore": 18
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 4,
+          "deaths": 1,
+          "assists": 8,
+          "cs": 200,
+          "gold": 11095,
+          "damage": 10171,
+          "visionScore": 19
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Syndra",
+          "kills": 6,
+          "deaths": 2,
+          "assists": 4,
+          "cs": 209,
+          "gold": 11292,
+          "damage": 24973,
+          "visionScore": 29
+        },
+        {
+          "playerId": "Tebasaki#ABI",
+          "role": "BOTTOM",
+          "champion": "Yunara",
+          "kills": 3,
+          "deaths": 3,
+          "assists": 7,
+          "cs": 172,
+          "gold": 9947,
+          "damage": 14771,
+          "visionScore": 15
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "SUPPORT",
+          "champion": "Nautilus",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 8,
+          "cs": 32,
+          "gold": 6568,
+          "damage": 5442,
+          "visionScore": 50
+        }
+      ]
+    },
+    {
+      "opponent": "TEM",
+      "result": "loss",
+      "durationSeconds": 1800,
+      "enemyTeamKills": 32,
+      "ourBans": [
+        "Kled",
+        "Viktor",
+        "Vi",
+        "Pantheon",
+        "Trundle"
+      ],
+      "enemyBans": [
+        "Twitch",
+        "Kai'Sa",
+        "Dr. Mundo",
+        "Urgot",
+        "Kayle"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ornn"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Sejuani"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Vex"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Caitlyn"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Braum"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Poppy",
+          "kills": 0,
+          "deaths": 9,
+          "assists": 1,
+          "cs": 154,
+          "gold": 7166,
+          "damage": 13141,
+          "visionScore": 13
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Lillia",
+          "kills": 6,
+          "deaths": 7,
+          "assists": 3,
+          "cs": 146,
+          "gold": 10879,
+          "damage": 16860,
+          "visionScore": 17
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Orianna",
+          "kills": 3,
+          "deaths": 5,
+          "assists": 7,
+          "cs": 184,
+          "gold": 9684,
+          "damage": 21372,
+          "visionScore": 23
+        },
+        {
+          "playerId": "Tebasaki#ABI",
+          "role": "BOTTOM",
+          "champion": "Yunara",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 2,
+          "cs": 196,
+          "gold": 10162,
+          "damage": 16900,
+          "visionScore": 18
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "SUPPORT",
+          "champion": "Rell",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 5,
+          "cs": 35,
+          "gold": 6377,
+          "damage": 5105,
+          "visionScore": 43
+        }
+      ]
+    }
+  ]
+}
