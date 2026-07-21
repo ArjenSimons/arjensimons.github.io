@@ -2,26 +2,37 @@ import { ROLE_BENCHMARKS } from "./benchmarks.js";
 
 export const ROLES = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"];
 
+// Role benchmarks already normalize the natural statistical differences between
+// roles. These weights therefore only express small differences in what each
+// role is expected to contribute; they are deliberately kept close together.
+// Every row sums to 1 and the final 0-10 conversion is identical for all roles.
 const weights = {
-  TOP:     { kda: .18, kp: .13, damage: .19, gold: .13, cs: .15, vision: .07, deaths: .10, result: .05 },
-  JUNGLE:  { kda: .18, kp: .20, damage: .12, gold: .10, cs: .08, vision: .17, deaths: .10, result: .05 },
-  MIDDLE:  { kda: .18, kp: .14, damage: .22, gold: .14, cs: .14, vision: .07, deaths: .06, result: .05 },
-  BOTTOM:  { kda: .19, kp: .14, damage: .24, gold: .16, cs: .15, vision: .05, deaths: .02, result: .05 },
-  SUPPORT: { kda: .17, kp: .22, damage: .07, gold: .05, cs: .02, vision: .30, deaths: .12, result: .05 }
+  TOP:     { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  JUNGLE:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  MIDDLE:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  BOTTOM:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  SUPPORT: { kda: .2, kp: .25, damage: .15, gold: .1, cs: .05, vision: .15, deaths: .1, result: .05 }
 };
 
 const clamp10 = value => Math.max(0, Math.min(10, value));
+const MAX_FAVOURABLE_RATIO = 1.75;
 
 // The Emerald+ benchmark maps to 6.75. A logarithmic ratio and tanh provide
 // diminishing returns: below-average games fall toward 5, while 9-10 requires
 // an exceptional result rather than merely exceeding the target a little.
+//
+// A single metric is capped at 175% of its benchmark in the favourable
+// direction. This prevents one extreme statistic from overpowering the full
+// role-weighted score. Poor performance is deliberately not capped.
 const higher = (value, target) => {
   if (value <= 0 || target <= 0) return 0;
-  return clamp10(6.75 + 3.15 * Math.tanh(Math.log(value / target) / 0.62));
+  const ratio = Math.min(value / target, MAX_FAVOURABLE_RATIO);
+  return clamp10(6.75 + 3.15 * Math.tanh(Math.log(ratio) / 0.62));
 };
 const lower = (value, target) => {
   if (value < 0 || target <= 0) return 0;
-  return clamp10(6.75 - 3.15 * Math.tanh(Math.log(Math.max(value, .01) / target) / 0.62));
+  const favourableRatio = Math.min(target / Math.max(value, .01), MAX_FAVOURABLE_RATIO);
+  return clamp10(6.75 + 3.15 * Math.tanh(Math.log(favourableRatio) / 0.62));
 };
 
 function benchmarkFor(role) {
