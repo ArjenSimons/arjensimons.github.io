@@ -1,0 +1,323 @@
+{
+  "id": "zaun-cup-day-2",
+  "name": "ZAUN CUP Day 2",
+  "date": "2026-05-10",
+  "tier": 4,
+  "placement": 4,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "KUS",
+      "result": "win",
+      "durationSeconds": 1800,
+      "enemyTeamKills": 10,
+      "ourBans": [
+        "Yasuo",
+        "Diana",
+        "Leona",
+        "Zed",
+        "Malzahar"
+      ],
+      "enemyBans": [
+        "Warwick",
+        "Shen",
+        "Caitlyn",
+        "Hwei",
+        "Vex"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Mordekaiser"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Xin Zhao"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Katarina"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ezreal"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Rell"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Volibear",
+          "kills": 11,
+          "deaths": 4,
+          "assists": 4,
+          "cs": 222,
+          "gold": 14805,
+          "damage": 18619,
+          "visionScore": 36
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Kayn",
+          "kills": 4,
+          "deaths": 2,
+          "assists": 14,
+          "cs": 196,
+          "gold": 12232,
+          "damage": 13721,
+          "visionScore": 30
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Anivia",
+          "kills": 5,
+          "deaths": 1,
+          "assists": 11,
+          "cs": 258,
+          "gold": 12704,
+          "damage": 16793,
+          "visionScore": 25
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Jhin",
+          "kills": 5,
+          "deaths": 1,
+          "assists": 10,
+          "cs": 206,
+          "gold": 11580,
+          "damage": 15056,
+          "visionScore": 21
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Zyra",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 12,
+          "cs": 44,
+          "gold": 7592,
+          "damage": 9533,
+          "visionScore": 79
+        }
+      ]
+    },
+    {
+      "opponent": "FFG",
+      "result": "loss",
+      "durationSeconds": 2220,
+      "enemyTeamKills": 40,
+      "ourBans": [
+        "Olaf",
+        "Wukong",
+        "Morgana",
+        "Renekton",
+        "Vex"
+      ],
+      "enemyBans": [
+        "Shen",
+        "Volibear",
+        "Nami",
+        "Trundle",
+        "Aurora"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Mordekaiser"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Nocturne"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Ahri"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ashe"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Nautilus"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Yorick",
+          "kills": 4,
+          "deaths": 9,
+          "assists": 6,
+          "cs": 236,
+          "gold": 14381,
+          "damage": 22689,
+          "visionScore": 39
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Kayn",
+          "kills": 10,
+          "deaths": 7,
+          "assists": 9,
+          "cs": 203,
+          "gold": 16058,
+          "damage": 24652,
+          "visionScore": 27
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "LeBlanc",
+          "kills": 12,
+          "deaths": 7,
+          "assists": 11,
+          "cs": 151,
+          "gold": 14229,
+          "damage": 51358,
+          "visionScore": 30
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 5,
+          "deaths": 11,
+          "assists": 9,
+          "cs": 267,
+          "gold": 15651,
+          "damage": 28884,
+          "visionScore": 34
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Zyra",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 18,
+          "cs": 64,
+          "gold": 12507,
+          "damage": 38521,
+          "visionScore": 90
+        }
+      ]
+    },
+    {
+      "opponent": "BFK",
+      "result": "loss",
+      "durationSeconds": 1860,
+      "enemyTeamKills": 22,
+      "ourBans": [
+        "Nasus",
+        "Cho'Gath",
+        "Yasuo",
+        "Viego",
+        "Vi"
+      ],
+      "enemyBans": [
+        "Caitlyn",
+        "Kayn",
+        "LeBlanc",
+        "Ahri",
+        "Warwick"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Malphite"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Diana"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Zed"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Smolder"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Karma"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Sion",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 3,
+          "cs": 245,
+          "gold": 13344,
+          "damage": 15437,
+          "visionScore": 34
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Nocturne",
+          "kills": 3,
+          "deaths": 7,
+          "assists": 6,
+          "cs": 171,
+          "gold": 10490,
+          "damage": 11431,
+          "visionScore": 20
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Vex",
+          "kills": 8,
+          "deaths": 7,
+          "assists": 6,
+          "cs": 187,
+          "gold": 11567,
+          "damage": 26160,
+          "visionScore": 33
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Jinx",
+          "kills": 2,
+          "deaths": 4,
+          "assists": 5,
+          "cs": 259,
+          "gold": 12453,
+          "damage": 9020,
+          "visionScore": 36
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Seraphine",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 9,
+          "cs": 63,
+          "gold": 8514,
+          "damage": 10259,
+          "visionScore": 85
+        }
+      ]
+    }
+  ]
+}
