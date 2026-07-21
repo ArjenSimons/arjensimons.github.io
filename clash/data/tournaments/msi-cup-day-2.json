@@ -1,0 +1,219 @@
+{
+  "id": "msi-cup-day-2",
+  "name": "MSI CUP Day 2",
+  "date": "2026-07-19",
+  "tier": 4,
+  "placement": 4,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "MER",
+      "result": "loss",
+      "durationSeconds": 1740,
+      "enemyTeamKills": 32,
+      "ourBans": [
+        "Yasuo",
+        "Kai'Sa",
+        "Gragas",
+        "Riven",
+        "Warwick"
+      ],
+      "enemyBans": [
+        "Ahri",
+        "Caitlyn",
+        "Olaf",
+        "Wukong",
+        "Trundle"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Aurora"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Hecarim"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Tryndamere"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ziggs"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Nautilus"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Malphite",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 5,
+          "cs": 215,
+          "gold": 11585,
+          "damage": 18478,
+          "visionScore": 26
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 3,
+          "deaths": 5,
+          "assists": 5,
+          "cs": 142,
+          "gold": 9627,
+          "damage": 15287,
+          "visionScore": 21
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Twisted Fate",
+          "kills": 4,
+          "deaths": 8,
+          "assists": 8,
+          "cs": 186,
+          "gold": 12078,
+          "damage": 27525,
+          "visionScore": 14
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Lucian",
+          "kills": 4,
+          "deaths": 7,
+          "assists": 5,
+          "cs": 211,
+          "gold": 11818,
+          "damage": 17673,
+          "visionScore": 17
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Morgana",
+          "kills": 3,
+          "deaths": 8,
+          "assists": 5,
+          "cs": 72,
+          "gold": 9234,
+          "damage": 13652,
+          "visionScore": 69
+        }
+      ]
+    },
+    {
+      "opponent": "WTF",
+      "result": "win",
+      "durationSeconds": 2160,
+      "enemyTeamKills": 11,
+      "ourBans": [
+        "Shen",
+        "Zaahen",
+        "Katarina",
+        "Ekko",
+        "Ornn"
+      ],
+      "enemyBans": [
+        "Olaf",
+        "Caitlyn",
+        "Trundle",
+        "Illaoi",
+        "Mordekaiser"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Shen"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Zaahen"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Katarina"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ekko"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Ornn"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Garen",
+          "kills": 16,
+          "deaths": 1,
+          "assists": 7,
+          "cs": 278,
+          "gold": 19194,
+          "damage": 50011,
+          "visionScore": 37
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Shyvana",
+          "kills": 5,
+          "deaths": 1,
+          "assists": 16,
+          "cs": 287,
+          "gold": 16157,
+          "damage": 26985,
+          "visionScore": 34
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "LeBlanc",
+          "kills": 11,
+          "deaths": 4,
+          "assists": 9,
+          "cs": 198,
+          "gold": 13742,
+          "damage": 39700,
+          "visionScore": 39
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Sivir",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 16,
+          "cs": 279,
+          "gold": 15397,
+          "damage": 20935,
+          "visionScore": 25
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Zyra",
+          "kills": 5,
+          "deaths": 3,
+          "assists": 8,
+          "cs": 64,
+          "gold": 11202,
+          "damage": 18231,
+          "visionScore": 105
+        }
+      ]
+    }
+  ]
+}

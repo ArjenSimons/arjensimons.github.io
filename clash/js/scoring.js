@@ -1,3 +1,5 @@
+import { ROLE_BENCHMARKS } from "./benchmarks.js";
+
 export const ROLES = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"];
 
 const weights = {
@@ -8,23 +10,29 @@ const weights = {
   SUPPORT: { kda: .17, kp: .22, damage: .07, gold: .05, cs: .02, vision: .30, deaths: .12, result: .05 }
 };
 
-const targets = {
-  TOP:     { kda: 3.0, kp: .55, damage: 650, gold: 390, cs: 7.0, vision: 1.0, deaths: 4.5 },
-  JUNGLE:  { kda: 3.2, kp: .68, damage: 480, gold: 350, cs: 5.2, vision: 1.5, deaths: 4.5 },
-  MIDDLE:  { kda: 3.5, kp: .62, damage: 750, gold: 420, cs: 7.5, vision: .9, deaths: 4.0 },
-  BOTTOM:  { kda: 3.5, kp: .61, damage: 800, gold: 450, cs: 8.1, vision: .65, deaths: 4.0 },
-  SUPPORT: { kda: 3.4, kp: .72, damage: 250, gold: 270, cs: 1.2, vision: 2.4, deaths: 5.0 }
+const clamp10 = value => Math.max(0, Math.min(10, value));
+
+// The Emerald+ benchmark maps to 6.75. A logarithmic ratio and tanh provide
+// diminishing returns: below-average games fall toward 5, while 9-10 requires
+// an exceptional result rather than merely exceeding the target a little.
+const higher = (value, target) => {
+  if (value <= 0 || target <= 0) return 0;
+  return clamp10(6.75 + 3.15 * Math.tanh(Math.log(value / target) / 0.62));
+};
+const lower = (value, target) => {
+  if (value < 0 || target <= 0) return 0;
+  return clamp10(6.75 - 3.15 * Math.tanh(Math.log(Math.max(value, .01) / target) / 0.62));
 };
 
-const clamp = n => Math.max(0, Math.min(100, n));
-const higher = (value, target) => clamp(50 + 35 * ((value / Math.max(target, .01)) - 1));
-const lower = (value, target) => clamp(50 - 30 * ((value / Math.max(target, .01)) - 1));
+function benchmarkFor(role) {
+  return ROLE_BENCHMARKS[role];
+}
 
 export function grade(score) {
-  if (score >= 95) return "S+"; if (score >= 90) return "S"; if (score >= 85) return "S-";
-  if (score >= 80) return "A+"; if (score >= 75) return "A"; if (score >= 70) return "A-";
-  if (score >= 65) return "B+"; if (score >= 60) return "B"; if (score >= 55) return "B-";
-  if (score >= 50) return "C"; if (score >= 40) return "D"; return "F";
+  if (score >= 9.5) return "S+"; if (score >= 9.0) return "S"; if (score >= 8.5) return "S-";
+  if (score >= 8.0) return "A+"; if (score >= 7.5) return "A"; if (score >= 7.0) return "A-";
+  if (score >= 6.5) return "B+"; if (score >= 6.0) return "B"; if (score >= 5.5) return "B-";
+  if (score >= 5.0) return "C"; if (score >= 4.0) return "D"; return "F";
 }
 
 export function scoreGame(game) {
@@ -32,17 +40,21 @@ export function scoreGame(game) {
   const minutes = Math.max(1, Number(game.durationSeconds || 0) / 60);
   return game.players.map(p => {
     const role = ROLES.includes(p.role) ? p.role : "MIDDLE";
-    const t = targets[role], w = weights[role];
+    const t = benchmarkFor(role), w = weights[role];
     const kda = (Number(p.kills) + Number(p.assists)) / Math.max(1, Number(p.deaths));
     const kp = teamKills ? (Number(p.kills) + Number(p.assists)) / teamKills : 0;
     const metrics = {
-      kda: higher(Math.log1p(kda), Math.log1p(t.kda)), kp: higher(kp, t.kp),
-      damage: higher(Number(p.damage) / minutes, t.damage), gold: higher(Number(p.gold) / minutes, t.gold),
-      cs: higher(Number(p.cs) / minutes, t.cs), vision: higher(Number(p.visionScore) / minutes, t.vision),
-      deaths: lower(Number(p.deaths), t.deaths), result: game.result === "win" ? 100 : 35
+      kda: higher(Math.log1p(kda), Math.log1p(t.kda)),
+      kp: higher(kp, t.kp),
+      damage: higher(Number(p.damage) / minutes, t.damage),
+      gold: higher(Number(p.gold) / minutes, t.gold),
+      cs: higher(Number(p.cs) / minutes, t.cs),
+      vision: higher(Number(p.visionScore) / minutes, t.vision),
+      deaths: lower(Number(p.deaths), t.deaths),
+      result: game.result === "win" ? 8.5 : 5.0
     };
     const score = Object.entries(w).reduce((sum, [key, weight]) => sum + metrics[key] * weight, 0);
-    return { ...p, kda, kp, score, grade: grade(score), metrics };
+    return { ...p, kda, kp, score, grade: grade(score), metrics, benchmark: t };
   });
 }
 
