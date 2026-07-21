@@ -147,7 +147,6 @@ try {
     return `${minutes}:${String(remainder).padStart(2, '0')}`;
   };
 
-  const gameLabel = game => `vs ${game.opponent}`;
   const gameContext = game => `${game.tournamentName} · Game ${game.gameNumber}`;
   const longestGames = [...gameAwards]
     .filter(game => game.durationSeconds > 0)
@@ -266,8 +265,8 @@ try {
     icon,
     title,
     ranking,
-    name: gameLabel,
-    value: game => `${metric(game)} · ${gameContext(game)}`,
+    name: game => metric(game),
+    value: gameContext,
     href: game => `tournament.html?id=${encodeURIComponent(game.tournamentId)}#game-${game.gameNumber}`
   });
 
