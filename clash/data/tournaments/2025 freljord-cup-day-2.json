@@ -1,0 +1,323 @@
+{
+  "id": "freljord-cup-day-2",
+  "name": "FRELJORD CUP Day 2",
+  "date": "2025-12-14",
+  "tier": 4,
+  "placement": 5,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "SSL",
+      "result": "loss",
+      "durationSeconds": 1800,
+      "enemyTeamKills": 22,
+      "ourBans": [
+        "Sett",
+        "Mordekaiser",
+        "Xerath",
+        "Samira",
+        "Kai'Sa"
+      ],
+      "enemyBans": [
+        "Trundle",
+        "Zaahen",
+        "Rakan",
+        "Nunu & Willump",
+        "Karma"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Sion"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Jax"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Ahri"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Smolder"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Nami"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "K'Sante",
+          "kills": 2,
+          "deaths": 5,
+          "assists": 1,
+          "cs": 218,
+          "gold": 9728,
+          "damage": 9359,
+          "visionScore": 16
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 4,
+          "cs": 185,
+          "gold": 9926,
+          "damage": 13757,
+          "visionScore": 30
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Annie",
+          "kills": 2,
+          "deaths": 4,
+          "assists": 4,
+          "cs": 206,
+          "gold": 10230,
+          "damage": 19362,
+          "visionScore": 24
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Miss Fortune",
+          "kills": 3,
+          "deaths": 5,
+          "assists": 0,
+          "cs": 204,
+          "gold": 10541,
+          "damage": 14684,
+          "visionScore": 19
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Mel",
+          "kills": 1,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 40,
+          "gold": 6756,
+          "damage": 10905,
+          "visionScore": 58
+        }
+      ]
+    },
+    {
+      "opponent": "GOT",
+      "result": "win",
+      "durationSeconds": 2100,
+      "enemyTeamKills": 12,
+      "ourBans": [
+        "Zyra",
+        "Darius",
+        "Jhin",
+        "Olaf",
+        "Hwei"
+      ],
+      "enemyBans": [
+        "Caitlyn",
+        "LeBlanc",
+        "Ahri",
+        "Trundle",
+        "Nunu & Willump"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Garen"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Diana"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Lissandra"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ezreal"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Lux"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Malphite",
+          "kills": 7,
+          "deaths": 2,
+          "assists": 5,
+          "cs": 280,
+          "gold": 16201,
+          "damage": 27569,
+          "visionScore": 20
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 4,
+          "deaths": 3,
+          "assists": 11,
+          "cs": 226,
+          "gold": 12696,
+          "damage": 21731,
+          "visionScore": 26
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Neeko",
+          "kills": 14,
+          "deaths": 4,
+          "assists": 14,
+          "cs": 178,
+          "gold": 14903,
+          "damage": 40781,
+          "visionScore": 37
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Miss Fortune",
+          "kills": 10,
+          "deaths": 2,
+          "assists": 10,
+          "cs": 218,
+          "gold": 16275,
+          "damage": 27014,
+          "visionScore": 31
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Mel",
+          "kills": 1,
+          "deaths": 1,
+          "assists": 11,
+          "cs": 45,
+          "gold": 8720,
+          "damage": 13173,
+          "visionScore": 78
+        }
+      ]
+    },
+    {
+      "opponent": "SLP",
+      "result": "win",
+      "durationSeconds": 2340,
+      "enemyTeamKills": 32,
+      "ourBans": [
+        "Miss Fortune",
+        "Qiyana",
+        "Sion",
+        "Sett",
+        "Caitlyn"
+      ],
+      "enemyBans": [
+        "Pyke",
+        "Trundle",
+        "Yuumi",
+        "Malphite",
+        "Cho'Gath"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Yasuo"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Nidalee"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Akali"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Vayne"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Tahm Kench"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Pantheon",
+          "kills": 7,
+          "deaths": 10,
+          "assists": 5,
+          "cs": 182,
+          "gold": 13025,
+          "damage": 25243,
+          "visionScore": 22
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 6,
+          "deaths": 8,
+          "assists": 15,
+          "cs": 195,
+          "gold": 14631,
+          "damage": 29619,
+          "visionScore": 20
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "MIDDLE",
+          "champion": "Twisted Fate",
+          "kills": 3,
+          "deaths": 5,
+          "assists": 14,
+          "cs": 212,
+          "gold": 18097,
+          "damage": 26671,
+          "visionScore": 29
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Ezreal",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 14,
+          "cs": 223,
+          "gold": 13832,
+          "damage": 43555,
+          "visionScore": 31
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "SUPPORT",
+          "champion": "Lux",
+          "kills": 11,
+          "deaths": 5,
+          "assists": 8,
+          "cs": 49,
+          "gold": 13982,
+          "damage": 33333,
+          "visionScore": 67
+        }
+      ]
+    }
+  ]
+}
