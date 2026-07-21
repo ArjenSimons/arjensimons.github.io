@@ -26,6 +26,7 @@ try {
   const champions = new Map();
   const bans = new Map();
   const gameAwards = [];
+  const playerRecords = [];
 
   tournaments.forEach((tournament, tournamentIndex) => tournament.games.forEach((game, gameIndex) => {
     const durationSeconds = Math.max(0, Number(game.durationSeconds || 0));
@@ -33,11 +34,6 @@ try {
       (total, player) => total + Math.max(0, Number(player.kills || 0)),
       0
     );
-    const teamDeaths = (game.players || []).reduce(
-      (total, player) => total + Math.max(0, Number(player.deaths || 0)),
-      0
-    );
-    const enemyTeamKills = Math.max(0, Number(game.enemyTeamKills || 0));
 
     gameAwards.push({
       tournamentName: tournament.name || 'Unknown tournament',
@@ -46,11 +42,7 @@ try {
       opponent: game.opponent || 'Unknown opponent',
       gameNumber: gameIndex + 1,
       durationSeconds,
-      teamKills,
-      teamDeaths,
-      enemyTeamKills,
-      killDifference: teamKills - enemyTeamKills,
-      result: String(game.result || '').toLowerCase()
+      teamKills
     });
 
     (game.enemyBans || []).filter(Boolean).forEach(champion => {
@@ -58,6 +50,13 @@ try {
     });
 
     scoreGame(game).forEach(row => {
+      playerRecords.push({
+        ...row,
+        tournamentName: tournament.name || 'Unknown tournament',
+        tournamentId: manifest.tournaments[tournamentIndex].split('/').at(-1).replace('.json', ''),
+        opponent: game.opponent || 'Unknown opponent',
+        gameNumber: gameIndex + 1
+      });
       if (!players.has(row.playerId)) {
         players.set(row.playerId, {
           playerId: row.playerId,
@@ -152,17 +151,6 @@ try {
   const highestKillGames = [...gameAwards]
     .sort((a, b) => b.teamKills - a.teamKills || b.durationSeconds - a.durationSeconds)
     .slice(0, 3);
-  const safestGames = [...gameAwards]
-    .sort((a, b) => a.teamDeaths - b.teamDeaths || b.killDifference - a.killDifference)
-    .slice(0, 3);
-  const mostPainfulLosses = [...gameAwards]
-    .filter(game => game.result === 'loss')
-    .sort((a, b) => b.killDifference - a.killDifference || b.teamKills - a.teamKills)
-    .slice(0, 3);
-  const mostDominantWins = [...gameAwards]
-    .filter(game => game.result === 'win')
-    .sort((a, b) => b.killDifference - a.killDifference || b.teamKills - a.teamKills)
-    .slice(0, 3);
 
   const legends = [
     { icon: '🏆', title: 'Overall MVP', ranking: topPlayers('averageScore'), value: player => `${format(player.averageScore)} rating` },
@@ -177,6 +165,21 @@ try {
     { icon: '👁️', title: 'Visionair', ranking: topPlayers('visionPerMinute'), value: player => `${format(player.visionPerMinute, 2)} vision/min` },
     { icon: '💥', title: 'Health Bar Eraser', ranking: topPlayers('damagePerMinute'), value: player => `${Math.round(player.damagePerMinute).toLocaleString()} damage/min` },
     { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths` }
+  ];
+
+
+  const topPlayerRecords = key => [...playerRecords]
+    .sort((a, b) => Number(b[key] || 0) - Number(a[key] || 0))
+    .slice(0, 3);
+
+  const recordContext = record => `vs ${record.opponent} · ${record.tournamentName} · Game ${record.gameNumber}`;
+  const playerRecordAwards = [
+    { icon: '⚔️', title: 'Most Kills', ranking: topPlayerRecords('kills'), value: record => `${Number(record.kills || 0)} kills · ${record.champion}` },
+    { icon: '💀', title: 'Most Deaths', ranking: topPlayerRecords('deaths'), value: record => `${Number(record.deaths || 0)} deaths · ${record.champion}` },
+    { icon: '🤝', title: 'Most Assists', ranking: topPlayerRecords('assists'), value: record => `${Number(record.assists || 0)} assists · ${record.champion}` },
+    { icon: '💥', title: 'Most Damage', ranking: topPlayerRecords('damage'), value: record => `${Number(record.damage || 0).toLocaleString()} damage · ${record.champion}` },
+    { icon: '🪙', title: 'Most Gold', ranking: topPlayerRecords('gold'), value: record => `${Number(record.gold || 0).toLocaleString()} gold · ${record.champion}` },
+    { icon: '📈', title: 'Highest KDA', ranking: topPlayerRecords('kda'), value: record => `${format(record.kda, 2)} KDA · ${record.champion}` }
   ];
 
   const medalForPlace = place => ({ 1: '🥇', 2: '🥈', 3: '🥉' }[place] || '');
@@ -218,6 +221,12 @@ try {
     name: player => playerName(roster.players, player.playerId)
   });
 
+  const playerRecordCard = card => rankingCard({
+    ...card,
+    name: record => playerName(roster.players, record.playerId),
+    href: record => `tournament.html?id=${encodeURIComponent(record.tournamentId)}#game-${record.gameNumber}`
+  });
+
   const championCard = (icon, title, ranking) => rankingCard({
     icon,
     title,
@@ -249,8 +258,12 @@ try {
       <div class="fun-grid fun-grid-legends">${legends.map(playerCard).join('')}</div>
     </section>
     <section class="fun-section">
-      <h2 class="fun-section-title">Player awards</h2>
+      <h2 class="fun-section-title">Best player averages</h2>
       <div class="fun-grid">${playerAwards.map(playerCard).join('')}</div>
+    </section>
+    <section class="fun-section">
+      <h2 class="fun-section-title">Player records</h2>
+      <div class="fun-grid">${playerRecordAwards.map(playerRecordCard).join('')}</div>
     </section>
     <section class="fun-section">
       <h2 class="fun-section-title">Champion awards</h2>
@@ -266,9 +279,6 @@ try {
         ${gameCard('⏱️', 'Longest Game', longestGames, game => formatDuration(game.durationSeconds))}
         ${gameCard('⚡', 'Shortest Game', shortestGames, game => formatDuration(game.durationSeconds))}
         ${gameCard('🔥', 'Highest Kill Game', highestKillGames, game => `${game.teamKills} team kills`)}
-        ${gameCard('🛡️', 'Safest Game', safestGames, game => `${game.teamDeaths} team deaths`)}
-        ${gameCard('💔', 'Most Painful Loss', mostPainfulLosses, game => `${game.teamKills}–${game.enemyTeamKills} kills (${game.killDifference >= 0 ? '+' : ''}${game.killDifference})`)}
-        ${gameCard('👊', 'Most Dominant Win', mostDominantWins, game => `${game.teamKills}–${game.enemyTeamKills} kills (+${game.killDifference})`)}
       </div>
     </section>`;
 } catch (error) {
