@@ -133,23 +133,23 @@
       "enemyPlayers": [
         {
           "role": "TOP",
-          "champion": "Shen"
+          "champion": "Urgot"
         },
         {
           "role": "JUNGLE",
-          "champion": "Zaahen"
+          "champion": "Nasus"
         },
         {
           "role": "MIDDLE",
-          "champion": "Katarina"
+          "champion": "Syndra"
         },
         {
           "role": "BOTTOM",
-          "champion": "Ekko"
+          "champion": "Yasuo"
         },
         {
           "role": "SUPPORT",
-          "champion": "Ornn"
+          "champion": "Galio"
         }
       ],
       "players": [
