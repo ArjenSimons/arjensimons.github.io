@@ -2,6 +2,8 @@
   "tournaments": [
     "tournaments/msi-cup-day-2.json",
     "tournaments/msi-cup-day-1.json",
-    "tournaments/zaun-cup-day-2.json"
+    "tournaments/zaun-cup-day-2.json",
+    "tournaments/zaun-cup-day-1.json",
+    "tournaments/freljord-cup-day-1.json"
   ]
 }

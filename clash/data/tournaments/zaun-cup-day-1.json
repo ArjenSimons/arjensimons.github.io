@@ -1,0 +1,323 @@
+{
+  "id": "zaun-cup-day-1",
+  "name": "ZAUN CUP Day 1",
+  "date": "2026-05-08",
+  "tier": 4,
+  "placement": 9,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "CEO",
+      "result": "loss",
+      "durationSeconds": 1020,
+      "enemyTeamKills": 15,
+      "ourBans": [
+        "Riven",
+        "Zeri",
+        "Pantheon",
+        "Gwen",
+        "Yone"
+      ],
+      "enemyBans": [
+        "Ahri",
+        "Lux",
+        "Heimerdinger",
+        "Nunu & Willump",
+        "Teemo"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "K'Sante"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Bel'Veth"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Viktor"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Smolder"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Nautilus"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "Flerp#Slurp",
+          "role": "TOP",
+          "champion": "Jax",
+          "kills": 0,
+          "deaths": 5,
+          "assists": 0,
+          "cs": 78,
+          "gold": 4133,
+          "damage": 2312,
+          "visionScore": 8
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 1,
+          "deaths": 1,
+          "assists": 2,
+          "cs": 125,
+          "gold": 6192,
+          "damage": 3471,
+          "visionScore": 11
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Malzahar",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 1,
+          "cs": 153,
+          "gold": 6323,
+          "damage": 6189,
+          "visionScore": 11
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 2,
+          "deaths": 3,
+          "assists": 2,
+          "cs": 125,
+          "gold": 6654,
+          "damage": 7385,
+          "visionScore": 15
+        },
+        {
+          "playerId": "MagicMaartje#knol",
+          "role": "SUPPORT",
+          "champion": "Neeko",
+          "kills": 3,
+          "deaths": 4,
+          "assists": 1,
+          "cs": 43,
+          "gold": 5259,
+          "damage": 5061,
+          "visionScore": 37
+        }
+      ]
+    },
+    {
+      "opponent": "SUI",
+      "result": "loss",
+      "durationSeconds": 1560,
+      "enemyTeamKills": 35,
+      "ourBans": [
+        "Zoe",
+        "Warwick",
+        "Sylas",
+        "Dr. Mundo",
+        "Akali"
+      ],
+      "enemyBans": [
+        "Cho'Gath",
+        "Mel",
+        "Malzahar",
+        "Caitlyn",
+        "Ahri"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ornn"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Jarvan IV"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "LeBlanc"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ziggs"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Senna"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "Flerp#Slurp",
+          "role": "TOP",
+          "champion": "Heimerdinger",
+          "kills": 2,
+          "deaths": 6,
+          "assists": 2,
+          "cs": 282,
+          "gold": 13620,
+          "damage": 30149,
+          "visionScore": 33
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Vi",
+          "kills": 2,
+          "deaths": 7,
+          "assists": 1,
+          "cs": 171,
+          "gold": 10030,
+          "damage": 7582,
+          "visionScore": 41
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Ekko",
+          "kills": 6,
+          "deaths": 8,
+          "assists": 1,
+          "cs": 239,
+          "gold": 13353,
+          "damage": 21545,
+          "visionScore": 17
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "BOTTOM",
+          "champion": "Tristana",
+          "kills": 1,
+          "deaths": 7,
+          "assists": 0,
+          "cs": 201,
+          "gold": 10507,
+          "damage": 10520,
+          "visionScore": 16
+        },
+        {
+          "playerId": "MagicMaartje#knol",
+          "role": "SUPPORT",
+          "champion": "Lux",
+          "kills": 0,
+          "deaths": 6,
+          "assists": 1,
+          "cs": 46,
+          "gold": 6928,
+          "damage": 5604,
+          "visionScore": 66
+        }
+      ]
+    },
+    {
+      "opponent": "BDM",
+      "result": "loss",
+      "durationSeconds": 2040,
+      "enemyTeamKills": 36,
+      "ourBans": [
+        "Samira",
+        "Bel'Veth",
+        "Yasuo",
+        "Xerath",
+        "Aatrox"
+      ],
+      "enemyBans": [
+        "Heimerdinger",
+        "Malzahar",
+        "Ahri",
+        "Yunara",
+        "Kog'Maw"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Vladimir"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Wukong"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Galio"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Ashe"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Seraphine"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "Flerp#Slurp",
+          "role": "TOP",
+          "champion": "Kled",
+          "kills": 1,
+          "deaths": 9,
+          "assists": 3,
+          "cs": 231,
+          "gold": 10990,
+          "damage": 18738,
+          "visionScore": 37
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Nunu & Willump",
+          "kills": 4,
+          "deaths": 9,
+          "assists": 9,
+          "cs": 171,
+          "gold": 12745,
+          "damage": 17565,
+          "visionScore": 27
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Annie",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 4,
+          "cs": 226,
+          "gold": 12824,
+          "damage": 34217,
+          "visionScore": 23
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "BOTTOM",
+          "champion": "Sivir",
+          "kills": 6,
+          "deaths": 6,
+          "assists": 5,
+          "cs": 274,
+          "gold": 14068,
+          "damage": 35389,
+          "visionScore": 14
+        },
+        {
+          "playerId": "MagicMaartje#knol",
+          "role": "SUPPORT",
+          "champion": "Lulu",
+          "kills": 3,
+          "deaths": 8,
+          "assists": 4,
+          "cs": 24,
+          "gold": 8705,
+          "damage": 3282,
+          "visionScore": 83
+        }
+      ]
+    }
+  ]
+}

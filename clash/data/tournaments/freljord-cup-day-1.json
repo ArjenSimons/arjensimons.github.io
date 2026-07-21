@@ -1,0 +1,219 @@
+{
+  "id": "freljord-cup-day-1",
+  "name": "FRELJORD CUP Day 1",
+  "date": "2025-12-13",
+  "tier": 4,
+  "placement": 7,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "HOL",
+      "result": "loss",
+      "durationSeconds": 1980,
+      "enemyTeamKills": 21,
+      "ourBans": [
+        "LeBlanc",
+        "Miss Fortune",
+        "Nami",
+        "Kai'Sa",
+        "Nocturne"
+      ],
+      "enemyBans": [
+        "Lux",
+        "Trundle",
+        "Malphite",
+        "Twitch",
+        "Vayne"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Gnar"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Zaahen"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Viktor"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Jinx"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Xerath"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Olaf",
+          "kills": 8,
+          "deaths": 5,
+          "assists": 3,
+          "cs": 175,
+          "gold": 12853,
+          "damage": 23900,
+          "visionScore": 22
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Dr. Mundo",
+          "kills": 1,
+          "deaths": 3,
+          "assists": 7,
+          "cs": 208,
+          "gold": 11364,
+          "damage": 11630,
+          "visionScore": 28
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Anivia",
+          "kills": 6,
+          "deaths": 3,
+          "assists": 3,
+          "cs": 225,
+          "gold": 12329,
+          "damage": 16298,
+          "visionScore": 20
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 2,
+          "deaths": 4,
+          "assists": 2,
+          "cs": 153,
+          "gold": 9311,
+          "damage": 11108,
+          "visionScore": 28
+        },
+        {
+          "playerId": "MagicMaartje#knol",
+          "role": "SUPPORT",
+          "champion": "Mel",
+          "kills": 0,
+          "deaths": 7,
+          "assists": 7,
+          "cs": 24,
+          "gold": 6561,
+          "damage": 9752,
+          "visionScore": 49
+        }
+      ]
+    },
+    {
+      "opponent": "SMR",
+      "result": "loss",
+      "durationSeconds": 2580,
+      "enemyTeamKills": 34,
+      "ourBans": [
+        "Zed",
+        "Pantheon",
+        "Yorick",
+        "Sett",
+        "Malphite"
+      ],
+      "enemyBans": [
+        "Lux",
+        "Mel",
+        "Dr. Mundo",
+        "Anivia",
+        "Teemo"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Poppy"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Kayn"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Fizz"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Miss Fortune"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Sivir"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Cho'Gath",
+          "kills": 6,
+          "deaths": 7,
+          "assists": 5,
+          "cs": 239,
+          "gold": 14911,
+          "damage": 48068,
+          "visionScore": 26
+        },
+        {
+          "playerId": "Flipdebeer#Knol",
+          "role": "JUNGLE",
+          "champion": "Vi",
+          "kills": 3,
+          "deaths": 7,
+          "assists": 10,
+          "cs": 212,
+          "gold": 13021,
+          "damage": 13196,
+          "visionScore": 23
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Ekko",
+          "kills": 11,
+          "deaths": 7,
+          "assists": 12,
+          "cs": 225,
+          "gold": 15919,
+          "damage": 31547,
+          "visionScore": 36
+        },
+        {
+          "playerId": "Silkuh#EUW",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 6,
+          "deaths": 8,
+          "assists": 8,
+          "cs": 204,
+          "gold": 13425,
+          "damage": 19540,
+          "visionScore": 22
+        },
+        {
+          "playerId": "MagicMaartje#knol",
+          "role": "SUPPORT",
+          "champion": "Neeko",
+          "kills": 5,
+          "deaths": 5,
+          "assists": 11,
+          "cs": 35,
+          "gold": 10611,
+          "damage": 20828,
+          "visionScore": 72
+        }
+      ]
+    }
+  ]
+}
