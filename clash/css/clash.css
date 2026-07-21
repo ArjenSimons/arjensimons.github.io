@@ -355,3 +355,43 @@ select {
         min-height: 105px;
     }
 }
+
+.muted { color: var(--muted); }
+.editor-heading { margin: 28px 0 8px; }
+.game-meta-grid { margin-bottom: 18px; }
+.draft-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+.draft-panel { border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 0; }
+.draft-panel legend { color: var(--gold); padding: 0 8px; font-weight: 700; }
+.ban-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.enemy-lineup { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.enemy-pick { display: grid; gap: 6px; }
+.enemy-pick > span { color: var(--muted); font-size: .75rem; letter-spacing: .06em; }
+
+.game-score { display: grid; justify-items: end; gap: 4px; }
+.game-score strong { font-size: 1.8rem; }
+.game-score span { color: var(--muted); }
+.match-draft { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 20px 0 24px; }
+.draft-column { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: rgba(7, 17, 29, .35); }
+.draft-column h3 { margin: 0 0 12px; font-size: 1rem; color: var(--gold); }
+.draft-row { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(41, 65, 81, .55); }
+.draft-row:last-child { border-bottom: 0; }
+.draft-row span { color: var(--muted); font-size: .75rem; }
+.draft-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.draft-chip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 9px; background: var(--panel); font-size: .82rem; }
+
+.fun-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.fun-card { min-height: 220px; display: flex; flex-direction: column; }
+.fun-card h2 { margin: .25em 0; font-size: 1.7rem; }
+.fun-card p:not(.eyebrow) { color: var(--muted); }
+.fun-card small { margin-top: auto; color: var(--muted); }
+.fun-icon { font-size: 2rem; margin-bottom: 16px; }
+
+@media(max-width:1000px) {
+  .ban-grid, .enemy-lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .match-draft { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media(max-width:700px) {
+  .draft-grid, .match-draft, .ban-grid, .enemy-lineup { grid-template-columns: 1fr; }
+  .game-head { align-items: flex-start; gap: 16px; }
+}
