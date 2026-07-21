@@ -25,8 +25,24 @@ try {
   }]));
   const champions = new Map();
   const bans = new Map();
+  const gameAwards = [];
 
-  tournaments.forEach(tournament => tournament.games.forEach(game => {
+  tournaments.forEach(tournament => tournament.games.forEach((game, gameIndex) => {
+    const durationSeconds = Math.max(0, Number(game.durationSeconds || 0));
+    const teamKills = (game.players || []).reduce(
+      (total, player) => total + Math.max(0, Number(player.kills || 0)),
+      0
+    );
+
+    gameAwards.push({
+      tournamentName: tournament.name || 'Unknown tournament',
+      tournamentDate: tournament.date || '',
+      opponent: game.opponent || 'Unknown opponent',
+      gameNumber: gameIndex + 1,
+      durationSeconds,
+      teamKills
+    });
+
     (game.enemyBans || []).filter(Boolean).forEach(champion => {
       bans.set(champion, (bans.get(champion) || 0) + 1);
     });
@@ -106,6 +122,27 @@ try {
     .slice(0, 3)
     .map(([champion, count]) => ({ champion, count }));
 
+  const formatDuration = seconds => {
+    const safeSeconds = Math.max(0, Math.round(Number(seconds || 0)));
+    const minutes = Math.floor(safeSeconds / 60);
+    const remainder = safeSeconds % 60;
+    return `${minutes}:${String(remainder).padStart(2, '0')}`;
+  };
+
+  const gameLabel = game => `vs ${game.opponent}`;
+  const gameContext = game => `${game.tournamentName} · Game ${game.gameNumber}`;
+  const longestGames = [...gameAwards]
+    .filter(game => game.durationSeconds > 0)
+    .sort((a, b) => b.durationSeconds - a.durationSeconds)
+    .slice(0, 3);
+  const shortestGames = [...gameAwards]
+    .filter(game => game.durationSeconds > 0)
+    .sort((a, b) => a.durationSeconds - b.durationSeconds)
+    .slice(0, 3);
+  const highestKillGames = [...gameAwards]
+    .sort((a, b) => b.teamKills - a.teamKills || b.durationSeconds - a.durationSeconds)
+    .slice(0, 3);
+
   const legends = [
     { icon: '🏆', title: 'Overall MVP', ranking: topPlayers('averageScore'), value: player => `${format(player.averageScore)} rating` },
     { icon: '💀', title: 'Overall Inter', ranking: topPlayers('averageScore', true), value: player => `${format(player.averageScore)} rating` }
@@ -171,6 +208,14 @@ try {
     value: champion => `${champion.count} ban${champion.count === 1 ? '' : 's'}`
   });
 
+  const gameCard = (icon, title, ranking, metric) => rankingCard({
+    icon,
+    title,
+    ranking,
+    name: gameLabel,
+    value: game => `${metric(game)} · ${gameContext(game)}`
+  });
+
   root.innerHTML = `
     <section class="fun-section">
       <h2 class="fun-section-title">Tournament legends</h2>
@@ -186,6 +231,14 @@ try {
         ${championCard('👑', 'Best Champion', topChampions(false))}
         ${championCard('🗑️', 'Worst Champion', topChampions(true))}
         ${bannedCard}
+      </div>
+    </section>
+    <section class="fun-section">
+      <h2 class="fun-section-title">Game awards</h2>
+      <div class="fun-grid">
+        ${gameCard('⏱️', 'Longest Game', longestGames, game => formatDuration(game.durationSeconds))}
+        ${gameCard('⚡', 'Shortest Game', shortestGames, game => formatDuration(game.durationSeconds))}
+        ${gameCard('🔥', 'Highest Kill Game', highestKillGames, game => `${game.teamKills} team kills`)}
       </div>
     </section>`;
 } catch (error) {
