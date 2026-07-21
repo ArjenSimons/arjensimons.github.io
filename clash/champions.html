@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Champion Stats · Knoller Clash</title>
+  <link rel="stylesheet" href="css/clash.css">
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar">
+      <a class="brand" href="./">KNOLLER CLASH RESULTS</a>
+      <div class="nav">
+        <a href="./">Home</a>
+        <a href="players.html">Player stats</a>
+        <a href="champions.html">Champion stats</a>
+        <a href="stats.html">Fun stats</a>
+        <a href="admin.html">Add tournament</a>
+      </div>
+    </nav>
+    <header class="hero compact rankings-hero">
+      <p class="eyebrow">All recorded games</p>
+      <h1>Champion stats</h1>
+      <p>Career averages for every champion played by Knoller.</p>
+    </header>
+    <section class="ranking-controls">
+      <label for="champion-sort">Sort by
+        <select id="champion-sort">
+          <option value="score">Average score</option><option value="games">Games</option><option value="winrate">Win rate</option>
+          <option value="kda">Average KDA</option><option value="kp">Kill participation</option>
+          <option value="vision">Vision score</option><option value="damage">Damage</option><option value="name">Champion name</option>
+        </select>
+      </label>
+    </section>
+    <section id="champion-stats"></section>
+  </main>
+  <script type="module" src="js/champions.js"></script>
+</body>
+</html>

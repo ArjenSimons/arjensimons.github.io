@@ -395,3 +395,125 @@ select {
   .draft-grid, .match-draft, .ban-grid, .enemy-lineup { grid-template-columns: 1fr; }
   .game-head { align-items: flex-start; gap: 16px; }
 }
+
+/* Compact homepage */
+.shell { padding-top: 14px; }
+.topbar { padding-bottom: 16px; }
+.hero.compact-home { padding: 18px 0 22px; }
+.summary { gap: 12px; }
+.summary-card { min-height: 94px; padding: 16px 18px; box-shadow: none; }
+.summary-card strong { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.players-section { margin-bottom: 30px; }
+.player-grid { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 12px; }
+.player-card { padding: 16px; box-shadow: none; }
+.player-card h2 { margin-bottom: 8px; padding-bottom: 10px; font-size: 1.1rem; }
+.player-stats div { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.player-stats div:last-child { border-bottom: 0; }
+.player-stats dt { color: var(--muted); }
+.player-stats dd { margin: 0; font-weight: 700; }
+.tournament-card { margin: 12px 0; padding: 18px; box-shadow: none; }
+
+/* Ranking pages */
+.rankings-hero { padding-bottom: 18px; }
+.rankings-hero h1 { margin-bottom: .15em; }
+.ranking-list { display: grid; gap: 10px; }
+.ranking-row { display: grid; grid-template-columns: 42px minmax(170px, 1fr) minmax(320px, 1.4fr); align-items: center; gap: 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(145deg, var(--panel2), var(--panel)); }
+.rank { color: var(--gold); font-size: 1.2rem; font-weight: 800; text-align: center; }
+.ranking-name { display: grid; gap: 4px; }
+.ranking-name strong { font-size: 1.1rem; }
+.ranking-name small { color: var(--muted); }
+.ranking-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0; }
+.player-ranking-metrics { grid-template-columns: repeat(6, 1fr); }
+.ranking-metrics div { display: grid; gap: 3px; }
+.ranking-metrics dt { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; }
+.ranking-metrics dd { margin: 0; font-weight: 800; }
+
+@media(max-width:900px) {
+  .ranking-row { grid-template-columns: 34px 1fr; }
+  .ranking-metrics { grid-column: 2; }
+  .player-ranking-metrics { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media(max-width:600px) {
+  .summary { grid-template-columns: 1fr; }
+  .summary-card { min-height: 78px; }
+  .ranking-row { padding: 14px; gap: 12px; }
+  .ranking-metrics, .player-ranking-metrics { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Shared navigation and sortable ranking tables */
+.topbar {
+    gap: 22px;
+}
+
+.nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.ranking-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 14px;
+}
+
+.ranking-controls label {
+    width: min(260px, 100%);
+}
+
+.ranking-table-wrap {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--panel2), var(--panel));
+}
+
+.ranking-table {
+    min-width: 1040px;
+}
+
+.player-stats-table {
+    min-width: 1280px;
+}
+
+.ranking-table tbody tr:hover {
+    background: #ffffff08;
+}
+
+.ranking-table td {
+    font-variant-numeric: tabular-nums;
+}
+
+.rank-cell {
+    color: var(--muted);
+    width: 42px;
+}
+
+.stat-leader {
+    color: var(--gold);
+    font-weight: 800;
+    background: #c9a45b14;
+}
+
+@media(max-width:800px) {
+    .topbar {
+        flex-direction: column;
+    }
+
+    .nav {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .nav a {
+        padding: 8px 10px;
+        font-size: .85rem;
+    }
+
+    .ranking-controls {
+        justify-content: stretch;
+    }
+
+    .ranking-controls label {
+        width: 100%;
+    }
+}
