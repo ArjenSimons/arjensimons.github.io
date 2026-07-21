@@ -179,11 +179,11 @@ try {
 
   const playerAwards = [
     { icon: '⚔️', title: 'KDA Leader', ranking: topPlayers('averageKda'), value: player => `${format(player.averageKda, 2)} KDA` },
-    { icon: '🤝', title: 'Contribute King', ranking: topPlayers('averageKp'), value: player => `${Math.round(player.averageKp * 100)}% KP` },
-    { icon: '🌾', title: 'CS Leader', ranking: topPlayers('csPerMinute'), value: player => `${format(player.csPerMinute, 2)} CS/min` },
+    { icon: '🤝', title: 'Contribution King', ranking: topPlayers('averageKp'), value: player => `${Math.round(player.averageKp * 100)}% KP` },
+    { icon: '🌾', title: 'Minion Harverster', ranking: topPlayers('csPerMinute'), value: player => `${format(player.csPerMinute, 2)} CS/min` },
     { icon: '🪙', title: 'Gold Goblin', ranking: topPlayers('goldPerMinute'), value: player => `${Math.round(player.goldPerMinute).toLocaleString()} gold/min` },
     { icon: '👁️', title: 'Visionair', ranking: topPlayers('visionPerMinute'), value: player => `${format(player.visionPerMinute, 2)} vision/min` },
-    { icon: '💥', title: 'Health Bar Eraser', ranking: topPlayers('damagePerMinute'), value: player => `${Math.round(player.damagePerMinute).toLocaleString()} damage/min` },
+    { icon: '💥', title: 'Damage Demon', ranking: topPlayers('damagePerMinute'), value: player => `${Math.round(player.damagePerMinute).toLocaleString()} damage/min` },
     { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths` }
   ];
 
@@ -256,7 +256,7 @@ try {
 
   const bannedCard = rankingCard({
     icon: '🚫',
-    title: 'Most Banned Champion',
+    title: 'Most Feared Champion',
     ranking: topBans,
     name: champion => champion.champion,
     value: champion => `${champion.count} ban${champion.count === 1 ? '' : 's'}`

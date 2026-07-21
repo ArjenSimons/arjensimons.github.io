@@ -1,0 +1,323 @@
+{
+  "id": "noxus-cup-day-2",
+  "name": "NOXUS CUP Day 2",
+  "date": "2026-03-22",
+  "tier": 3,
+  "placement": 5,
+  "manualMvp": null,
+  "manualInter": null,
+  "games": [
+    {
+      "opponent": "NTR",
+      "result": "loss",
+      "durationSeconds": 1500,
+      "enemyTeamKills": 27,
+      "ourBans": [
+        "Master Yi",
+        "Kha'Zix",
+        "Caitlyn",
+        "Gragas",
+        "Lee Sin"
+      ],
+      "enemyBans": [
+        "Malphite",
+        "Trundle",
+        "LeBlanc",
+        "Cho'Gath",
+        "Dr. Mundo"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Illaoi"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Sylas"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Malzahar"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Kai'Sa"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Braum"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Yorick",
+          "kills": 1,
+          "deaths": 2,
+          "assists": 1,
+          "cs": 183,
+          "gold": 8387,
+          "damage": 16153,
+          "visionScore": 28
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Volibear",
+          "kills": 1,
+          "deaths": 8,
+          "assists": 5,
+          "cs": 110,
+          "gold": 7470,
+          "damage": 8245,
+          "visionScore": 6
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Ekko",
+          "kills": 5,
+          "deaths": 4,
+          "assists": 1,
+          "cs": 203,
+          "gold": 9609,
+          "damage": 14622,
+          "visionScore": 14
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Lucian",
+          "kills": 4,
+          "deaths": 8,
+          "assists": 5,
+          "cs": 206,
+          "gold": 11470,
+          "damage": 18293,
+          "visionScore": 14
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Nami",
+          "kills": 2,
+          "deaths": 5,
+          "assists": 7,
+          "cs": 35,
+          "gold": 6989,
+          "damage": 10049,
+          "visionScore": 55
+        }
+      ]
+    },
+    {
+      "opponent": "TRY",
+      "result": "win",
+      "durationSeconds": 2100,
+      "enemyTeamKills": 14,
+      "ourBans": [
+        "Samira",
+        "Vi",
+        "Talon",
+        "Nami",
+        "Janna"
+      ],
+      "enemyBans": [
+        "LeBlanc",
+        "Trundle",
+        "Malphite",
+        "Leona",
+        "Xerath"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ahri"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Qiyana"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Sylas"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Corki"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Lux"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Olaf",
+          "kills": 2,
+          "deaths": 2,
+          "assists": 4,
+          "cs": 271,
+          "gold": 13629,
+          "damage": 16367,
+          "visionScore": 46
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Warwick",
+          "kills": 5,
+          "deaths": 2,
+          "assists": 9,
+          "cs": 191,
+          "gold": 12701,
+          "damage": 17187,
+          "visionScore": 18
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Cho'Gath",
+          "kills": 11,
+          "deaths": 2,
+          "assists": 5,
+          "cs": 286,
+          "gold": 15379,
+          "damage": 37168,
+          "visionScore": 29
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Caitlyn",
+          "kills": 11,
+          "deaths": 4,
+          "assists": 8,
+          "cs": 311,
+          "gold": 18225,
+          "damage": 31411,
+          "visionScore": 23
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Morgana",
+          "kills": 3,
+          "deaths": 4,
+          "assists": 12,
+          "cs": 37,
+          "gold": 10743,
+          "damage": 19759,
+          "visionScore": 107
+        }
+      ]
+    },
+    {
+      "opponent": "TPD",
+      "result": "win",
+      "durationSeconds": 2040,
+      "enemyTeamKills": 20,
+      "ourBans": [
+        "Ahri",
+        "Amumu",
+        "Jinx",
+        "Yasuo",
+        "Sylas"
+      ],
+      "enemyBans": [
+        "Yorick",
+        "Trundle",
+        "Caitlyn",
+        "Malzahar",
+        "Cho'Gath"
+      ],
+      "enemyPlayers": [
+        {
+          "role": "TOP",
+          "champion": "Ambessa"
+        },
+        {
+          "role": "JUNGLE",
+          "champion": "Zyra"
+        },
+        {
+          "role": "MIDDLE",
+          "champion": "Veigar"
+        },
+        {
+          "role": "BOTTOM",
+          "champion": "Xayah"
+        },
+        {
+          "role": "SUPPORT",
+          "champion": "Rakan"
+        }
+      ],
+      "players": [
+        {
+          "playerId": "NielsE#NOOB",
+          "role": "TOP",
+          "champion": "Shen",
+          "kills": 4,
+          "deaths": 6,
+          "assists": 6,
+          "cs": 203,
+          "gold": 11637,
+          "damage": 28104,
+          "visionScore": 36
+        },
+        {
+          "playerId": "Depoe#SEXKS",
+          "role": "JUNGLE",
+          "champion": "Malphite",
+          "kills": 12,
+          "deaths": 3,
+          "assists": 11,
+          "cs": 252,
+          "gold": 17292,
+          "damage": 17603,
+          "visionScore": 13
+        },
+        {
+          "playerId": "broodjemodder#mud",
+          "role": "MIDDLE",
+          "champion": "Annie",
+          "kills": 11,
+          "deaths": 2,
+          "assists": 6,
+          "cs": 259,
+          "gold": 14940,
+          "damage": 38425,
+          "visionScore": 14
+        },
+        {
+          "playerId": "twinten#Knol",
+          "role": "BOTTOM",
+          "champion": "Smolder",
+          "kills": 8,
+          "deaths": 6,
+          "assists": 12,
+          "cs": 263,
+          "gold": 16480,
+          "damage": 41478,
+          "visionScore": 23
+        },
+        {
+          "playerId": "arreman#deman",
+          "role": "SUPPORT",
+          "champion": "Milio",
+          "kills": 0,
+          "deaths": 3,
+          "assists": 23,
+          "cs": 27,
+          "gold": 9667,
+          "damage": 8926,
+          "visionScore": 111
+        }
+      ]
+    }
+  ]
+}
