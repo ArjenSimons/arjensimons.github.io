@@ -18,54 +18,173 @@ try {
     cs: 0,
     kp: 0,
     gold: 0,
-    deaths: 0
+    deaths: 0,
+    vision: 0,
+    damage: 0
   }]));
+  const champions = new Map();
   const bans = new Map();
 
   tournaments.forEach(tournament => tournament.games.forEach(game => {
-    (game.enemyBans || []).filter(Boolean).forEach(champion => bans.set(champion, (bans.get(champion) || 0) + 1));
+    (game.enemyBans || []).filter(Boolean).forEach(champion => {
+      bans.set(champion, (bans.get(champion) || 0) + 1);
+    });
+
     scoreGame(game).forEach(row => {
-      if (!players.has(row.playerId)) players.set(row.playerId, { playerId: row.playerId, games: 0, score: 0, kda: 0, cs: 0, kp: 0, gold: 0, deaths: 0 });
-      const item = players.get(row.playerId);
-      item.games += 1;
-      item.score += row.score;
-      item.kda += row.kda;
-      item.cs += Number(row.cs || 0);
-      item.kp += row.kp;
-      item.gold += Number(row.gold || 0);
-      item.deaths += Number(row.deaths || 0);
+      if (!players.has(row.playerId)) {
+        players.set(row.playerId, {
+          playerId: row.playerId,
+          games: 0,
+          score: 0,
+          kda: 0,
+          cs: 0,
+          kp: 0,
+          gold: 0,
+          deaths: 0,
+          vision: 0,
+          damage: 0
+        });
+      }
+
+      const player = players.get(row.playerId);
+      player.games += 1;
+      player.score += row.score;
+      player.kda += row.kda;
+      player.cs += Number(row.cs || 0);
+      player.kp += row.kp;
+      player.gold += Number(row.gold || 0);
+      player.deaths += Number(row.deaths || 0);
+      player.vision += Number(row.visionScore || 0);
+      player.damage += Number(row.damage || 0);
+
+      const championName = row.champion || 'Unknown';
+      const champion = champions.get(championName) || {
+        champion: championName,
+        games: 0,
+        score: 0
+      };
+      champion.games += 1;
+      champion.score += row.score;
+      champions.set(championName, champion);
     });
   }));
 
-  const ranked = [...players.values()].filter(player => player.games > 0).map(player => ({
-    ...player,
-    averageScore: player.score / player.games,
-    averageKda: player.kda / player.games,
-    averageCs: player.cs / player.games,
-    averageKp: player.kp / player.games,
-    averageGold: player.gold / player.games,
-    averageDeaths: player.deaths / player.games
-  }));
+  const rankedPlayers = [...players.values()]
+    .filter(player => player.games > 0)
+    .map(player => ({
+      ...player,
+      averageScore: player.score / player.games,
+      averageKda: player.kda / player.games,
+      averageCs: player.cs / player.games,
+      averageKp: player.kp / player.games,
+      averageGold: player.gold / player.games,
+      averageDeaths: player.deaths / player.games,
+      averageVision: player.vision / player.games,
+      averageDamage: player.damage / player.games
+    }));
 
-  const highest = key => [...ranked].sort((a, b) => b[key] - a[key])[0];
-  const lowest = key => [...ranked].sort((a, b) => a[key] - b[key])[0];
-  const mostBanned = [...bans.entries()].sort((a, b) => b[1] - a[1])[0];
+  const rankedChampions = [...champions.values()]
+    .filter(champion => champion.games > 0)
+    .map(champion => ({
+      ...champion,
+      averageScore: champion.score / champion.games
+    }));
 
-  const cards = [
-    { icon: '🏆', title: 'Overall MVP', winner: highest('averageScore'), value: player => `${format(player.averageScore)} average rating` },
-    { icon: '💀', title: 'Overall Inter', winner: lowest('averageScore'), value: player => `${format(player.averageScore)} average rating` },
-    { icon: '⚔️', title: 'KDA Leader', winner: highest('averageKda'), value: player => `${format(player.averageKda, 2)} average KDA` },
-    { icon: '🌾', title: 'CS Leader', winner: highest('averageCs'), value: player => `${format(player.averageCs)} average CS` },
-    { icon: '🤝', title: 'Contribute King', winner: highest('averageKp'), value: player => `${Math.round(player.averageKp * 100)}% average KP` },
-    { icon: '🪙', title: 'Gold Goblin', winner: highest('averageGold'), value: player => `${Math.round(player.averageGold).toLocaleString()} average gold` },
-    { icon: '🩶', title: 'Gray Screen Farmer', winner: highest('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} average deaths` }
+  const topPlayers = (key, ascending = false) => [...rankedPlayers]
+    .sort((a, b) => (ascending ? a[key] - b[key] : b[key] - a[key]) || b.games - a.games)
+    .slice(0, 3);
+
+  const topChampions = ascending => [...rankedChampions]
+    .sort((a, b) => (ascending ? a.averageScore - b.averageScore : b.averageScore - a.averageScore) || b.games - a.games)
+    .slice(0, 3);
+
+  const topBans = [...bans.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 3)
+    .map(([champion, count]) => ({ champion, count }));
+
+  const legends = [
+    { icon: '🏆', title: 'Overall MVP', ranking: topPlayers('averageScore'), value: player => `${format(player.averageScore)} rating` },
+    { icon: '💀', title: 'Overall Inter', ranking: topPlayers('averageScore', true), value: player => `${format(player.averageScore)} rating` }
   ];
 
-  root.innerHTML = `
-    <div class="fun-grid">
-      ${cards.map(card => `<article class="card fun-card"><span class="fun-icon">${card.icon}</span><p class="eyebrow">${card.title}</p><h2>${card.winner ? playerName(roster.players, card.winner.playerId) : '—'}</h2><p>${card.winner ? card.value(card.winner) : 'No games recorded'}</p><small>${card.winner ? `${card.winner.games} game${card.winner.games === 1 ? '' : 's'}` : ''}</small></article>`).join('')}
-      <article class="card fun-card"><span class="fun-icon">🚫</span><p class="eyebrow">Most Banned Champion</p><h2>${mostBanned?.[0] || '—'}</h2><p>${mostBanned ? `${mostBanned[1]} enemy ban${mostBanned[1] === 1 ? '' : 's'}` : 'No enemy bans recorded'}</p><small>Banned against Knoller</small></article>
+  const playerAwards = [
+    { icon: '⚔️', title: 'KDA Leader', ranking: topPlayers('averageKda'), value: player => `${format(player.averageKda, 2)} KDA` },
+    { icon: '🤝', title: 'Contribute King', ranking: topPlayers('averageKp'), value: player => `${Math.round(player.averageKp * 100)}% KP` },
+    { icon: '🌾', title: 'CS Leader', ranking: topPlayers('averageCs'), value: player => `${format(player.averageCs)} CS` },
+    { icon: '🪙', title: 'Gold Goblin', ranking: topPlayers('averageGold'), value: player => `${Math.round(player.averageGold).toLocaleString()} gold` },
+    { icon: '👁️', title: 'Visionair', ranking: topPlayers('averageVision'), value: player => `${format(player.averageVision)} vision` },
+    { icon: '💥', title: 'Health Bar Eraser', ranking: topPlayers('averageDamage'), value: player => `${Math.round(player.averageDamage).toLocaleString()} damage` },
+    { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths` }
+  ];
+
+  const medalForPlace = place => ({ 1: '🥇', 2: '🥈', 3: '🥉' }[place] || '');
+
+  const runnerUp = (entry, place, name, value) => `
+    <div class="fun-runner">
+      <span class="fun-medal-icon" aria-label="${place === 2 ? 'Second place' : 'Third place'}">${medalForPlace(place)}</span>
+      <strong>${entry ? name(entry) : '—'}</strong>
+      <small>${entry ? value(entry) : ''}</small>
     </div>`;
+
+  const rankingCard = ({ icon, title, ranking, name, value }) => {
+    const [winner, second, third] = ranking;
+    return `
+      <article class="card fun-card">
+        <div class="fun-card-head">
+          <span class="fun-icon">${icon}</span>
+          <p class="eyebrow">${title}</p>
+        </div>
+        <div class="fun-winner">
+          <span class="fun-medal-icon fun-medal-winner" aria-label="First place">🥇</span>
+          <h2>${winner ? name(winner) : '—'}</h2>
+          <p>${winner ? value(winner) : 'No data recorded'}</p>
+        </div>
+        <div class="fun-runners">
+          ${runnerUp(second, '2', name, value)}
+          ${runnerUp(third, '3', name, value)}
+        </div>
+      </article>`;
+  };
+
+  const playerCard = card => rankingCard({
+    ...card,
+    name: player => playerName(roster.players, player.playerId)
+  });
+
+  const championCard = (icon, title, ranking) => rankingCard({
+    icon,
+    title,
+    ranking,
+    name: champion => champion.champion,
+    value: champion => `${format(champion.averageScore)} rating`
+  });
+
+  const bannedCard = rankingCard({
+    icon: '🚫',
+    title: 'Most Banned Champion',
+    ranking: topBans,
+    name: champion => champion.champion,
+    value: champion => `${champion.count} ban${champion.count === 1 ? '' : 's'}`
+  });
+
+  root.innerHTML = `
+    <section class="fun-section">
+      <h2 class="fun-section-title">Tournament legends</h2>
+      <div class="fun-grid fun-grid-legends">${legends.map(playerCard).join('')}</div>
+    </section>
+    <section class="fun-section">
+      <h2 class="fun-section-title">Player awards</h2>
+      <div class="fun-grid">${playerAwards.map(playerCard).join('')}</div>
+    </section>
+    <section class="fun-section">
+      <h2 class="fun-section-title">Champion awards</h2>
+      <div class="fun-grid">
+        ${championCard('👑', 'Best Champion', topChampions(false))}
+        ${championCard('🗑️', 'Worst Champion', topChampions(true))}
+        ${bannedCard}
+      </div>
+    </section>`;
 } catch (error) {
   root.innerHTML = `<p class="error">${error.message}</p>`;
 }

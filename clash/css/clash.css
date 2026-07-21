@@ -517,3 +517,218 @@ select {
         width: 100%;
     }
 }
+
+/* Compact fun stats */
+#fun-stats { margin-top: 8px; }
+.fun-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+.fun-card {
+  min-height: 0;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: start;
+  box-shadow: none;
+}
+.fun-icon {
+  grid-row: 1 / span 2;
+  margin: 2px 0 0;
+  font-size: 1.55rem;
+}
+.fun-card-content { min-width: 0; }
+.fun-card h2 {
+  margin: 2px 0 3px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fun-card p { margin: 0; }
+.fun-card p:not(.eyebrow) { font-size: .88rem; }
+.fun-card small {
+  grid-column: 2;
+  margin-top: 7px;
+  font-size: .74rem;
+}
+@media(max-width:560px) {
+  .fun-grid { grid-template-columns: 1fr; }
+}
+
+/* Compact page titles */
+.page-heading {
+  padding: 12px 0 16px;
+}
+.page-heading h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.15;
+}
+
+/* Categorized Hall of Fame and Shame */
+#fun-stats { margin-top: 0; }
+.fun-section { margin-bottom: 24px; }
+.fun-section-title {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.fun-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.fun-grid-legends {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.fun-card {
+  height: 158px;
+  min-height: 158px;
+  padding: 16px;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: start;
+}
+.fun-card-content {
+  align-self: start;
+}
+.fun-card h2 {
+  margin: 7px 0 5px;
+  font-size: 1.25rem;
+}
+.fun-card small {
+  align-self: end;
+}
+
+@media(max-width:850px) {
+  .fun-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width:560px) {
+  .page-heading { padding: 8px 0 14px; }
+  .fun-grid, .fun-grid-legends { grid-template-columns: 1fr; }
+  .fun-card { height: 148px; min-height: 148px; }
+}
+
+/* Hall of Fame podium cards */
+.fun-section { margin-bottom: 18px; }
+.fun-section-title {
+  color: var(--gold);
+  font-size: .82rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.fun-grid { gap: 10px; }
+.fun-card {
+  height: 184px;
+  min-height: 184px;
+  padding: 12px 14px 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(70px, 1fr) auto;
+  gap: 5px;
+  text-align: center;
+  overflow: hidden;
+}
+.fun-card-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+.fun-card-head .eyebrow {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fun-icon {
+  grid-row: auto;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.fun-winner {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fun-winner h2 {
+  margin: 2px 0 1px;
+  max-width: 100%;
+  font-size: 1.28rem;
+  line-height: 1.08;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fun-winner p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.15;
+}
+.fun-runners {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+.fun-runner {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0 6px;
+}
+.fun-runner + .fun-runner {
+  border-left: 1px solid rgba(255,255,255,.06);
+}
+.fun-runner strong {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .78rem;
+  line-height: 1.15;
+  margin-top: 1px;
+}
+.fun-runner small {
+  display: block;
+  width: 100%;
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: .65rem;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fun-medal-icon {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.28));
+}
+.fun-medal-winner {
+  font-size: 1.65rem;
+  margin-bottom: 1px;
+}
+@media(max-width:560px) {
+  .fun-card { height: 184px; min-height: 184px; }
+}
+
