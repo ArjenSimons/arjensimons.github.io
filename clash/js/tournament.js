@@ -4,6 +4,13 @@ import { scoreGame, summarizeTournament, ROLES } from './scoring.js';
 const id = new URLSearchParams(location.search).get('id');
 const root = document.querySelector('#content');
 const list = values => values?.length ? values.map(value => `<span class="draft-chip">${value}</span>`).join('') : '<span class="muted">Not entered</span>';
+const scrollToGame = () => {
+  if (!location.hash) return;
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target) target.scrollIntoView({ block: 'start' });
+};
+
+window.addEventListener('hashchange', scrollToGame);
 
 try {
   const [roster, manifest] = await Promise.all([
@@ -24,11 +31,11 @@ try {
     </header>
 
     <section class="award-grid">
-      <article class="card award"><span>🏅 Tournament MVP</span><h2>${playerName(roster.players, summary.mvp?.playerId)}</h2><strong>${summary.mvp?.average.toFixed(1)} · ${summary.mvp?.grade}</strong></article>
-      <article class="card award"><span>💀 Inter of the tournament</span><h2>${playerName(roster.players, summary.inter?.playerId)}</h2><strong>${summary.inter?.average.toFixed(1)} · ${summary.inter?.grade}</strong></article>
+      <article class="card award"><span>🏅 Tournament MVP</span><h2><a class="player-name-link" href="player.html?id=${encodeURIComponent(summary.mvp?.playerId || '')}">${playerName(roster.players, summary.mvp?.playerId)}</a></h2><strong>${summary.mvp?.average.toFixed(1)} · ${summary.mvp?.grade}</strong></article>
+      <article class="card award"><span>💀 Inter of the tournament</span><h2><a class="player-name-link" href="player.html?id=${encodeURIComponent(summary.inter?.playerId || '')}">${playerName(roster.players, summary.inter?.playerId)}</a></h2><strong>${summary.inter?.average.toFixed(1)} · ${summary.inter?.grade}</strong></article>
     </section>
 
-    <section><h2>Overall standings</h2><div class="table-wrap"><table><thead><tr><th>Player</th><th>Games</th><th>Roles</th><th>Rating</th><th>Grade</th></tr></thead><tbody>${summary.players.map(player => `<tr><td>${playerName(roster.players, player.playerId)}</td><td>${player.games}</td><td>${player.roles.join(', ')}</td><td>${player.average.toFixed(1)}</td><td><b>${player.grade}</b></td></tr>`).join('')}</tbody></table></div></section>
+    <section><h2>Overall standings</h2><div class="table-wrap"><table><thead><tr><th>Player</th><th>Games</th><th>Roles</th><th>Rating</th><th>Grade</th></tr></thead><tbody>${summary.players.map(player => `<tr><td><a class="player-name-link" href="player.html?id=${encodeURIComponent(player.playerId)}">${playerName(roster.players, player.playerId)}</a></td><td>${player.games}</td><td>${player.roles.join(', ')}</td><td>${player.average.toFixed(1)}</td><td><b>${player.grade}</b></td></tr>`).join('')}</tbody></table></div></section>
 
     ${tournament.games.map((game, index) => {
       const rows = scoreGame(game);
@@ -58,9 +65,13 @@ try {
           <div class="draft-column"><h3>Banned by enemy</h3><div class="draft-chips">${list(game.enemyBans)}</div></div>
         </div>
 
-        <div class="table-wrap"><table><thead><tr><th>Role</th><th>Player</th><th>Champion</th><th>K/D/A</th><th>KDA</th><th>KP</th><th>CS</th><th>Gold</th><th>Damage</th><th>Vision</th><th>Rating</th></tr></thead><tbody>${rows.map(player => `<tr><td>${player.role}</td><td>${playerName(roster.players, player.playerId)}</td><td>${player.champion}</td><td>${player.kills}/${player.deaths}/${player.assists}</td><td class="${leaderClass(player, 'kda')}">${player.kda.toFixed(2)}</td><td class="${leaderClass(player, 'kp')}">${Math.round(player.kp * 100)}%</td><td class="${leaderClass(player, 'cs')}">${player.cs}</td><td class="${leaderClass(player, 'gold')}">${Number(player.gold).toLocaleString()}</td><td class="${leaderClass(player, 'damage')}">${Number(player.damage).toLocaleString()}</td><td class="${leaderClass(player, 'visionScore')}">${player.visionScore}</td><td class="${leaderClass(player, 'score')}"><b>${player.score.toFixed(1)} · ${player.grade}</b></td></tr>`).join('')}</tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Role</th><th>Player</th><th>Champion</th><th>K/D/A</th><th>KDA</th><th>KP</th><th>CS</th><th>Gold</th><th>Damage</th><th>Vision</th><th>Rating</th></tr></thead><tbody>${rows.map(player => `<tr><td>${player.role}</td><td><a class="player-name-link" href="player.html?id=${encodeURIComponent(player.playerId)}">${playerName(roster.players, player.playerId)}</a></td><td>${player.champion}</td><td>${player.kills}/${player.deaths}/${player.assists}</td><td class="${leaderClass(player, 'kda')}">${player.kda.toFixed(2)}</td><td class="${leaderClass(player, 'kp')}">${Math.round(player.kp * 100)}%</td><td class="${leaderClass(player, 'cs')}">${player.cs}</td><td class="${leaderClass(player, 'gold')}">${Number(player.gold).toLocaleString()}</td><td class="${leaderClass(player, 'damage')}">${Number(player.damage).toLocaleString()}</td><td class="${leaderClass(player, 'visionScore')}">${player.visionScore}</td><td class="${leaderClass(player, 'score')}"><b>${player.score.toFixed(1)} · ${player.grade}</b></td></tr>`).join('')}</tbody></table></div>
       </section>`;
     }).join('')}`;
+
+  // The game sections are rendered after the JSON requests finish, so the
+  // browser's initial anchor jump happens before its target exists.
+  requestAnimationFrame(scrollToGame);
 } catch (error) {
   root.innerHTML = `<p class="error">${error.message}</p>`;
 }

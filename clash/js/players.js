@@ -78,7 +78,7 @@ try {
       <thead><tr><th>#</th><th>Player</th><th>Games</th><th>Win rate</th><th>Score</th><th>KDA</th><th>KP</th><th>CS/min</th><th>Gold/min</th><th>Vision/min</th><th>Damage/min</th><th>MVPs</th><th>INTs</th></tr></thead>
       <tbody>${ranked.map((item, index) => `<tr>
         <td class="rank-cell">${index + 1}</td>
-        <td><strong>${item.name}</strong></td>
+        <td><strong><a class="player-name-link" href="player.html?id=${encodeURIComponent(item.playerId)}">${item.name}</a></strong></td>
         <td class="${isLeader(item, 'games', maxima) ? 'stat-leader' : ''}">${item.games}</td>
         <td class="${isLeader(item, 'winrate', maxima) ? 'stat-leader' : ''}">${Math.round(item.winrate * 100)}%</td>
         <td class="${isLeader(item, 'averageScore', maxima) ? 'stat-leader' : ''}">${item.averageScore.toFixed(1)}</td>

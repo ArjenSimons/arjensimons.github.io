@@ -52,11 +52,16 @@ try {
 
   document.querySelector('#players').innerHTML = [...playerStats.values()]
     .filter(player => player.games > 0)
-    .sort((a,b) => (b.totalScore / b.games) - (a.totalScore / a.games))
+    .sort((a,b) =>
+      b.games - a.games ||
+      (b.totalScore / b.games) - (a.totalScore / a.games) ||
+      (b.wins / b.games) - (a.wins / a.games) ||
+      a.name.localeCompare(b.name)
+    )
     .map(player => {
       const winrate = Math.round(player.wins / player.games * 100);
       const averageScore = player.totalScore / player.games;
-      return `<article class="card player-card"><h2>${player.name}</h2><dl class="player-stats"><div><dt>Games</dt><dd>${player.games}</dd></div><div><dt>Win rate</dt><dd>${winrate}%</dd></div><div><dt>Average score</dt><dd>${averageScore.toFixed(1)}</dd></div></dl></article>`;
+      return `<a class="card player-card player-card-link" href="player.html?id=${encodeURIComponent(player.id)}"><h2>${player.name}</h2><dl class="player-stats"><div><dt>Games</dt><dd>${player.games}</dd></div><div><dt>Win rate</dt><dd>${winrate}%</dd></div><div><dt>Average score</dt><dd>${averageScore.toFixed(1)}</dd></div></dl></a>`;
     }).join('');
 
   root.innerHTML = tournaments.map(t => {

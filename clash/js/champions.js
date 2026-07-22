@@ -5,8 +5,8 @@ const root = document.querySelector('#champion-stats');
 const sortSelect = document.querySelector('#champion-sort');
 
 const sorters = {
-  score: (a, b) => b.averageScore - a.averageScore,
   games: (a, b) => b.games - a.games,
+  score: (a, b) => b.averageScore - a.averageScore,
   winrate: (a, b) => b.winrate - a.winrate,
   kda: (a, b) => b.averageKda - a.averageKda,
   kp: (a, b) => b.averageKp - a.averageKp,
@@ -60,7 +60,7 @@ try {
 
   const maxima = Object.fromEntries(numericKeys.map(key => [key, Math.max(...rows.map(item => item[key]))]));
 
-  function render(sortKey = 'score') {
+  function render(sortKey = 'games') {
     const ranked = [...rows].sort((a, b) => sorters[sortKey](a, b) || b.games - a.games || a.champion.localeCompare(b.champion));
     root.innerHTML = ranked.length ? `<div class="table-wrap ranking-table-wrap"><table class="ranking-table">
       <thead><tr><th>#</th><th>Champion</th><th>Games</th><th>Win rate</th><th>Score</th><th>KDA</th><th>KP</th><th>CS/min</th><th>Gold/min</th><th>Vision/min</th><th>Damage/min</th></tr></thead>

@@ -7,17 +7,20 @@ export const ROLES = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"];
 // role is expected to contribute; they are deliberately kept close together.
 // Every row sums to 1 and the final 0-10 conversion is identical for all roles.
 const weights = {
-  TOP:     { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
-  JUNGLE:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
-  MIDDLE:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
-  BOTTOM:  { kda: .2, kp: .25, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
-  SUPPORT: { kda: .2, kp: .25, damage: .15, gold: .1, cs: .05, vision: .15, deaths: .1, result: .05 }
+  TOP:     { kda: .25, kp: .20, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  JUNGLE:  { kda: .25, kp: .20, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  MIDDLE:  { kda: .25, kp: .20, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  BOTTOM:  { kda: .25, kp: .20, damage: .15, gold: .1, cs: .1, vision: .05, deaths: .1, result: .05 },
+  SUPPORT: { kda: .25, kp: .20, damage: .15, gold: .1, cs: .01, vision: .14, deaths: .1, result: .05 }
 };
 
 const clamp10 = value => Math.max(0, Math.min(10, value));
-const MAX_FAVOURABLE_RATIO = 1.75;
+const MAX_FAVOURABLE_RATIO = 2.5;
+const SCORE_PIVOT = 6.5;
+const UPPER_SCORE_CONTRAST = 1.2;
+const LOWER_SCORE_CONTRAST = 1.5;
 
-// The Emerald+ benchmark maps to 6.75. A logarithmic ratio and tanh provide
+// The Silver+ benchmark maps to 6.75. A logarithmic ratio and tanh provide
 // diminishing returns: below-average games fall toward 5, while 9-10 requires
 // an exceptional result rather than merely exceeding the target a little.
 //
@@ -62,10 +65,15 @@ export function scoreGame(game) {
       cs: higher(Number(p.cs) / minutes, t.cs),
       vision: higher(Number(p.visionScore) / minutes, t.vision),
       deaths: lower(Number(p.deaths), t.deaths),
-      result: game.result === "win" ? 8.5 : 5.0
+      result: game.result === "win" ? 10 : 4
     };
-    const score = Object.entries(w).reduce((sum, [key, weight]) => sum + metrics[key] * weight, 0);
-    return { ...p, kda, kp, score, grade: grade(score), metrics, benchmark: t };
+    const rawScore = Object.entries(w).reduce((sum, [key, weight]) => sum + metrics[key] * weight, 0);
+    // Keep 7 as a stable pivot: above-average games always gain some
+    // separation, while weaker games spread out more strongly so the overall
+    // average remains near 6.5 without penalizing a good performance.
+    const contrast = rawScore >= SCORE_PIVOT ? UPPER_SCORE_CONTRAST : LOWER_SCORE_CONTRAST;
+    const score = clamp10(SCORE_PIVOT + contrast * (rawScore - SCORE_PIVOT));
+    return { ...p, kda, kp, score, rawScore, grade: grade(score), metrics, benchmark: t };
   });
 }
 
