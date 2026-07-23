@@ -281,9 +281,9 @@ try {
     { icon: '🌾', title: 'Farmer', ranking: topPlayers('csPerMinute'), value: player => `${format(player.csPerMinute, 2)} CS/min` },
     { icon: '🪙', title: 'Gold Goblin', ranking: topPlayers('goldPerMinute'), value: player => `${Math.round(player.goldPerMinute).toLocaleString()} gold/min` },
     { icon: '👁️', title: 'Visionair', ranking: topPlayers('visionPerMinute'), value: player => `${format(player.visionPerMinute, 2)} vision/min` },
-    { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths` },
-    { icon: '💅', title: 'E-girl', ranking: topPlayers('averageAssists'), value: player => `${format(player.averageAssists, 2)} assists` },
-    { icon: '🪓', title: 'Kill stealer', ranking: topPlayers('averageKills'), value: player => `${format(player.averageKills, 2)} kills` },
+    { icon: '🩶', title: 'Gray Screen Farmer', ranking: topPlayers('averageDeaths'), value: player => `${format(player.averageDeaths, 2)} deaths/game` },
+    { icon: '💅', title: 'E-girl', ranking: topPlayers('averageAssists'), value: player => `${format(player.averageAssists, 2)} assists/game` },
+    { icon: '🪓', title: 'Kill stealer', ranking: topPlayers('averageKills'), value: player => `${format(player.averageKills, 2)} kills/game` },
     { icon: '🤲', title: 'Steady Hands', ranking: mostConsistentPlayers, value: player => `${format(player.ratingDeviation, 2)} rating deviation` },
     { icon: '🎲', title: 'Dice Roller', ranking: biggestCoinFlippers, value: player => `${format(player.ratingDeviation, 2)} rating deviation` },
     { icon: '🦄', title: 'One Trick Pony', ranking: biggestOneTricks, value: player => `${Math.round(player.oneTrickShare * 100)}% ${player.oneTrickChampion} (${player.oneTrickGames} games)` }
