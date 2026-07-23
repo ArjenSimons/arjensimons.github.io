@@ -19,6 +19,10 @@ const sorters = {
 
 const numericKeys = ['games', 'winrate', 'averageScore', 'averageKda', 'averageKp', 'csPerMinute', 'goldPerMinute', 'visionPerMinute', 'damagePerMinute'];
 const isLeader = (item, key, maxima) => Math.abs(item[key] - maxima[key]) < 1e-9;
+const headers = [
+  ['Champion','name'],['Games','games'],['Win rate','winrate'],['Score','score'],['KDA','kda'],
+  ['KP','kp'],['CS/min','cs'],['Gold/min','gold'],['Vision/min','vision'],['Damage/min','damage']
+];
 
 try {
   const manifest = await loadJson('./data/index.json');
@@ -60,10 +64,12 @@ try {
 
   const maxima = Object.fromEntries(numericKeys.map(key => [key, Math.max(...rows.map(item => item[key]))]));
 
-  function render(sortKey = 'games') {
-    const ranked = [...rows].sort((a, b) => sorters[sortKey](a, b) || b.games - a.games || a.champion.localeCompare(b.champion));
+  let currentSort = sortSelect.value || 'games', currentDirection = 1;
+  function render(sortKey = currentSort, direction = currentDirection) {
+    currentSort=sortKey; currentDirection=direction;
+    const ranked = [...rows].sort((a, b) => sorters[sortKey](a, b)*direction || b.games - a.games || a.champion.localeCompare(b.champion));
     root.innerHTML = ranked.length ? `<div class="table-wrap ranking-table-wrap"><table class="ranking-table">
-      <thead><tr><th>#</th><th>Champion</th><th>Games</th><th>Win rate</th><th>Score</th><th>KDA</th><th>KP</th><th>CS/min</th><th>Gold/min</th><th>Vision/min</th><th>Damage/min</th></tr></thead>
+      <thead><tr><th>#</th>${headers.map(([label,key])=>`<th aria-sort="${key===sortKey?(direction===1?(key==='name'?'ascending':'descending'):(key==='name'?'descending':'ascending')):'none'}"><button class="table-sort-button" data-sort="${key}">${label}<i aria-hidden="true"></i></button></th>`).join('')}</tr></thead>
       <tbody>${ranked.map((item, index) => `<tr>
         <td class="rank-cell">${index + 1}</td>
         <td><strong>${item.champion}</strong></td>
@@ -80,8 +86,15 @@ try {
     </table></div>` : '<p>No champion games recorded.</p>';
   }
 
-  sortSelect.addEventListener('change', () => render(sortSelect.value));
-  render(sortSelect.value);
+  sortSelect.addEventListener('change', () => render(sortSelect.value,1));
+  root.addEventListener('click',event=>{
+    const button=event.target.closest('.table-sort-button');
+    if(!button) return;
+    const key=button.dataset.sort;
+    sortSelect.value=key;
+    render(key,key===currentSort?-currentDirection:1);
+  });
+  render(currentSort,currentDirection);
 } catch (error) {
   root.innerHTML = `<p class="error">${error.message}</p>`;
 }
