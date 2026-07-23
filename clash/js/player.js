@@ -53,9 +53,7 @@ function radarChart(stats) {
   };
   const polygon=scale=>stats.map((_,index)=>point(index,scale).map(value=>value.toFixed(1)).join(',')).join(' ');
   const valuePolygon=stats.map((stat,index)=>point(index,scaleValue(stat.value)).map(value=>value.toFixed(1)).join(',')).join(' ');
-  return `<svg class="performance-radar" viewBox="0 0 360 360" role="img" aria-labelledby="radar-title radar-description">
-    <title id="radar-title">Role-adjusted player strengths</title>
-    <desc id="radar-description">${stats.map(stat=>`${stat.label} ${stat.value.toFixed(1)} out of 10`).join(', ')}</desc>
+  return `<svg class="performance-radar" viewBox="0 0 360 360" role="img" aria-label="Player performance radar: ${stats.map(stat=>`${stat.label} ${stat.value.toFixed(1)} out of 10`).join(', ')}">
     <g class="radar-grid">${[.25,.5,.75,1].map(scale=>`<polygon points="${polygon(scale)}"></polygon>`).join('')}${stats.map((_,index)=>{const [x,y]=point(index);return `<line x1="${center}" y1="${center}" x2="${x}" y2="${y}"></line>`;}).join('')}</g>
     <polygon class="radar-area" points="${valuePolygon}"></polygon>
     <polyline class="radar-line" points="${valuePolygon} ${valuePolygon.split(' ')[0]}"></polyline>
